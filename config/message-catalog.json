@@ -1,0 +1,573 @@
+{
+  "catalog_version": "2026-08-04-open-meteo-single-01",
+  "generator_id": "context-composer-02",
+  "default_language": "es",
+  "selection_policy": "deterministic_factorized",
+  "recipient_names": [
+    "David Alexander Bijman Molina"
+  ],
+  "policy": {
+    "source_order": [
+      "weather"
+    ],
+    "max_source_sections": 4,
+    "weather_fact_count": 2,
+    "max_message_characters": 2000
+  },
+  "openings": [
+    {
+      "value_id": "apertura-saludo-directo",
+      "weight": 4,
+      "text": "Saludos desde {{node.city}}",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-saludo-cordial",
+      "weight": 4,
+      "text": "Un cordial saludo desde {{node.city}}",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-saludo-enviado",
+      "weight": 3,
+      "text": "Desde {{node.city}} enviamos un saludo atento a la red",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-saludo-horario",
+      "weight": 5,
+      "text": "{{time.salutation}} desde {{node.city}}",
+      "requires": [
+        "time.salutation",
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-mensaje-horario",
+      "weight": 3,
+      "text": "{{time.salutation}}; este mensaje se emite desde {{node.city}}",
+      "requires": [
+        "time.salutation",
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-saludo-nodo",
+      "weight": 3,
+      "text": "El nodo {{node.node_id}} saluda desde {{node.city}}",
+      "requires": [
+        "node.node_id",
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-mensaje-nodo",
+      "weight": 3,
+      "text": "Desde {{node.city}}, el nodo {{node.node_id}} comparte una nueva señal",
+      "requires": [
+        "node.city",
+        "node.node_id"
+      ]
+    },
+    {
+      "value_id": "apertura-ciudad-presente",
+      "weight": 2,
+      "text": "La ciudad de {{node.city}} se hace presente en la red",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-aprecio",
+      "weight": 2,
+      "text": "Con aprecio, enviamos esta publicación desde {{node.city}}",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-senal-red",
+      "weight": 2,
+      "text": "Desde {{node.city}} compartimos una nueva señal distribuida",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-nombre-nodo",
+      "weight": 2,
+      "text": "El {{node.display_name}} comparte un nuevo registro desde su ciudad",
+      "requires": [
+        "node.display_name"
+      ]
+    },
+    {
+      "value_id": "apertura-emision-actual",
+      "weight": 1,
+      "text": "La emisión actual del {{node.display_name}} comienza con este saludo",
+      "requires": [
+        "node.display_name"
+      ]
+    },
+    {
+      "value_id": "apertura-periodo",
+      "weight": 2,
+      "text": "Durante la {{time.day_period}}, enviamos un saludo desde {{node.city}}",
+      "requires": [
+        "time.day_period",
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-periodo-red",
+      "weight": 2,
+      "text": "En esta {{time.day_period}}, {{node.city}} comparte un mensaje para la red",
+      "requires": [
+        "time.day_period",
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-mensaje-cordial",
+      "weight": 3,
+      "text": "Desde {{node.city}} hacemos llegar un mensaje cordial",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-saludo-afectuoso",
+      "weight": 2,
+      "text": "Reciban un saludo afectuoso emitido desde {{node.city}}",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-conexion",
+      "weight": 1,
+      "text": "La red se conecta nuevamente con un saludo desde {{node.city}}",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-alegria",
+      "weight": 1,
+      "text": "Con alegría, el {{node.display_name}} transmite desde {{node.city}}",
+      "requires": [
+        "node.display_name",
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-pulso-ciudad",
+      "weight": 3,
+      "text": "{{node.city}} comparte el pulso de esta {{time.day_period}}",
+      "requires": [
+        "node.city",
+        "time.day_period"
+      ]
+    },
+    {
+      "value_id": "apertura-registro-sereno",
+      "weight": 2,
+      "text": "Con una señal serena desde {{node.city}}, el nodo inicia su publicación",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-observacion-local",
+      "weight": 2,
+      "text": "Desde la observación local de {{node.city}}, compartimos este saludo",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-ciclo-presente",
+      "weight": 2,
+      "text": "En este ciclo, {{node.city}} vuelve a dejar constancia en la red",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-nodo-activo",
+      "weight": 2,
+      "text": "El {{node.display_name}} permanece activo y saluda desde {{node.city}}",
+      "requires": [
+        "node.display_name",
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-hora-local",
+      "weight": 2,
+      "text": "{{time.salutation}}; desde {{node.city}} se abre una nueva lectura del entorno",
+      "requires": [
+        "time.salutation",
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-red-cordial",
+      "weight": 2,
+      "text": "A los nodos de la red, enviamos un saludo cordial desde {{node.city}}",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-presencia-distribuida",
+      "weight": 1,
+      "text": "{{node.city}} confirma su presencia distribuida con una nueva emisión",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "apertura-senales-entorno",
+      "weight": 1,
+      "text": "Las señales del entorno acompañan este saludo desde {{node.city}}",
+      "requires": [
+        "node.city"
+      ]
+    }
+  ],
+  "declarations": [
+    {
+      "value_id": "declaracion-registro",
+      "weight": 3,
+      "text": "Este registro acompaña la afirmación de que"
+    },
+    {
+      "value_id": "declaracion-datos",
+      "weight": 4,
+      "text": "Junto con estos datos, declaramos que"
+    },
+    {
+      "value_id": "declaracion-transmision",
+      "weight": 3,
+      "text": "La transmisión comparte el mensaje de que"
+    },
+    {
+      "value_id": "declaracion-antecedentes",
+      "weight": 3,
+      "text": "Con estos antecedentes, recordamos que"
+    },
+    {
+      "value_id": "declaracion-saludo",
+      "weight": 3,
+      "text": "Como parte de este saludo, afirmamos que"
+    },
+    {
+      "value_id": "declaracion-confianza",
+      "weight": 2,
+      "text": "El nodo expresa con confianza que"
+    },
+    {
+      "value_id": "declaracion-conviccion",
+      "weight": 2,
+      "text": "Esta publicación transmite la convicción de que"
+    },
+    {
+      "value_id": "declaracion-cierre",
+      "weight": 2,
+      "text": "Para cerrar este mensaje, indicamos que"
+    },
+    {
+      "value_id": "declaracion-ciclo",
+      "weight": 2,
+      "text": "La información del ciclo acompaña la idea de que"
+    },
+    {
+      "value_id": "declaracion-red",
+      "weight": 2,
+      "text": "Desde la red compartimos que"
+    },
+    {
+      "value_id": "declaracion-puente",
+      "weight": 3,
+      "text": "Con esta lectura del entorno, dejamos constancia de que"
+    },
+    {
+      "value_id": "declaracion-continuidad",
+      "weight": 2,
+      "text": "En continuidad con la señal recibida, sostenemos que"
+    },
+    {
+      "value_id": "declaracion-presente",
+      "weight": 2,
+      "text": "En el presente ciclo, el mensaje recuerda que"
+    },
+    {
+      "value_id": "declaracion-armonia",
+      "weight": 2,
+      "text": "La observación local se une a la certeza de que"
+    },
+    {
+      "value_id": "declaracion-intencion",
+      "weight": 2,
+      "text": "Con intención clara, esta publicación expresa que"
+    },
+    {
+      "value_id": "declaracion-testimonio",
+      "weight": 1,
+      "text": "Como testimonio de este momento, afirmamos que"
+    },
+    {
+      "value_id": "declaracion-resonancia",
+      "weight": 1,
+      "text": "La señal del nodo resuena con la idea de que"
+    }
+  ],
+  "fallback_messages": [
+    {
+      "value_id": "respaldo-saludo",
+      "weight": 4,
+      "text": "{{time.salutation}} desde {{node.city}}. El nodo {{node.node_id}} comparte una nueva transmisión con la red",
+      "requires": [
+        "time.salutation",
+        "node.city",
+        "node.node_id"
+      ]
+    },
+    {
+      "value_id": "respaldo-cordial",
+      "weight": 3,
+      "text": "Desde {{node.city}} enviamos un cordial saludo a los nodos de la red",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "respaldo-ciclo",
+      "weight": 2,
+      "text": "El nodo {{node.node_id}} completó un nuevo ciclo de publicación desde {{node.city}}",
+      "requires": [
+        "node.node_id",
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "respaldo-presencia",
+      "weight": 1,
+      "text": "{{node.display_name}} confirma su presencia mediante esta publicación",
+      "requires": [
+        "node.display_name"
+      ]
+    },
+    {
+      "value_id": "respaldo-entorno",
+      "weight": 2,
+      "text": "Desde {{node.city}}, el nodo mantiene su publicación activa aunque no disponga de todos los datos del entorno",
+      "requires": [
+        "node.city"
+      ]
+    },
+    {
+      "value_id": "respaldo-continuidad",
+      "weight": 1,
+      "text": "El {{node.display_name}} conserva la continuidad de la red con un saludo público",
+      "requires": [
+        "node.display_name"
+      ]
+    }
+  ],
+  "source_templates": [
+    {
+      "source_id": "weather",
+      "templates": [
+        {
+          "value_id": "fuente-clima-reporte",
+          "weight": 5,
+          "text": "El reporte meteorológico registra {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-condiciones",
+          "weight": 4,
+          "text": "Las condiciones locales presentan {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-observacion",
+          "weight": 5,
+          "text": "La observación meteorológica más reciente informa {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-ciclo",
+          "weight": 3,
+          "text": "Durante este ciclo se registran {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-datos",
+          "weight": 3,
+          "text": "Los datos meteorológicos disponibles muestran {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-proveedor",
+          "weight": 2,
+          "text": "La fuente meteorológica comunica {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-emision",
+          "weight": 3,
+          "text": "En el momento de la emisión se observan {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-panorama",
+          "weight": 4,
+          "text": "El panorama meteorológico incluye {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-promedio-estaciones",
+          "weight": 4,
+          "text": "La medición combinada de las fuentes disponibles aporta {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-ambiente",
+          "weight": 3,
+          "text": "El ambiente local queda descrito por {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-senal",
+          "weight": 3,
+          "text": "Como señal del entorno, se integran {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-instante",
+          "weight": 3,
+          "text": "Para este instante, la medición disponible indica {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-lectura",
+          "weight": 2,
+          "text": "La lectura del ciclo combina {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-contexto",
+          "weight": 2,
+          "text": "El contexto meteorológico de la publicación considera {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-momento",
+          "weight": 2,
+          "text": "El momento queda acompañado por {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-ciudad",
+          "weight": 2,
+          "text": "En {{node.city}}, la medición reciente señala {{source.facts}}",
+          "requires": [
+            "node.city",
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-clima-nodo",
+          "weight": 2,
+          "text": "El {{node.display_name}} incorpora {{source.facts}} a esta publicación",
+          "requires": [
+            "node.display_name",
+            "source.facts"
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": "astronomy",
+      "templates": [
+        {
+          "value_id": "fuente-astronomia-referencia",
+          "weight": 4,
+          "text": "Como referencia astronómica, {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-astronomia-cielo",
+          "weight": 3,
+          "text": "La referencia de Horizons indica que {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-astronomia-observador",
+          "weight": 2,
+          "text": "Desde el observador local, {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        },
+        {
+          "value_id": "fuente-astronomia-posicion",
+          "weight": 2,
+          "text": "El registro astronómico aporta que {{source.facts}}",
+          "requires": [
+            "source.facts"
+          ]
+        }
+      ]
+    }
+  ],
+  "phrase_collections": [
+    {
+      "collection_id": "consolidado",
+      "path": "phrases/frases_consolidadas.txt"
+    }
+  ]
+}

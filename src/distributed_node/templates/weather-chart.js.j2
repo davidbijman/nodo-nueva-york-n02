@@ -1,0 +1,88 @@
+(() => {
+  const formatValue = (value, unit, decimals = 1) => {
+    if (value === null || value === undefined || Number.isNaN(Number(value))) return "—";
+    return `${Number(value).toFixed(decimals)} ${unit}`;
+  };
+
+  document.querySelectorAll("[data-weather-composite]").forEach((chart) => {
+    const svg = chart.querySelector(".weather-composite-svg");
+    const dataElement = chart.querySelector(".weather-composite-data");
+    const tooltip = chart.querySelector(".weather-chart-tooltip");
+    const cursor = chart.querySelector(".weather-chart-cursor");
+    if (!svg || !dataElement || !tooltip || !cursor) return;
+
+    let points = [];
+    try {
+      points = JSON.parse(dataElement.textContent || "[]");
+    } catch (_error) {
+      return;
+    }
+    if (!points.length) return;
+
+    const fields = {
+      time: tooltip.querySelector("[data-tooltip-time]"),
+      temperature: tooltip.querySelector("[data-tooltip-temperature]"),
+      humidity: tooltip.querySelector("[data-tooltip-humidity]"),
+      pressure: tooltip.querySelector("[data-tooltip-pressure]"),
+      precipitation: tooltip.querySelector("[data-tooltip-precipitation]"),
+      radiation: tooltip.querySelector("[data-tooltip-radiation]"),
+      sources: tooltip.querySelector("[data-tooltip-sources]"),
+    };
+
+    const showPoint = (point, clientX = null) => {
+      cursor.setAttribute("x1", point.x);
+      cursor.setAttribute("x2", point.x);
+      cursor.hidden = false;
+      tooltip.hidden = false;
+      fields.time.textContent = point.time;
+      fields.temperature.textContent = formatValue(point.temperature, "°C");
+      fields.humidity.textContent = formatValue(point.humidity, "%");
+      fields.pressure.textContent = formatValue(point.pressure, "hPa");
+      fields.precipitation.textContent = formatValue(point.precipitation, "mm");
+      fields.radiation.textContent = formatValue(point.radiation, "W/m²", 0);
+      const sourceCount = Number(point.source_count || 0);
+      fields.sources.textContent = sourceCount
+        ? `${sourceCount} fuente${sourceCount === 1 ? "" : "s"} utilizada${sourceCount === 1 ? "" : "s"}`
+        : "Sin referencia de fuentes";
+
+      if (clientX !== null) {
+        const wrapperRect = chart.querySelector(".weather-composite-viewport").getBoundingClientRect();
+        const tooltipWidth = tooltip.offsetWidth || 190;
+        const relativeX = clientX - wrapperRect.left;
+        const left = Math.max(8, Math.min(wrapperRect.width - tooltipWidth - 8, relativeX + 14));
+        tooltip.style.left = `${left}px`;
+      }
+    };
+
+    const nearestPoint = (event) => {
+      const rect = svg.getBoundingClientRect();
+      const viewBox = svg.viewBox.baseVal;
+      const x = ((event.clientX - rect.left) / rect.width) * viewBox.width;
+      return points.reduce((nearest, point) => (
+        Math.abs(point.x - x) < Math.abs(nearest.x - x) ? point : nearest
+      ));
+    };
+
+    svg.addEventListener("pointermove", (event) => showPoint(nearestPoint(event), event.clientX));
+    svg.addEventListener("pointerleave", () => {
+      cursor.hidden = true;
+      tooltip.hidden = true;
+    });
+    svg.addEventListener("focus", () => showPoint(points[0]));
+    svg.addEventListener("blur", () => {
+      cursor.hidden = true;
+      tooltip.hidden = true;
+    });
+    svg.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      const currentX = Number(cursor.getAttribute("x1") || points[0].x);
+      let index = points.reduce((best, point, pointIndex) => (
+        Math.abs(point.x - currentX) < Math.abs(points[best].x - currentX) ? pointIndex : best
+      ), 0);
+      index += event.key === "ArrowRight" ? 1 : -1;
+      index = Math.max(0, Math.min(points.length - 1, index));
+      showPoint(points[index]);
+    });
+  });
+})();

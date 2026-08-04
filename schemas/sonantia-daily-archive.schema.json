@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sonantia.network/schemas/daily-archive-1.0.schema.json",
+  "title": "Archivo diario de Red Sonantia Network v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "network_id",
+    "protocol_version",
+    "network_epoch",
+    "document_type",
+    "origin_node_id",
+    "date",
+    "message_count",
+    "first_sequence",
+    "last_sequence",
+    "messages"
+  ],
+  "properties": {
+    "network_id": {
+      "const": "sonantia-network"
+    },
+    "protocol_version": {
+      "const": "1.0"
+    },
+    "network_epoch": {
+      "pattern": "^SN1-[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "document_type": {
+      "const": "daily-archive"
+    },
+    "origin_node_id": {
+      "pattern": "^N[0-9]{2}$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "message_count": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "first_sequence": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "last_sequence": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1
+    },
+    "messages": {
+      "type": "array",
+      "items": {
+        "$ref": "https://sonantia.network/schemas/message-1.0.schema.json"
+      }
+    }
+  }
+}

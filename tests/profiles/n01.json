@@ -1,0 +1,33 @@
+{
+  "profile_id": "n01",
+  "node": {
+    "node_id": "N01",
+    "display_name": "Nodo Santiago",
+    "zone": "south-america",
+    "country": "Chile",
+    "country_code": "CL",
+    "city": "Santiago",
+    "timezone": "America/Santiago",
+    "latitude": -33.4164,
+    "longitude": -70.6068,
+    "elevation_m": 560,
+    "platform": "gitlab",
+    "automation": "gitlab-ci",
+    "hosting": "gitlab-pages",
+    "public_url": "https://dbijman.gitlab.io/nodo-santiago-n01/"
+  },
+  "weather": {
+    "provider": "redmeteo-composite",
+    "mode": "composite",
+    "condition_provider": "open-meteo-condition",
+    "expected_source_count": 2
+  },
+  "context": {
+    "astronomy_provider": "nasa-jpl-horizons",
+    "astronomy_enabled": true,
+    "economy_provider": "chile-bcentral",
+    "economy_enabled": true,
+    "geology_provider": "chile-csn",
+    "geology_enabled": true
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "protocol_version": "1.0",
+  "document_type": "node",
+  "node_id": "N02",
+  "display_name": "Nodo Nueva York",
+  "node_role": "publisher-replicator",
+  "network_membership": {
+    "status": "active",
+    "joined_at": null
+  },
+  "logical_location": {
+    "zone": "north-america",
+    "country": "Estados Unidos",
+    "country_code": "US",
+    "city": "Nueva York",
+    "timezone": "America/New_York",
+    "latitude": 40.7789,
+    "longitude": -73.9692,
+    "elevation_m": 43
+  },
+  "infrastructure": {
+    "provider": "github",
+    "automation": "github-actions",
+    "hosting": "github-pages",
+    "region_status": "not-guaranteed",
+    "region_description": "GitHub-managed infrastructure"
+  },
+  "context_sources": {
+    "weather": {
+      "enabled": true,
+      "provider": "open-meteo-current",
+      "mode": "single",
+      "condition_provider": null,
+      "settings": {}
+    },
+    "astronomy": {
+      "enabled": true,
+      "provider": "nasa-jpl-horizons",
+      "settings": {}
+    },
+    "economy": {
+      "enabled": true,
+      "provider": "us-economic-data",
+      "settings": {}
+    },
+    "geology": {
+      "enabled": true,
+      "provider": "usgs-earthquakes",
+      "settings": {}
+    }
+  },
+  "public_url": "https://davidbijman.github.io/nodo-nueva-york-n02/",
+  "endpoints": {
+    "home": "/",
+    "feed": "/feed.json",
+    "status": "/sonantia-status.json",
+    "interactions": "/sonantia.html#interacciones",
+    "archive_index": "/archive/index.json",
+    "operator_message": "/operator-message.json"
+  },
+  "capabilities": {
+    "publish_original_messages": true,
+    "replicate_messages": true,
+    "poll_peers": true,
+    "query_weather": true,
+    "publish_html": true,
+    "publish_json": true,
+    "publish_operator_message": true,
+    "user_message_board": false,
+    "private_messages": false,
+    "content_types": [
+      "text/plain",
+      "text/html",
+      "application/json"
+    ]
+  },
+  "software": {
+    "implementation": "reference-python-node",
+    "implementation_version": "1.0.0"
+  }
+}

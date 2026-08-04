@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sonantia.network/schemas/network-config-1.0.schema.json",
+  "title": "Configuración de Sonantia Network 1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["network_id", "network_name", "protocol_name", "protocol_version", "network_epoch", "message_id_prefix", "implementation_state", "storage", "nodes"],
+  "$defs": {
+    "node": {
+      "type": "object", "additionalProperties": false,
+      "required": ["node_id", "display_name", "platform", "enabled", "public_url", "feed_url", "status_url"],
+      "properties": {
+        "node_id": {"type": "string", "pattern": "^N[0-9]{2}$"},
+        "display_name": {"type": "string", "minLength": 1},
+        "platform": {"type": "string", "minLength": 1},
+        "enabled": {"type": "boolean"},
+        "public_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "feed_url": {"type": "string", "format": "uri", "pattern": "^https://"},
+        "status_url": {"type": "string", "format": "uri", "pattern": "^https://"}
+      }
+    }
+  },
+  "properties": {
+    "network_id": {"const": "sonantia-network"},
+    "network_name": {"const": "Sonantia Network"},
+    "protocol_name": {"const": "Red Sonantia Network"},
+    "protocol_version": {"const": "1.0"},
+    "network_epoch": {"type": "string", "pattern": "^SN1-[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "message_id_prefix": {"const": "SN1"},
+    "implementation_state": {"const": "active"},
+    "storage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["archive_period", "own_feed_limit", "relay_retention_hours", "relay_limit_per_origin", "interaction_limit", "data_directory", "active_public_directory"],
+      "properties": {
+        "archive_period": {"const": "daily"},
+        "own_feed_limit": {"type": "integer", "minimum": 1, "maximum": 500},
+        "relay_retention_hours": {"type": "integer", "minimum": 1},
+        "relay_limit_per_origin": {"type": "integer", "minimum": 1},
+        "interaction_limit": {"type": "integer", "minimum": 1},
+        "data_directory": {"type": "string", "minLength": 1},
+        "active_public_directory": {"type": "string", "minLength": 1}
+      }
+    },
+    "nodes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/node"}}
+  }
+}

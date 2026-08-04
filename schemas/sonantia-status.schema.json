@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sonantia.network/schemas/status-1.0.schema.json",
+  "title": "Estado público de Sonantia Network 1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["network_id", "protocol_version", "network_epoch", "document_type", "node_id", "generated_at", "implementation_state", "result", "feed_message_count", "archive_message_count", "publication_file_count", "origins", "components"],
+  "properties": {
+    "network_id": {"const": "sonantia-network"},
+    "protocol_version": {"const": "1.0"},
+    "network_epoch": {"pattern": "^SN1-[0-9]{4}-[0-9]{2}-[0-9]{2}$"},
+    "document_type": {"const": "network-status"},
+    "node_id": {"pattern": "^N[0-9]{2}$"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "implementation_state": {"const": "active"},
+    "result": {"enum": ["success", "degraded", "rendered"]},
+    "feed_message_count": {"type": "integer", "minimum": 0},
+    "archive_message_count": {"type": "integer", "minimum": 0},
+    "publication_file_count": {"type": "integer", "minimum": 1},
+    "origins": {"type": "object", "minProperties": 1},
+    "components": {"type": "array", "items": {"type": "object"}}
+  }
+}

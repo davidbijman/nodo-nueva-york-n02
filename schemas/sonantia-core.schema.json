@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sonantia.network/schemas/core-1.0.schema.json",
+  "title": "Estado mínimo de Red Sonantia Network v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "network_id",
+    "protocol_version",
+    "network_epoch",
+    "document_type",
+    "node_id",
+    "last_own_sequence",
+    "last_message_id",
+    "last_event_sequence",
+    "generator_state",
+    "updated_at"
+  ],
+  "properties": {
+    "network_id": {
+      "const": "sonantia-network"
+    },
+    "protocol_version": {
+      "const": "1.0"
+    },
+    "network_epoch": {
+      "pattern": "^SN1-[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "document_type": {
+      "const": "core-state"
+    },
+    "node_id": {
+      "pattern": "^N[0-9]{2}$"
+    },
+    "last_own_sequence": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "last_message_id": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^SN1-N[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}-[0-9]{2}-[0-9]{2}Z-[0-9]{6}$"
+    },
+    "last_event_sequence": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "generator_state": {
+      "type": "object"
+    }
+  }
+}

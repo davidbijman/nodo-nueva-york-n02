@@ -1,0 +1,107 @@
+name: Node cycle
+
+on:
+  schedule:
+    - cron: "21 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: node-cycle-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  cycle:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Restore node state
+        shell: bash
+        run: |
+          if git ls-remote --exit-code --heads origin node-state >/dev/null 2>&1; then
+            git fetch origin node-state:refs/remotes/origin/node-state
+            rm -rf data
+            git checkout origin/node-state -- data
+          else
+            echo "node-state branch not found; using data from main as initial seed."
+          fi
+
+      - name: Configure Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install dependencies
+        run: python -m pip install -e ".[dev]"
+
+      - name: Run tests
+        run: python -m pytest
+
+      - name: Run node cycle
+        run: python -m distributed_node.cli run-cycle
+
+      - name: Validate message flow
+        run: python -m distributed_node.cli validate-message-flow
+
+      - name: Validate generated resources
+        run: python -m distributed_node.cli validate-public
+
+      - name: Persist node state
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          state_worktree="$(mktemp -d)"
+          if git ls-remote --exit-code --heads origin node-state >/dev/null 2>&1; then
+            git worktree add "$state_worktree" origin/node-state
+          else
+            git worktree add --detach "$state_worktree"
+            (
+              cd "$state_worktree"
+              git switch --orphan node-state
+              git rm -r --ignore-unmatch .
+            )
+          fi
+
+          rm -rf "$state_worktree/data"
+          mkdir -p "$state_worktree/data"
+          rsync -a --delete data/ "$state_worktree/data/"
+
+          (
+            cd "$state_worktree"
+            git add data
+            if git diff --cached --quiet; then
+              echo "No node state changes to commit."
+            else
+              git commit -m "chore(node-state): persist scheduled cycle"
+              git push origin HEAD:node-state
+            fi
+          )
+
+          git worktree remove "$state_worktree" --force
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload public directory
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

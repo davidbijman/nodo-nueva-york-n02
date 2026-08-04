@@ -1,0 +1,1481 @@
+{% extends "base.html.j2" %}
+{% block title %}{{ node.display_name }} · Sonantia{% endblock %}
+{% block header_extra %}
+<div class="current-time">
+  <strong>Última Ejecución</strong>
+  <time datetime="{{ updated_at|local_iso(node.logical_location.timezone) }}">{{ updated_at|local_datetime_short(node.logical_location.timezone) }}</time>
+</div>
+{% endblock %}
+{% block content %}
+<style>
+  .sonantia-shell {
+    --sonantia-panel:rgba(10, 17, 29, .94);
+    --sonantia-panel-soft:rgba(17, 27, 43, .78);
+    --sonantia-n01:#4ad4c6;
+    --sonantia-n01-rgb:74, 212, 198;
+    --sonantia-n02:#63b3ff;
+    --sonantia-n02-rgb:99, 179, 255;
+    --sonantia-n03:#c69cff;
+    --sonantia-n03-rgb:198, 156, 255;
+    --sonantia-n04:#ffb86c;
+    --sonantia-n04-rgb:255, 184, 108;
+    display:grid;
+    gap:1rem;
+  }
+  .sonantia-summary {
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:.52rem;
+  }
+  .sonantia-kpi {
+    position:relative;
+    min-width:0;
+    overflow:hidden;
+    padding:.78rem .82rem;
+    border:1px solid rgba(99, 179, 255, .14);
+    border-radius:.68rem;
+    background:linear-gradient(145deg, rgba(15, 24, 39, .88), rgba(7, 12, 21, .74));
+  }
+  .sonantia-kpi::before {
+    content:"";
+    position:absolute;
+    inset:0 auto 0 0;
+    width:.18rem;
+    background:#63b3ff;
+    opacity:.8;
+  }
+  .sonantia-kpi-success::before { background:var(--green); }
+  .sonantia-kpi-warning::before { background:var(--yellow); }
+  .sonantia-kpi-danger::before { background:var(--red); }
+  .sonantia-kpi span { display:block; margin-bottom:.32rem; color:var(--muted); font-size:.65rem; font-weight:800; letter-spacing:.055em; text-transform:uppercase; }
+  .sonantia-kpi strong { display:block; overflow:hidden; color:#eaf4ff; font-size:1.22rem; line-height:1.15; text-overflow:ellipsis; white-space:nowrap; }
+  .sonantia-kpi small { display:block; margin-top:.26rem; color:#8fa4bb; font-size:.65rem; line-height:1.35; }
+  .sonantia-network-overview {
+    display:grid;
+    gap:.72rem;
+    padding:.92rem;
+    border:1px solid rgba(99, 179, 255, .16);
+    border-radius:.76rem;
+    background:rgba(7, 12, 21, .5);
+  }
+  .sonantia-section-head {
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:1rem;
+    margin-bottom:.7rem;
+  }
+  .sonantia-section-head h2 { margin:0; font-size:1.18rem; }
+  .sonantia-section-head p { margin:0; color:var(--muted); font-size:.75rem; }
+  .sonantia-node-grid {
+    display:grid;
+    grid-template-columns:1fr;
+    gap:.5rem;
+  }
+  .sonantia-node-card {
+    --node-color:var(--sonantia-n02);
+    --node-rgb:var(--sonantia-n02-rgb);
+    position:relative;
+    display:grid;
+    gap:.35rem;
+    min-width:0;
+    padding:.72rem;
+    border:1px solid rgba(var(--node-rgb), .25);
+    border-radius:.65rem;
+    background:
+      radial-gradient(circle at 100% 0%, rgba(var(--node-rgb), .13), transparent 55%),
+      rgba(8, 14, 24, .76);
+  }
+  .sonantia-node-n02 { --node-color:var(--sonantia-n02); --node-rgb:var(--sonantia-n02-rgb); }
+  .sonantia-node-n03 { --node-color:var(--sonantia-n03); --node-rgb:var(--sonantia-n03-rgb); }
+  .sonantia-node-n04 { --node-color:var(--sonantia-n04); --node-rgb:var(--sonantia-n04-rgb); }
+  .sonantia-node-card-head { display:flex; justify-content:space-between; gap:.55rem; align-items:flex-start; }
+  .sonantia-node-id { display:inline-flex; align-items:center; gap:.38rem; color:var(--node-color); font-size:.72rem; font-weight:900; letter-spacing:.055em; }
+  .sonantia-node-id::before { content:""; width:.48rem; height:.48rem; flex:0 0 .48rem; border-radius:50%; background:var(--node-color); box-shadow:0 0 .55rem rgba(var(--node-rgb), .55); }
+  .sonantia-node-state { padding:.12rem .34rem; border-radius:999px; color:var(--node-color); background:rgba(var(--node-rgb), .1); font-size:.56rem; font-weight:800; text-transform:uppercase; white-space:nowrap; }
+  .sonantia-node-card strong { overflow:hidden; color:#e6f1fc; font-size:.82rem; text-overflow:ellipsis; white-space:nowrap; }
+  .sonantia-node-card small { color:var(--muted); font-size:.63rem; line-height:1.35; }
+  .sonantia-node-metrics { display:flex; flex-wrap:wrap; gap:.28rem; margin-top:.05rem; }
+  .sonantia-node-metric { padding:.14rem .34rem; border:1px solid rgba(var(--node-rgb), .16); border-radius:999px; color:#bdd0e2; background:rgba(var(--node-rgb), .055); font-size:.56rem; white-space:nowrap; }
+  .sonantia-layout { display:grid; grid-template-columns:minmax(0, 1fr) minmax(21rem, 27rem); gap:1rem; align-items:start; }
+  .sonantia-main, .sonantia-rail { display:grid; gap:1rem; min-width:0; }
+  .sonantia-rail { position:static; }
+  .sonantia-network-state-body { gap:.78rem; }
+  .sonantia-network-state .sonantia-summary { margin-top:.55rem; }
+  .sonantia-status-detail {
+    padding-top:.08rem;
+    border-top:1px solid rgba(99, 179, 255, .1);
+  }
+  .sonantia-message-list { display:grid; gap:.62rem; }
+  .sonantia-message {
+    --node-color:var(--sonantia-n02);
+    --node-rgb:var(--sonantia-n02-rgb);
+    position:relative;
+    display:grid;
+    gap:.6rem;
+    min-width:0;
+    padding:.84rem .88rem;
+    border:1px solid rgba(var(--node-rgb), .19);
+    border-radius:.72rem;
+    background:
+      linear-gradient(90deg, rgba(var(--node-rgb), .13), transparent .28rem),
+      linear-gradient(140deg, rgba(17, 27, 43, .94), rgba(8, 14, 24, .94));
+    transition:border-color .16s ease, transform .16s ease;
+  }
+  .sonantia-message:hover { transform:translateY(-1px); border-color:rgba(var(--node-rgb), .36); }
+  .sonantia-message.sonantia-node-n02 { --node-color:var(--sonantia-n02); --node-rgb:var(--sonantia-n02-rgb); }
+  .sonantia-message.sonantia-node-n03 { --node-color:var(--sonantia-n03); --node-rgb:var(--sonantia-n03-rgb); }
+  .sonantia-message.sonantia-node-n04 { --node-color:var(--sonantia-n04); --node-rgb:var(--sonantia-n04-rgb); }
+  .sonantia-message-head { display:flex; align-items:flex-start; justify-content:space-between; gap:.75rem; }
+  .sonantia-message-origin-wrap { display:grid; gap:.14rem; min-width:0; }
+  .sonantia-message-origin { display:inline-flex; align-items:center; gap:.4rem; color:var(--node-color); font-size:.72rem; font-weight:900; letter-spacing:.045em; }
+  .sonantia-message-origin::before { content:""; width:.47rem; height:.47rem; flex:0 0 .47rem; border-radius:50%; background:var(--node-color); box-shadow:0 0 .55rem rgba(var(--node-rgb), .48); }
+  .sonantia-message-route { color:#8fa4ba; font-size:.61rem; }
+  .sonantia-message time { color:var(--muted); font-size:.68rem; white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .sonantia-message-text { margin:0; color:#edf6ff; font-size:.9rem; line-height:1.58; }
+  .sonantia-context-summary {
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      "weather astronomy"
+      "geology economy";
+    gap:.42rem;
+  }
+  .sonantia-context-card {
+    --context-color:#63b3ff;
+    min-width:0;
+    padding:.52rem .56rem;
+    border:1px solid color-mix(in srgb, var(--context-color) 22%, transparent);
+    border-radius:.55rem;
+    background:color-mix(in srgb, var(--context-color) 7%, rgba(5, 10, 18, .62));
+  }
+  .sonantia-context-weather { --context-color:#4ad4c6; grid-area:weather; }
+  .sonantia-context-geology { --context-color:#ffb86c; grid-area:geology; }
+  .sonantia-context-astronomy { --context-color:#c69cff; grid-area:astronomy; }
+  .sonantia-context-economy { --context-color:#63b3ff; grid-area:economy; }
+  .sonantia-context-card-head { display:flex; justify-content:space-between; gap:.45rem; align-items:center; margin-bottom:.28rem; }
+  .sonantia-context-card-head strong { color:var(--context-color); font-size:.65rem; letter-spacing:.04em; text-transform:uppercase; }
+  .sonantia-context-card-head span { color:var(--muted); font-size:.55rem; }
+  .sonantia-context-primary { margin:0; color:#e4eef8; font-size:.72rem; font-weight:750; line-height:1.35; }
+  .sonantia-context-secondary { margin:.18rem 0 0; color:#94a9be; font-size:.61rem; line-height:1.38; }
+  .sonantia-context-method {
+    margin:.34rem 0 0;
+    padding-top:.32rem;
+    border-top:1px solid color-mix(in srgb, var(--context-color) 16%, transparent);
+    color:#8198af;
+    font-size:.56rem;
+    line-height:1.4;
+  }
+  .sonantia-astro-list {
+    display:flex;
+    flex-wrap:wrap;
+    gap:.38rem;
+    margin-top:.08rem;
+  }
+  .sonantia-astro-item {
+    display:grid;
+    flex:1 1 8.8rem;
+    gap:.42rem;
+    align-content:start;
+    min-width:0;
+    padding:.5rem;
+    border:1px solid color-mix(in srgb, var(--context-color) 18%, transparent);
+    border-radius:.5rem;
+    background:linear-gradient(145deg, rgba(22, 17, 39, .66), rgba(5, 10, 18, .36));
+  }
+  .sonantia-astro-head {
+    display:grid;
+    grid-template-columns:1.9rem minmax(0, 1fr);
+    gap:.4rem;
+    align-items:center;
+    min-width:0;
+  }
+  .sonantia-astro-icon {
+    display:grid;
+    place-items:center;
+    width:1.9rem;
+    height:1.9rem;
+    border:1px solid color-mix(in srgb, var(--context-color) 24%, transparent);
+    border-radius:50%;
+    color:#f0e4ff;
+    background:color-mix(in srgb, var(--context-color) 10%, rgba(5, 10, 18, .7));
+    font-size:1.04rem;
+    line-height:1;
+  }
+  .sonantia-astro-copy { display:grid; gap:.04rem; min-width:0; }
+  .sonantia-astro-copy strong { color:#eee5fb; font-size:.64rem; line-height:1.25; }
+  .sonantia-astro-copy small { color:#a89ab9; font-size:.53rem; line-height:1.3; text-transform:capitalize; }
+  .sonantia-astro-metrics { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:.22rem; }
+  .sonantia-astro-metric {
+    display:grid;
+    gap:.04rem;
+    min-width:0;
+    padding:.25rem .29rem;
+    border-radius:.34rem;
+    background:rgba(198, 156, 255, .055);
+  }
+  .sonantia-astro-metric span { color:#8f82a2; font-size:.46rem; font-weight:800; letter-spacing:.035em; text-transform:uppercase; }
+  .sonantia-astro-metric strong { color:#ded4ed; font-size:.57rem; font-variant-numeric:tabular-nums; }
+  .sonantia-astro-visibility {
+    display:flex;
+    align-items:center;
+    gap:.24rem;
+    margin:0;
+    color:#a99bb9;
+    font-size:.53rem;
+    line-height:1.3;
+  }
+  .sonantia-astro-visibility::before { content:"✦"; color:var(--context-color); font-size:.46rem; }
+  .sonantia-context-unavailable { grid-column:1 / -1; padding:.42rem .55rem; border:1px dashed rgba(158, 172, 192, .2); border-radius:.5rem; color:var(--muted); font-size:.65rem; text-align:center; }
+  .sonantia-message-details { padding-top:.45rem; border-top:1px solid rgba(var(--node-rgb), .13); }
+  .sonantia-message-details > summary { cursor:pointer; color:var(--node-color); font-size:.68rem; font-weight:800; list-style:none; }
+  .sonantia-message-details > summary::-webkit-details-marker { display:none; }
+  .sonantia-message-details > summary::before { content:"＋"; display:inline-grid; place-items:center; width:1.1rem; height:1.1rem; margin-right:.32rem; border-radius:50%; color:var(--node-color); background:rgba(var(--node-rgb), .09); }
+  .sonantia-message-details[open] > summary::before { content:"−"; }
+  .sonantia-message-detail-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:.48rem; margin-top:.58rem; }
+  .sonantia-message-detail-card { min-width:0; padding:.54rem; border:1px solid rgba(99, 179, 255, .12); border-radius:.54rem; background:rgba(5, 10, 18, .46); }
+  .sonantia-message-detail-card h3 { margin:0 0 .4rem; color:#d6a95d; font-size:.68rem; }
+  .sonantia-message-detail-card pre { max-height:15rem; margin:0; overflow:auto; color:#c8d8e8; font:.62rem/1.45 ui-monospace, SFMono-Regular, Consolas, monospace; white-space:pre-wrap; word-break:break-word; }
+  .sonantia-technical-dl { grid-template-columns:minmax(7rem, max-content) 1fr; gap:.28rem .55rem; margin:0; font-size:.64rem; }
+  .sonantia-technical-dl dt { color:#8fa4ba; }
+  .sonantia-technical-dl dd { margin:0; overflow-wrap:anywhere; color:#d7e5f2; }
+  .sonantia-relay-list { display:grid; gap:.58rem; }
+  .sonantia-relay {
+    --node-color:var(--sonantia-n02);
+    --node-rgb:var(--sonantia-n02-rgb);
+    overflow:hidden;
+    border:1px solid rgba(var(--node-rgb), .2);
+    border-radius:.68rem;
+    background:rgba(8, 14, 24, .68);
+  }
+  .sonantia-relay.sonantia-node-n03 { --node-color:var(--sonantia-n03); --node-rgb:var(--sonantia-n03-rgb); }
+  .sonantia-relay.sonantia-node-n04 { --node-color:var(--sonantia-n04); --node-rgb:var(--sonantia-n04-rgb); }
+  .sonantia-relay > summary { display:flex; align-items:center; gap:.7rem; padding:.72rem .78rem; cursor:pointer; list-style:none; }
+  .sonantia-relay > summary::-webkit-details-marker { display:none; }
+  .sonantia-relay > summary::after { content:"＋"; display:grid; place-items:center; width:1.35rem; height:1.35rem; flex:0 0 1.35rem; border-radius:50%; color:var(--node-color); background:rgba(var(--node-rgb), .1); }
+  .sonantia-relay[open] > summary::after { content:"−"; }
+  .sonantia-relay-copy { display:grid; gap:.08rem; min-width:0; margin-right:auto; }
+  .sonantia-relay-copy strong { color:var(--node-color); font-size:.78rem; }
+  .sonantia-relay-copy small { color:var(--muted); font-size:.61rem; }
+  .sonantia-relay-count { padding:.14rem .4rem; border-radius:999px; color:var(--node-color); background:rgba(var(--node-rgb), .09); font-size:.58rem; font-weight:800; white-space:nowrap; }
+  .sonantia-relay-body { padding:.2rem .72rem .72rem; border-top:1px solid rgba(var(--node-rgb), .14); }
+  .sonantia-relay-body .sonantia-message-list { margin-top:.52rem; }
+  .sonantia-panel {
+    overflow:hidden;
+    border:1px solid rgba(99, 179, 255, .14);
+    border-radius:.7rem;
+    background:var(--sonantia-panel);
+  }
+  .sonantia-panel > summary { display:flex; align-items:center; gap:.7rem; padding:.78rem .85rem; cursor:pointer; color:#e4f0fb; font-weight:800; list-style:none; }
+  .sonantia-panel > summary::-webkit-details-marker { display:none; }
+  .sonantia-panel > summary::after { content:"＋"; color:#63b3ff; font-size:1rem; }
+  .sonantia-panel[open] > summary::after { content:"−"; }
+  .sonantia-panel-title { display:grid; gap:.06rem; margin-right:auto; }
+  .sonantia-panel-title strong { font-size:.76rem; }
+  .sonantia-panel-title small { color:var(--muted); font-size:.58rem; font-weight:500; }
+  .sonantia-panel-count { padding:.14rem .4rem; border-radius:999px; color:#a8f3e9; background:rgba(74, 212, 198, .1); font-size:.6rem; }
+  .sonantia-panel-body { display:grid; gap:.65rem; padding:.12rem .85rem .85rem; border-top:1px solid rgba(99, 179, 255, .09); }
+  .sonantia-dl { grid-template-columns:minmax(7.7rem, max-content) 1fr; gap:.3rem .65rem; margin:.55rem 0 0; font-size:.71rem; }
+  .sonantia-dl dt { color:#8fa4ba; }
+  .sonantia-dl dd { margin:0; overflow-wrap:anywhere; color:#d8e6f3; }
+  .sonantia-inventory-list, .sonantia-event-list, .sonantia-archive-list { display:grid; gap:.48rem; margin-top:.55rem; }
+  .sonantia-inventory-row, .sonantia-event, .sonantia-archive-row { display:grid; gap:.2rem; padding:.56rem; border:1px solid rgba(99, 179, 255, .09); border-radius:.52rem; background:rgba(5, 10, 18, .4); }
+  .sonantia-inventory-head { display:flex; justify-content:space-between; gap:.55rem; align-items:center; }
+  .sonantia-inventory-head strong, .sonantia-event strong, .sonantia-archive-row strong { color:#dbeaff; font-size:.73rem; }
+  .sonantia-inventory-head span, .sonantia-event small, .sonantia-archive-row small { color:#8ea3ba; font-size:.62rem; }
+  .sonantia-inventory-metrics { display:flex; flex-wrap:wrap; gap:.28rem; }
+  .sonantia-inventory-metrics span { padding:.13rem .32rem; border-radius:999px; color:#a9bdd1; background:rgba(99, 179, 255, .055); font-size:.56rem; }
+  .sonantia-node-details { border:1px solid rgba(99, 179, 255, .1); border-radius:.55rem; background:rgba(5, 10, 18, .34); }
+  .sonantia-node-details > summary { padding:.62rem; cursor:pointer; color:#dce9f5; font-size:.7rem; font-weight:750; }
+  .sonantia-node-details-body { padding:0 .62rem .62rem; }
+  .sonantia-resource-grid { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:.44rem; margin-top:.55rem; }
+  .sonantia-resource-grid a { display:block; padding:.5rem; border:1px solid rgba(99, 179, 255, .12); border-radius:.5rem; background:rgba(99, 179, 255, .05); font-size:.7rem; overflow-wrap:anywhere; }
+  .sonantia-empty { margin:0; padding:.78rem; border:1px dashed rgba(158, 172, 192, .22); border-radius:.6rem; color:#9eacc0; text-align:center; }
+  .sonantia-loading { color:#9eacc0; }
+  .sonantia-error { color:#ff9aa5; }
+  @media (max-width: 1080px) {
+    .sonantia-layout { grid-template-columns:1fr; }
+    .sonantia-rail { grid-template-columns:repeat(2, minmax(0,1fr)); }
+    .sonantia-network-state,
+    .sonantia-network-overview { grid-column:1 / -1; }
+    .sonantia-node-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .sonantia-summary { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .sonantia-message-detail-grid { grid-template-columns:1fr; }
+  }
+  @media (max-width: 580px) {
+    .sonantia-summary, .sonantia-node-grid, .sonantia-rail, .sonantia-context-summary, .sonantia-resource-grid { grid-template-columns:1fr; }
+    .sonantia-context-summary { grid-template-areas:"weather" "astronomy" "geology" "economy"; }
+    .sonantia-section-head, .sonantia-message-head { align-items:flex-start; flex-direction:column; }
+    .sonantia-message time { white-space:normal; }
+    .sonantia-relay > summary { align-items:flex-start; }
+  }
+</style>
+
+<div class="sonantia-shell">
+  <div class="sonantia-layout">
+    <div class="sonantia-main">
+      <section aria-labelledby="own-title">
+        <div class="sonantia-section-head">
+          <div><p class="eyebrow">Publicación local</p><h2 id="own-title">Mensajes propios de {{ node.node_id }}</h2></div>
+          <p id="own-caption">Cargando feed...</p>
+        </div>
+        <div id="own-messages" class="sonantia-message-list"><p class="sonantia-empty sonantia-loading">Cargando mensajes propios…</p></div>
+      </section>
+
+      <section aria-labelledby="relay-title">
+        <div class="sonantia-section-head">
+          <div><p class="eyebrow">Tráfico distribuido</p><h2 id="relay-title">Mensajes de otros nodos</h2></div>
+          <p id="relay-caption">Cargando relays...</p>
+        </div>
+        <div id="relay-groups" class="sonantia-relay-list"><p class="sonantia-empty sonantia-loading">Cargando mensajes de la red…</p></div>
+      </section>
+    </div>
+
+    <aside class="sonantia-rail" aria-label="Estado y recursos de Sonantia">
+      <details class="sonantia-panel sonantia-network-state" open>
+        <summary><span class="sonantia-panel-title"><strong>Estado de red</strong><small>Resumen, protocolo, integración y ciclo</small></span></summary>
+        <div class="sonantia-panel-body sonantia-network-state-body">
+          <section class="sonantia-summary" aria-label="Resumen visual de Sonantia">
+            <article class="sonantia-kpi" id="kpi-status-card"><span>Estado actual</span><strong id="kpi-status">—</strong><small id="kpi-status-detail">Sin datos</small></article>
+            <article class="sonantia-kpi"><span>Mensajes propios</span><strong id="kpi-own">0</strong><small>Ventana publicada por {{ node.node_id }}</small></article>
+            <article class="sonantia-kpi"><span>Mensajes en tránsito</span><strong id="kpi-relay">0</strong><small>Custodiados desde otros nodos</small></article>
+            <article class="sonantia-kpi"><span>Nodos con información</span><strong id="kpi-origins">0/4</strong><small>Orígenes disponibles en {{ node.node_id }}</small></article>
+            <article class="sonantia-kpi"><span>Archivo histórico</span><strong id="kpi-archive">0</strong><small>Mensajes propios conservados</small></article>
+            <article class="sonantia-kpi"><span>Interacciones</span><strong id="kpi-events">0</strong><small>Eventos operativos recientes</small></article>
+            <article class="sonantia-kpi"><span>Recursos publicados</span><strong id="kpi-files">0</strong><small>Documentos públicos de Sonantia</small></article>
+            <article class="sonantia-kpi"><span>Última actualización</span><strong id="kpi-updated">—</strong><small>Documento más reciente</small></article>
+          </section>
+          <div class="sonantia-status-detail" id="status-panel"><p class="sonantia-empty sonantia-loading">Cargando estado…</p></div>
+        </div>
+      </details>
+
+      <section class="sonantia-network-overview" aria-labelledby="sonantia-network-title">
+        <div class="sonantia-section-head">
+          <div><p class="eyebrow">Panorama distribuido</p><h2 id="sonantia-network-title">Nodos de Sonantia</h2></div>
+          <p id="network-caption">Cargando topología...</p>
+        </div>
+        <div id="network-nodes" class="sonantia-node-grid"><p class="sonantia-empty sonantia-loading">Cargando nodos…</p></div>
+      </section>
+
+      <details class="sonantia-panel" open>
+        <summary><span class="sonantia-panel-title"><strong>Inventario por origen</strong><small>Disponibilidad y brechas</small></span><span class="sonantia-panel-count" id="inventory-count">0</span></summary>
+        <div class="sonantia-panel-body" id="inventory-panel"><p class="sonantia-empty sonantia-loading">Cargando inventario…</p></div>
+      </details>
+
+      <details class="sonantia-panel" id="interacciones">
+        <summary><span class="sonantia-panel-title"><strong>Interacciones recientes</strong><small>Recepción, validación y publicación</small></span><span class="sonantia-panel-count" id="events-count">0</span></summary>
+        <div class="sonantia-panel-body" id="events-panel"><p class="sonantia-empty sonantia-loading">Cargando interacciones…</p></div>
+      </details>
+
+      <details class="sonantia-panel" id="archivo">
+        <summary><span class="sonantia-panel-title"><strong>Archivo histórico</strong><small>Períodos y mensajes conservados</small></span><span class="sonantia-panel-count" id="archive-count">0</span></summary>
+        <div class="sonantia-panel-body" id="archive-panel"><p class="sonantia-empty sonantia-loading">Cargando archivo…</p></div>
+      </details>
+
+      <details class="sonantia-panel">
+        <summary><span class="sonantia-panel-title"><strong>Recursos JSON</strong><small>Datos originales de la red</small></span></summary>
+        <div class="sonantia-panel-body">
+          <div class="sonantia-resource-grid">
+            <a href="./feed.json">Feed propio</a>
+            <a href="./inventory.json">Inventario</a>
+            <a href="./network.json">Topología</a>
+            <a href="./sonantia-status.json">Estado Sonantia</a>
+            <a href="./interactions/current.json">Interacciones</a>
+            <a href="./archive/index.json">Archivo</a>
+            <a href="./node.json">Definición del nodo</a>
+          </div>
+        </div>
+      </details>
+    </aside>
+  </div>
+</div>
+<noscript><p class="sonantia-empty">Esta vista necesita JavaScript para integrar los documentos JSON de Sonantia.</p></noscript>
+{% endblock %}
+{% block scripts %}
+<script>
+(() => {
+  "use strict";
+
+  const localNode = {
+    node_id: {{ node.node_id|tojson }},
+    name: {{ node.display_name|tojson }},
+    city: {{ node.logical_location.city|tojson }},
+    platform: {{ node.infrastructure.provider|tojson }},
+    timezone: {{ node.logical_location.timezone|tojson }},
+  };
+  const fallbackNodes = [
+    localNode,
+    {% for card in peer_cards %}
+    {
+      node_id: {{ card.peer.node_id|tojson }},
+      name: {{ card.peer.display_name|tojson }},
+      city: {{ card.peer.display_name|replace("Nodo ", "")|tojson }},
+      platform: null,
+    },
+    {% endfor %}
+  ];
+  const nodeMeta = Object.fromEntries(
+    fallbackNodes.map((item) => [item.node_id, {city: item.city, platform: item.platform}]),
+  );
+  const relayNodeIds = fallbackNodes
+    .map((item) => item.node_id)
+    .filter((nodeId) => nodeId !== localNode.node_id);
+  const currentAstronomySnapshot = {{ astronomy|default({})|tojson }};
+
+  const byId = (id) => document.getElementById(id);
+  const number = (value) => Number.isFinite(Number(value)) ? Number(value) : 0;
+  const text = (value, fallback = "—") => value === null || value === undefined || value === "" ? fallback : String(value);
+  const nodeClass = (nodeId) => `sonantia-node-${String(nodeId || localNode.node_id).toLowerCase()}`;
+  const formatNumber = (value, digits = 2) => {
+    const parsed = Number(value);
+    if (!Number.isFinite(parsed)) return "—";
+    return new Intl.NumberFormat("es-CL", {maximumFractionDigits: digits}).format(parsed);
+  };
+  const formatDate = (value, compact = false) => {
+    if (!value) return "—";
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return String(value);
+    return new Intl.DateTimeFormat("es-CL", compact ? {
+      day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false, timeZone: localNode.timezone
+    } : {
+      day: "2-digit", month: "2-digit", year: "numeric", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false, timeZone: localNode.timezone
+    }).format(date);
+  };
+
+  async function loadJson(path) {
+    try {
+      const response = await fetch(path, {cache: "no-store"});
+      if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+      return {ok: true, data: await response.json(), path};
+    } catch (error) {
+      console.warn(`Sonantia: no fue posible cargar ${path}`, error);
+      return {ok: false, data: null, path, error: String(error)};
+    }
+  }
+
+  function element(tag, className, value) {
+    const item = document.createElement(tag);
+    if (className) item.className = className;
+    if (value !== undefined && value !== null) item.textContent = String(value);
+    return item;
+  }
+
+  function appendDefinitionList(container, entries, className = "sonantia-dl") {
+    const list = element("dl", className);
+    entries.filter(([, value]) => value !== null && value !== undefined && value !== "").forEach(([label, value]) => {
+      list.append(element("dt", "", label), element("dd", "", text(value)));
+    });
+    container.append(list);
+    return list;
+  }
+
+  function statusTone(value) {
+    const normalized = String(value || "").toLowerCase();
+    if (["success", "operational", "active", "reachable", "rendered", "ok"].some((item) => normalized.includes(item))) return "success";
+    if (["degraded", "warning", "partial", "shadow"].some((item) => normalized.includes(item))) return "warning";
+    if (["failed", "unavailable", "error", "unreachable"].some((item) => normalized.includes(item))) return "danger";
+    return "neutral";
+  }
+
+  function contextCard(type, title, primary, secondary, state = "", extra = null) {
+    const card = element("article", `sonantia-context-card sonantia-context-${type}`);
+    const head = element("div", "sonantia-context-card-head");
+    head.append(element("strong", "", title));
+    const visibleState = String(state || "").trim();
+    if (visibleState && !["available", "disponible"].includes(visibleState.toLowerCase())) {
+      head.append(element("span", "", visibleState));
+    }
+    card.append(head);
+    if (primary) card.append(element("p", "sonantia-context-primary", primary));
+    if (secondary) card.append(element("p", "sonantia-context-secondary", secondary));
+    if (extra) card.append(extra);
+    return card;
+  }
+
+
+  function astronomyIcon(target) {
+    if (target?.icon) return String(target.icon);
+    const icons = {
+      sol:"☀️", luna:"🌙", mercurio:"☿", venus:"♀", marte:"♂", ceres:"⚳",
+      palas:"◆", pallas:"◆", vesta:"◇", eros:"◆", bennu:"◆", júpiter:"♃",
+      jupiter:"♃", ío:"●", io:"●", europa:"●", ganímedes:"●", ganimedes:"●",
+      calisto:"●", saturno:"♄", titán:"●", titan:"●", urano:"♅", neptuno:"♆",
+      tritón:"●", triton:"●", plutón:"♇", pluton:"♇"
+    };
+    return icons[String(target?.name || "").toLocaleLowerCase("es-CL")] || "✦";
+  }
+
+  function astronomyPosition(target) {
+    const elevation = target?.elevation_deg ?? target?.elevation;
+    const azimuth = target?.azimuth_deg ?? target?.azimuth;
+    return [
+      elevation !== undefined && elevation !== null ? `Elevación ${formatNumber(elevation)}°` : null,
+      azimuth !== undefined && azimuth !== null ? `Azimut ${formatNumber(azimuth)}°` : null,
+      target?.visibility,
+    ].filter(Boolean).join(" · ");
+  }
+
+  function stableSample(items, count, seedText) {
+    const pool = [...items];
+    let seed = 2166136261;
+    for (const char of String(seedText || "Sonantia")) {
+      seed ^= char.charCodeAt(0);
+      seed = Math.imul(seed, 16777619) >>> 0;
+    }
+    for (let index = pool.length - 1; index > 0; index -= 1) {
+      seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+      const selected = seed % (index + 1);
+      [pool[index], pool[selected]] = [pool[selected], pool[index]];
+    }
+    return pool.slice(0, count);
+  }
+
+  function availableAstronomyTargets(astronomy, message, allowCurrentSnapshot) {
+    const candidates = [
+      astronomy?.targets,
+      astronomy?.available_targets,
+      astronomy?.objects,
+      allowCurrentSnapshot ? currentAstronomySnapshot?.targets : null,
+    ];
+    const source = candidates.find((value) => Array.isArray(value)) || [];
+    const available = source.filter((target) => {
+      if (!target || typeof target !== "object") return false;
+      const status = String(target.status || "available").toLowerCase();
+      return status === "available" && (target.name || astronomyPosition(target));
+    });
+    return stableSample(available, 3, message?.message_id || message?.created_at);
+  }
+
+  function astronomyList(targets) {
+    const list = element("div", "sonantia-astro-list");
+    targets.forEach((target) => {
+      const item = element("article", "sonantia-astro-item");
+      const head = element("div", "sonantia-astro-head");
+      const copy = element("div", "sonantia-astro-copy");
+      copy.append(
+        element("strong", "", text(target.name, "Astro")),
+        element("small", "", text(target.kind, "objeto astronómico"))
+      );
+      head.append(element("span", "sonantia-astro-icon", astronomyIcon(target)), copy);
+
+      const elevation = target?.elevation_deg ?? target?.elevation;
+      const azimuth = target?.azimuth_deg ?? target?.azimuth;
+      const metrics = element("div", "sonantia-astro-metrics");
+      const elevationMetric = element("div", "sonantia-astro-metric");
+      elevationMetric.append(
+        element("span", "", "Elevación"),
+        element("strong", "", elevation !== undefined && elevation !== null ? `${formatNumber(elevation)}°` : "—")
+      );
+      const azimuthMetric = element("div", "sonantia-astro-metric");
+      azimuthMetric.append(
+        element("span", "", "Azimut"),
+        element("strong", "", azimuth !== undefined && azimuth !== null ? `${formatNumber(azimuth)}°` : "—")
+      );
+      metrics.append(elevationMetric, azimuthMetric);
+
+      const visibility = element("p", "sonantia-astro-visibility", text(target.visibility, "Visibilidad no informada"));
+      item.append(head, metrics, visibility);
+      list.append(item);
+    });
+    return list;
+  }
+
+  function renderContextSummary(context, message, allowCurrentAstronomy = false) {
+    const wrapper = element("div", "sonantia-context-summary");
+    const weather = context?.weather;
+    const weatherData = weather?.data || {};
+    if (weather && Object.keys(weatherData).length) {
+      const main = [
+        weatherData.temperature_c !== undefined && weatherData.temperature_c !== null ? `${formatNumber(weatherData.temperature_c, 1)} °C` : null,
+        weatherData.relative_humidity_percent !== undefined && weatherData.relative_humidity_percent !== null ? `${formatNumber(weatherData.relative_humidity_percent, 1)} % HR` : null,
+        weatherData.pressure_hpa !== undefined && weatherData.pressure_hpa !== null ? `${formatNumber(weatherData.pressure_hpa, 2)} hPa` : null,
+      ].filter(Boolean).join(" · ");
+      const secondary = [
+        weatherData.precipitation_mm !== undefined && weatherData.precipitation_mm !== null ? `Lluvia acumulada ${formatNumber(weatherData.precipitation_mm, 2)} mm` : null,
+        weatherData.solar_radiation_wm2 !== undefined && weatherData.solar_radiation_wm2 !== null ? `Radiación ${formatNumber(weatherData.solar_radiation_wm2, 2)} W/m²` : null,
+        weather.observed_at ? `Observado ${formatDate(weather.observed_at, true)}` : null,
+      ].filter(Boolean).join(" · ");
+      wrapper.append(contextCard("weather", "Meteorología", main || "Datos disponibles", secondary, text(weather.status, "disponible")));
+    }
+
+    const geology = context?.geology;
+    if (geology) {
+      const event = geology.recent_event || {};
+      const main = event.magnitude !== undefined
+        ? `Último Sismo Informado · M ${formatNumber(event.magnitude, 1)} · ${text(event.location, "ubicación no informada")}`
+        : `Último Sismo Informado · ${formatNumber(geology.count, 0)} eventos en la ventana`;
+      const secondary = [
+        event.depth_km !== undefined ? `Profundidad ${formatNumber(event.depth_km)} km` : null,
+        event.local_time || event.occurred_at ? formatDate(event.local_time || event.occurred_at, true) : null,
+      ].filter(Boolean).join(" · ");
+      wrapper.append(contextCard("geology", "Geología", main, secondary, text(geology.status, "disponible")));
+    }
+
+    const astronomy = context?.astronomy;
+    if (astronomy) {
+      const targets = availableAstronomyTargets(astronomy, message, allowCurrentAstronomy);
+      const reference = astronomy.reference_target || {};
+      const available = astronomy.available_target_count ?? astronomy.target_count;
+      const main = targets.length
+        ? ""
+        : reference.name
+          ? `${astronomyIcon(reference)} ${reference.name}${reference.kind ? ` · ${reference.kind}` : ""}`
+          : `${formatNumber(available, 0)} objetos disponibles`;
+      const secondary = targets.length ? "" : astronomyPosition(reference);
+      const extra = targets.length ? astronomyList(targets) : null;
+      wrapper.append(contextCard("astronomy", "Astronomía", main, secondary, text(astronomy.status, "disponible"), extra));
+    }
+
+    const economy = context?.economy;
+    if (economy) {
+      const indicators = Array.isArray(economy.indicators) ? economy.indicators : [];
+      const indicatorText = indicators.slice(0, 3).map((item) => `${text(item.label, "Indicador")}: ${text(item.value)}`).join(" · ");
+      wrapper.append(contextCard("economy", "Economía", indicatorText || text(economy.date, "Contexto disponible"), text(economy.date, ""), text(economy.status, "disponible")));
+    }
+
+    if (!wrapper.children.length) wrapper.append(element("div", "sonantia-context-unavailable", "Este mensaje no incluye contexto factual adicional."));
+    return wrapper;
+  }
+
+  function stableNumber(value) {
+    let hash = 2166136261;
+    for (const character of String(value || "mensaje")) {
+      hash ^= character.codePointAt(0);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function stableChoice(values, seed, offset = 0) {
+    if (!Array.isArray(values) || !values.length) return "";
+    return values[(stableNumber(`${seed}:${offset}`) + offset) % values.length];
+  }
+
+  function localHour(value) {
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return null;
+    const formatter = new Intl.DateTimeFormat("es-CL", {
+      hour:"2-digit", hour12:false, hourCycle:"h23", timeZone:localNode.timezone
+    });
+    const hour = Number(formatter.formatToParts(date).find((part) => part.type === "hour")?.value);
+    return Number.isFinite(hour) ? hour : null;
+  }
+
+  function daypartKey(hour) {
+    if (hour === null) return "unknown";
+    if (hour < 5) return "dawn";
+    if (hour < 8) return "early-morning";
+    if (hour < 12) return "morning";
+    if (hour < 15) return "midday";
+    if (hour < 20) return "afternoon";
+    if (hour < 23) return "evening";
+    return "late-night";
+  }
+
+  function daypartPhrase(hour) {
+    const phrases = {
+      dawn: "durante esta madrugada",
+      "early-morning": "en las primeras horas de la mañana",
+      morning: "durante esta mañana",
+      midday: "a esta hora del día",
+      afternoon: "durante esta tarde",
+      evening: "durante esta noche",
+      "late-night": "en las últimas horas del día",
+      unknown: "en este momento",
+    };
+    return phrases[daypartKey(hour)] || phrases.unknown;
+  }
+
+  function contextualGreetingOptions(weather, city) {
+    const data = weather?.data || {};
+    const temperature = data.temperature_c === null || data.temperature_c === undefined ? null : Number(data.temperature_c);
+    const humidity = data.relative_humidity_percent === null || data.relative_humidity_percent === undefined ? null : Number(data.relative_humidity_percent);
+    const options = [];
+    if (Number.isFinite(temperature)) {
+      if (temperature < 8) {
+        options.push(
+          `Con un ambiente frío, saludamos desde ${city}.`,
+          `Desde ${city}, compartimos este registro en medio de una jornada fría.`
+        );
+      } else if (temperature < 14) {
+        options.push(
+          `En un ambiente fresco, volvemos a saludar desde ${city}.`,
+          `Desde ${city}, compartimos este momento bajo condiciones frescas.`
+        );
+      } else if (temperature < 23) {
+        options.push(
+          `Con un ambiente templado, saludamos nuevamente desde ${city}.`,
+          `Desde ${city}, compartimos este registro en un momento templado.`
+        );
+      } else if (temperature < 29) {
+        options.push(
+          `En una jornada cálida, saludamos desde ${city}.`,
+          `Desde ${city}, compartimos este momento bajo un ambiente cálido.`
+        );
+      } else {
+        options.push(
+          `Con temperaturas elevadas, saludamos desde ${city}.`,
+          `Desde ${city}, compartimos este registro en una jornada calurosa.`
+        );
+      }
+    }
+    if (Number.isFinite(humidity) && humidity >= 80) {
+      options.push(
+        `En medio de un ambiente muy húmedo, saludamos desde ${city}.`,
+        `Desde ${city}, compartimos este momento con una humedad elevada.`
+      );
+    } else if (Number.isFinite(humidity) && humidity < 35) {
+      options.push(
+        `Bajo un ambiente seco, saludamos desde ${city}.`,
+        `Desde ${city}, compartimos este registro con una humedad baja.`
+      );
+    }
+    return options;
+  }
+
+  function localGreeting(value, city, seed, weather = null) {
+    const hour = localHour(value);
+    const safeCity = text(city, localNode.city);
+    const greetings = {
+      dawn: [
+        `En esta madrugada saludamos desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos un nuevo registro de la madrugada.`,
+        `A esta hora temprana, volvemos a saludar desde ${safeCity}.`,
+        `Antes de comenzar la jornada, enviamos un saludo desde ${safeCity}.`,
+        `Con la ciudad aún en calma, saludamos desde ${safeCity}.`,
+        `Desde ${safeCity}, iniciamos este registro de madrugada.`,
+        `Una nueva lectura comienza desde ${safeCity}.`,
+        `En las primeras horas del día, saludamos desde ${safeCity}.`,
+        `Durante esta madrugada, compartimos un saludo desde ${safeCity}.`,
+        `Desde ${safeCity}, abrimos una nueva observación antes del amanecer.`,
+      ],
+      "early-morning": [
+        `Buenos días desde ${safeCity}.`,
+        `Comenzamos la mañana saludando desde ${safeCity}.`,
+        `Desde ${safeCity}, damos la bienvenida a una nueva jornada.`,
+        `En las primeras horas de la mañana, saludamos desde ${safeCity}.`,
+        `Esta mañana volvemos a encontrarnos desde ${safeCity}.`,
+        `Con el inicio del día, enviamos un saludo desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos la primera lectura de la jornada.`,
+        `Una nueva mañana comienza y saludamos desde ${safeCity}.`,
+        `En esta oportunidad, saludamos temprano desde ${safeCity}.`,
+        `Al comenzar la jornada, transmitimos desde ${safeCity}.`,
+      ],
+      morning: [
+        `Buenos días, nuevamente saludamos desde ${safeCity}.`,
+        `Transmitimos esta mañana desde ${safeCity}.`,
+        `En esta oportunidad saludamos desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos una nueva lectura de la mañana.`,
+        `Continuamos la jornada con un saludo desde ${safeCity}.`,
+        `Durante esta mañana, volvemos a saludar desde ${safeCity}.`,
+        `Nos encontramos nuevamente esta mañana desde ${safeCity}.`,
+        `Desde ${safeCity}, acompañamos la mañana con un nuevo registro.`,
+        `La jornada continúa y saludamos desde ${safeCity}.`,
+        `Compartimos este momento de la mañana desde ${safeCity}.`,
+        `Una vez más, enviamos un saludo matinal desde ${safeCity}.`,
+        `Desde ${safeCity}, retomamos la jornada con una nueva observación.`,
+      ],
+      midday: [
+        `Buenas tardes desde ${safeCity}.`,
+        `Al llegar el mediodía, saludamos desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos una nueva lectura del mediodía.`,
+        `En esta oportunidad saludamos desde ${safeCity}.`,
+        `Transmitimos a esta hora desde ${safeCity}.`,
+        `Con la jornada en pleno desarrollo, saludamos desde ${safeCity}.`,
+        `Desde ${safeCity}, hacemos una pausa para compartir este registro.`,
+        `Durante las horas centrales del día, saludamos desde ${safeCity}.`,
+        `Compartimos este momento de la jornada desde ${safeCity}.`,
+        `Desde ${safeCity}, continuamos con una nueva observación.`,
+        `A esta hora, volvemos a encontrarnos desde ${safeCity}.`,
+        `La jornada alcanza su punto medio y saludamos desde ${safeCity}.`,
+      ],
+      afternoon: [
+        `Buenas tardes desde ${safeCity}.`,
+        `Transmitimos esta tarde desde ${safeCity}.`,
+        `Nuevamente saludamos esta tarde desde ${safeCity}.`,
+        `En esta oportunidad, volvemos a saludar desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos una nueva lectura de la tarde.`,
+        `La jornada avanza y saludamos desde ${safeCity}.`,
+        `Durante esta tarde, compartimos un nuevo registro desde ${safeCity}.`,
+        `Volvemos a encontrarnos esta tarde desde ${safeCity}.`,
+        `Desde ${safeCity}, acompañamos el avance de la jornada.`,
+        `Compartimos este momento de la tarde desde ${safeCity}.`,
+        `La tarde continúa y enviamos un saludo desde ${safeCity}.`,
+        `Desde ${safeCity}, retomamos el contacto con una nueva observación.`,
+        `En medio de la tarde, saludamos nuevamente desde ${safeCity}.`,
+        `A esta hora de la tarde, compartimos un saludo desde ${safeCity}.`,
+      ],
+      evening: [
+        `Buenas noches desde ${safeCity}.`,
+        `Buenas noches, nuevamente saludamos desde ${safeCity}.`,
+        `Esta noche volvemos a saludar desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos el registro de esta noche.`,
+        `Al finalizar la jornada, saludamos desde ${safeCity}.`,
+        `Con la llegada de la noche, enviamos un saludo desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos una nueva lectura nocturna.`,
+        `La jornada entra en su tramo final y saludamos desde ${safeCity}.`,
+        `Durante esta noche, volvemos a encontrarnos desde ${safeCity}.`,
+        `Desde ${safeCity}, cerramos el día con un nuevo registro.`,
+        `Al caer la noche, compartimos un saludo desde ${safeCity}.`,
+        `La noche comienza y volvemos a saludar desde ${safeCity}.`,
+      ],
+      "late-night": [
+        `Buenas noches desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos una lectura de las últimas horas del día.`,
+        `A esta hora de la noche, volvemos a saludar desde ${safeCity}.`,
+        `Con la ciudad en calma, compartimos este registro desde ${safeCity}.`,
+        `Antes de cerrar el día, enviamos un saludo desde ${safeCity}.`,
+        `Desde ${safeCity}, acompañamos las últimas horas de la jornada.`,
+        `En esta noche avanzada, saludamos desde ${safeCity}.`,
+        `Un nuevo registro nocturno comienza desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos esta observación antes del descanso.`,
+        `En las últimas horas del día, volvemos a encontrarnos desde ${safeCity}.`,
+      ],
+      unknown: [
+        `Saludos desde ${safeCity}.`,
+        `En esta oportunidad saludamos desde ${safeCity}.`,
+        `Desde ${safeCity}, compartimos un nuevo registro.`,
+        `Nuevamente nos encontramos desde ${safeCity}.`,
+        `Transmitimos una nueva observación desde ${safeCity}.`,
+        `Desde ${safeCity}, enviamos un saludo y compartimos esta lectura.`,
+      ],
+    };
+    const key = daypartKey(hour);
+    const options = [
+      ...(greetings[key] || greetings.unknown),
+      ...contextualGreetingOptions(weather, safeCity),
+    ];
+    return stableChoice(options, seed, 3);
+  }
+
+  function messageSentences(value) {
+    const cleaned = String(value || "")
+      .replace(/\s*\((?:referencias?|referencia ambiental|movimiento telúrico)[\s\S]*?\)\s*$/giu, "")
+      .trim();
+    return cleaned.match(/[^.!?]+[.!?]+|[^.!?]+$/g)?.map((item) => item.trim()).filter(Boolean) || [];
+  }
+
+  function isContextSentence(value) {
+    const normalized = String(value || "").toLocaleLowerCase("es-CL");
+    return /temperatura|humedad|presión|hpa|radiación|lluvia|precipitación|azimut|elevación|telúr|sismo|astro|meteorológ/.test(normalized);
+  }
+
+  function stripEditorialPrefix(value) {
+    let cleaned = String(value || "").replace(/[.!?]+$/u, "").trim();
+    const patterns = [
+      /^(?:la señal del nodo|la publicación|el mensaje|el nodo|sonantia)\s+(?:resuena|transmite|comunica|acompaña|destaca|expresa|refuerza|recuerda)\s+(?:(?:con|mediante)\s+)?(?:(?:la|una)\s+)?(?:idea|afirmación|reflexión|declaración|certeza|mensaje)?\s*(?:de\s+)?que\s+/iu,
+      /^(?:junto con estos datos|con esta lectura del entorno|con esta lectura|con este registro|a partir de esta observación|a partir de esta lectura|en este registro|durante este ciclo|para este ciclo|este registro|la lectura disponible|la observación local)[,:]?\s*(?:declaramos|dejamos constancia|afirmamos|señalamos|expresamos|acompaña|refuerza|transmite|comunica|destaca|indica|permite expresar)\s+(?:(?:la|una)\s+)?(?:idea|afirmación|reflexión|declaración|certeza|mensaje)?\s*(?:de\s+)?que\s+/iu,
+      /^(?:junto con estos datos|con esta lectura del entorno|con esta lectura|con este registro|a partir de esta observación|a partir de esta lectura|en este registro|durante este ciclo|para este ciclo|este registro)[,:]?\s*(?:la idea|la afirmación|el mensaje)\s+(?:de\s+)?que\s+/iu,
+      /^(?:declaramos|dejamos constancia|afirmamos|señalamos|expresamos|destacamos|recordamos)\s+(?:la idea\s+)?(?:de\s+)?que\s+/iu,
+    ];
+    for (let pass = 0; pass < 3; pass += 1) {
+      const previous = cleaned;
+      for (const pattern of patterns) cleaned = cleaned.replace(pattern, "").trim();
+      if (cleaned === previous) break;
+    }
+    return cleaned.replace(/^[,;:\-–—\s]+/u, "").trim();
+  }
+
+  function polishAffirmation(value) {
+    let polished = stripEditorialPrefix(value);
+    polished = polished
+      .replace(/\bpara convertir ideas en proyectos viables genera proyectos con posibilidades reales de éxito\b/giu, "para convertir ideas en proyectos viables abre posibilidades reales de éxito")
+      .replace(/\bproyectos viables generan proyectos\b/giu, "proyectos viables generan iniciativas")
+      .replace(/\s+([,.;:!?])/gu, "$1")
+      .replace(/\s{2,}/gu, " ")
+      .trim();
+    if (!polished) return "";
+    return polished.charAt(0).toLocaleUpperCase("es-CL") + polished.slice(1);
+  }
+
+  function affirmationFromMessage(message) {
+    const sentences = messageSentences(message?.text);
+    let selected = [...sentences].reverse().find((sentence) => /David Alexander Bijman Molina/i.test(sentence));
+    if (!selected) selected = [...sentences].reverse().find((sentence) => !isContextSentence(sentence));
+    return polishAffirmation(selected || "");
+  }
+
+  function weatherDescription(temperature, humidity) {
+    const temperatureLabel = temperature < 8
+      ? "frío"
+      : temperature < 14
+        ? "fresco"
+        : temperature < 23
+          ? "templado"
+          : temperature < 29
+            ? "cálido"
+            : "caluroso";
+    const humidityLabel = humidity < 35
+      ? "seco"
+      : humidity < 60
+        ? "de humedad moderada"
+        : humidity < 80
+          ? "húmedo"
+          : "muy húmedo";
+    return `${temperatureLabel} y ${humidityLabel}`;
+  }
+
+  function weatherSentence(weather, city, seed, messageTime = null) {
+    const data = weather?.data || {};
+    const temperature = data.temperature_c === null || data.temperature_c === undefined ? null : Number(data.temperature_c);
+    const humidity = data.relative_humidity_percent === null || data.relative_humidity_percent === undefined ? null : Number(data.relative_humidity_percent);
+    const safeCity = text(city, localNode.city);
+    const hour = localHour(messageTime);
+    const period = daypartPhrase(hour);
+    if (Number.isFinite(temperature) && Number.isFinite(humidity)) {
+      const t = formatNumber(temperature, 1);
+      const h = formatNumber(humidity, 1);
+      const description = weatherDescription(temperature, humidity);
+      const general = [
+        `El registro local marca ${t} °C y ${h} % de humedad relativa.`,
+        `A esta hora, ${safeCity} registra ${t} °C, con una humedad relativa de ${h} %.`,
+        `La medición ambiental informa ${t} °C y ${h} % de humedad relativa.`,
+        `El ambiente se presenta ${description}, con ${t} °C y ${h} % de humedad.`,
+        `La lectura consolidada sitúa la temperatura en ${t} °C y la humedad en ${h} %.`,
+        `Las estaciones integradas registran ${t} °C y una humedad relativa de ${h} %.`,
+        `La observación del momento indica ${t} °C y ${h} % de humedad relativa.`,
+        `En el entorno de ${safeCity} se observan ${t} °C y ${h} % de humedad.`,
+        `La temperatura local alcanza ${t} °C, mientras la humedad se sitúa en ${h} %.`,
+        `El contexto meteorológico combina ${t} °C con una humedad relativa de ${h} %.`,
+        `La lectura ambiental describe un entorno ${description}: ${t} °C y ${h} % de humedad.`,
+        `El registro consolidado informa una temperatura de ${t} °C y una humedad de ${h} %.`,
+        `Los datos disponibles describen ${t} °C y ${h} % de humedad relativa.`,
+        `La lectura conjunta de las estaciones entrega ${t} °C y ${h} % de humedad.`,
+        `El panorama local queda definido por ${t} °C y una humedad relativa de ${h} %.`,
+        `La observación ambiental sitúa el entorno en ${t} °C y ${h} % de humedad.`,
+        `El momento actual presenta ${t} °C, acompañado de una humedad de ${h} %.`,
+        `La medición consolidada registra ${t} °C y mantiene la humedad en ${h} %.`,
+        `Durante ${period}, la lectura local informa ${t} °C y ${h} % de humedad.`,
+        `El ambiente de ${safeCity} se describe con ${t} °C y una humedad de ${h} %.`,
+      ];
+      const conditional = [];
+      if (temperature < 8) {
+        conditional.push(
+          `El ambiente permanece frío, con ${t} °C y ${h} % de humedad relativa.`,
+          `La lectura confirma condiciones frías: ${t} °C y una humedad de ${h} %.`
+        );
+      } else if (temperature < 14) {
+        conditional.push(
+          `El entorno se mantiene fresco, con ${t} °C y ${h} % de humedad.`,
+          `La jornada presenta condiciones frescas: ${t} °C y ${h} % de humedad relativa.`
+        );
+      } else if (temperature < 23) {
+        conditional.push(
+          `El entorno se mantiene templado, con ${t} °C y ${h} % de humedad.`,
+          `La lectura describe condiciones templadas: ${t} °C y ${h} % de humedad relativa.`
+        );
+      } else if (temperature < 29) {
+        conditional.push(
+          `El ambiente se presenta cálido, con ${t} °C y ${h} % de humedad.`,
+          `La lectura refleja una jornada cálida: ${t} °C y ${h} % de humedad relativa.`
+        );
+      } else {
+        conditional.push(
+          `El ambiente registra temperaturas elevadas: ${t} °C y ${h} % de humedad.`,
+          `La lectura confirma una jornada calurosa, con ${t} °C y ${h} % de humedad relativa.`
+        );
+      }
+      if (humidity >= 80) {
+        conditional.push(
+          `La humedad es elevada y alcanza ${h} %, mientras la temperatura se sitúa en ${t} °C.`,
+          `El entorno se presenta muy húmedo: ${h} % de humedad y ${t} °C.`
+        );
+      } else if (humidity < 35) {
+        conditional.push(
+          `El ambiente se mantiene seco, con ${h} % de humedad y una temperatura de ${t} °C.`,
+          `La baja humedad marca la lectura: ${h} %, junto con ${t} °C.`
+        );
+      }
+      return stableChoice([...general, ...conditional], seed, 11);
+    }
+    if (Number.isFinite(temperature)) {
+      const t = formatNumber(temperature, 1);
+      return stableChoice([
+        `El registro local informa una temperatura de ${t} °C.`,
+        `A esta hora, la temperatura en ${safeCity} alcanza ${t} °C.`,
+        `La medición ambiental sitúa la temperatura en ${t} °C.`,
+        `Las estaciones disponibles registran ${t} °C.`,
+        `La lectura consolidada ubica la temperatura en ${t} °C.`,
+        `El entorno local presenta una temperatura de ${t} °C.`,
+        `Durante ${period}, el registro térmico alcanza ${t} °C.`,
+        `La observación disponible informa ${t} °C.`,
+      ], seed, 13);
+    }
+    if (Number.isFinite(humidity)) {
+      const h = formatNumber(humidity, 1);
+      return stableChoice([
+        `El registro local informa una humedad relativa de ${h} %.`,
+        `A esta hora, la humedad en ${safeCity} se sitúa en ${h} %.`,
+        `La medición ambiental indica ${h} % de humedad relativa.`,
+        `Las estaciones disponibles registran una humedad de ${h} %.`,
+        `La lectura consolidada sitúa la humedad en ${h} %.`,
+        `El entorno local presenta ${h} % de humedad relativa.`,
+        `Durante ${period}, la humedad registrada alcanza ${h} %.`,
+        `La observación disponible informa una humedad de ${h} %.`,
+      ], seed, 17);
+    }
+    return "";
+  }
+
+  function reflectionLead(message, seed) {
+    const hour = localHour(message?.created_at);
+    const groups = {
+      dawn: [
+        "La quietud de la madrugada da paso a la siguiente reflexión:",
+        "Este registro temprano incorpora una idea central:",
+        "Antes del inicio de la jornada, compartimos la siguiente afirmación:",
+        "La observación de la madrugada se completa con este mensaje:",
+        "En estas primeras horas, ponemos el acento en una idea:",
+        "El registro previo al amanecer acompaña la siguiente reflexión:",
+      ],
+      "early-morning": [
+        "La publicación abre la jornada con una idea central:",
+        "El primer registro de la mañana incorpora una reflexión:",
+        "Al comenzar el día, compartimos la siguiente afirmación:",
+        "La lectura de las primeras horas da paso al siguiente mensaje:",
+        "Con el inicio de la jornada, destacamos esta idea:",
+        "La mañana comienza acompañada por la siguiente reflexión:",
+      ],
+      morning: [
+        "El registro de la mañana incorpora una reflexión:",
+        "Durante esta mañana, compartimos la siguiente afirmación:",
+        "La lectura matinal da paso al siguiente mensaje:",
+        "La jornada continúa con una idea central:",
+        "Este momento de la mañana invita a destacar una reflexión:",
+        "La observación de la mañana se completa con esta afirmación:",
+        "En el transcurso de la jornada, compartimos la siguiente idea:",
+        "Esta nueva lectura matinal acompaña el siguiente mensaje:",
+      ],
+      midday: [
+        "A esta hora del día, compartimos una reflexión:",
+        "La publicación del mediodía incorpora una idea central:",
+        "En medio de la jornada, destacamos la siguiente afirmación:",
+        "La lectura de este momento da paso al siguiente mensaje:",
+        "El registro de las horas centrales se completa con una reflexión:",
+        "La jornada alcanza su punto medio junto con esta idea:",
+      ],
+      afternoon: [
+        "La publicación de esta tarde incorpora una reflexión:",
+        "En esta oportunidad compartimos una afirmación:",
+        "El registro de la tarde destaca una idea central:",
+        "La lectura del entorno da paso al siguiente mensaje:",
+        "Durante esta tarde, ponemos el acento en la siguiente reflexión:",
+        "La jornada avanza acompañada por esta afirmación:",
+        "Este momento de la tarde invita a compartir una idea central:",
+        "La observación de la tarde se completa con el siguiente mensaje:",
+      ],
+      evening: [
+        "El registro nocturno se completa con una afirmación:",
+        "En este momento de la noche, compartimos una reflexión:",
+        "La publicación nocturna destaca una idea central:",
+        "Al cerrar la jornada, expresamos el siguiente mensaje:",
+        "Con la llegada de la noche, compartimos esta afirmación:",
+        "La lectura nocturna acompaña la siguiente reflexión:",
+        "El final de la jornada da paso a una idea central:",
+        "Esta observación de la noche se completa con el siguiente mensaje:",
+      ],
+      "late-night": [
+        "En las últimas horas del día, compartimos una reflexión:",
+        "Antes del descanso, destacamos la siguiente afirmación:",
+        "El registro de esta noche avanzada incorpora una idea central:",
+        "Al concluir la jornada, expresamos el siguiente mensaje:",
+        "La quietud de la noche acompaña esta reflexión:",
+        "Este último tramo del día da paso a la siguiente idea:",
+      ],
+      unknown: [
+        "En esta oportunidad compartimos una reflexión:",
+        "La publicación se completa con una idea central:",
+        "Este registro incorpora la siguiente afirmación:",
+        "La lectura disponible da paso al siguiente mensaje:",
+      ],
+    };
+    const general = [
+      "En este contexto, compartimos la siguiente idea:",
+      "La publicación se completa con una reflexión:",
+      "La lectura del entorno se acompaña de una afirmación:",
+      "Este registro pone el acento en una idea central:",
+      "La observación incorpora el siguiente mensaje:",
+      "Junto con la lectura local, compartimos una reflexión:",
+      "El mensaje asociado a este ciclo expresa una idea central:",
+      "Este instante invita a destacar una reflexión:",
+      "Como parte de la publicación, transmitimos el siguiente mensaje:",
+      "El ciclo actual integra el contexto local con una afirmación:",
+      "La observación se acompaña de una reflexión orientada al bienestar:",
+      "Este mensaje vincula la lectura ambiental con una idea central:",
+      "A partir de la lectura disponible, compartimos esta afirmación:",
+      "El contexto del momento da paso a la siguiente reflexión:",
+      "Esta publicación reúne la observación local y una idea central:",
+      "El registro actual se completa con el siguiente pensamiento:",
+      "La lectura de este instante acompaña una afirmación:",
+      "En continuidad con el registro anterior, compartimos esta idea:",
+      "La observación del entorno invita a expresar el siguiente mensaje:",
+      "Este momento queda acompañado por una reflexión central:",
+      "La información disponible se complementa con esta afirmación:",
+      "El registro del momento incorpora una idea orientada al bienestar:",
+      "Junto con los datos locales, compartimos el siguiente pensamiento:",
+      "La lectura actual abre espacio para esta reflexión:",
+    ];
+    return stableChoice([...(groups[daypartKey(hour)] || groups.unknown), ...general], seed, 23);
+  }
+
+  function ensureTerminalPunctuation(value) {
+    const cleaned = String(value || "").trim();
+    if (!cleaned) return "";
+    return /[.!?]$/u.test(cleaned) ? cleaned : `${cleaned}.`;
+  }
+
+  function displayMessageText(message, city) {
+    const seed = text(message?.message_id, `${message?.created_at || ""}:${message?.sequence || ""}`);
+    const greeting = localGreeting(message?.created_at, city, seed, message?.context?.weather);
+    const climate = weatherSentence(message?.context?.weather, city, seed, message?.created_at);
+    const affirmation = affirmationFromMessage(message);
+    if (affirmation) {
+      const reflection = `${reflectionLead(message, seed)} ${ensureTerminalPunctuation(affirmation)}`;
+      return [greeting, climate, reflection].filter(Boolean).join(" ");
+    }
+    const original = messageSentences(message?.text).filter((sentence) => !isContextSentence(sentence)).join(" ");
+    const fallback = original || "La publicación continúa activa y conserva el contexto disponible.";
+    return [greeting, climate, ensureTerminalPunctuation(fallback)].filter(Boolean).join(" ");
+  }
+
+  function jsonDetailCard(title, value) {
+    const card = element("section", "sonantia-message-detail-card");
+    card.append(element("h3", "", title), element("pre", "", value ? JSON.stringify(value, null, 2) : "No disponible"));
+    return card;
+  }
+
+  function technicalDetailCard(message) {
+    const card = element("section", "sonantia-message-detail-card");
+    card.append(element("h3", "", "Identidad y trazabilidad"));
+    appendDefinitionList(card, [
+      ["ID del mensaje", message.message_id],
+      ["Secuencia", message.sequence],
+      ["Hash SHA-256", message.content_hash],
+      ["Protocolo", message.protocol_version],
+      ["Época de red", message.network_epoch],
+      ["Visibilidad", message.visibility],
+      ["Idioma", message.language],
+      ["Recibido desde", message.received_from_node_id],
+      ["Recibido", message.received_at ? formatDate(message.received_at) : null],
+      ["Saltos", message.hop_count],
+    ], "sonantia-technical-dl");
+    return card;
+  }
+
+  function messageCard(message, sourceNodeId = null) {
+    const origin = text(message.origin_node_id || sourceNodeId, localNode.node_id);
+    const meta = nodeMeta[origin] || {city: origin, platform: "Plataforma no informada"};
+    const card = element("article", `sonantia-message ${nodeClass(origin)}`);
+    const head = element("div", "sonantia-message-head");
+    const originWrap = element("div", "sonantia-message-origin-wrap");
+    originWrap.append(
+      element("span", "sonantia-message-origin", `${origin} · ${meta.city}`),
+      element("span", "sonantia-message-route", `${meta.platform}${message.received_from_node_id ? ` · recibido desde ${message.received_from_node_id}` : " · publicación de origen"}`)
+    );
+    const time = element("time", "", formatDate(message.created_at));
+    if (message.created_at) time.dateTime = message.created_at;
+    head.append(originWrap, time);
+    card.append(
+      head,
+      element("p", "sonantia-message-text", displayMessageText(message, meta.city || origin)),
+      renderContextSummary(message.context || {}, message, origin === localNode.node_id)
+    );
+
+    const details = element("details", "sonantia-message-details");
+    details.append(element("summary", "", "Contexto completo y trazabilidad técnica"));
+    const grid = element("div", "sonantia-message-detail-grid");
+    grid.append(
+      technicalDetailCard(message),
+      jsonDetailCard("Generador del mensaje", message.generator),
+      jsonDetailCard("Contexto factual completo", message.context),
+      jsonDetailCard("Documento canónico", message)
+    );
+    details.append(grid);
+    card.append(details);
+    return card;
+  }
+
+  function renderMessageList(container, messages, emptyText, sourceNodeId = null) {
+    container.replaceChildren();
+    const ordered = [...(messages || [])].sort((a, b) => String(b.created_at || "").localeCompare(String(a.created_at || "")));
+    if (!ordered.length) {
+      container.append(element("p", "sonantia-empty", emptyText));
+      return;
+    }
+    ordered.forEach((message) => container.append(messageCard(message, sourceNodeId)));
+  }
+
+  function networkNodes(network) {
+    const configured = Array.isArray(network?.nodes) && network.nodes.length ? network.nodes : fallbackNodes;
+    return fallbackNodes.map((fallback) => ({...fallback, ...(configured.find((item) => item.node_id === fallback.node_id) || {})}));
+  }
+
+  function renderNetworkOverview(network, inventory, relays, feed, status) {
+    const target = byId("network-nodes");
+    target.replaceChildren();
+    const origins = inventory?.origins || {};
+    const nodes = networkNodes(network);
+    nodes.forEach((item) => {
+      const nodeId = text(item.node_id, localNode.node_id);
+      const fallback = nodeMeta[nodeId] || {};
+      const originInventory = origins[nodeId] || {};
+      const relay = nodeId === localNode.node_id ? feed : relays[nodeId];
+      const messages = number(relay?.message_count || relay?.messages?.length);
+      const available = originInventory.available_through_sequence !== null && originInventory.available_through_sequence !== undefined;
+      const card = element("article", `sonantia-node-card ${nodeClass(nodeId)}`);
+      const head = element("div", "sonantia-node-card-head");
+      head.append(element("span", "sonantia-node-id", nodeId), element("span", "sonantia-node-state", nodeId === localNode.node_id ? text(status?.result, "referencia") : (available ? "inventariado" : "sin datos")));
+      const metrics = element("div", "sonantia-node-metrics");
+      metrics.append(
+        element("span", "sonantia-node-metric", `${messages} mensaje(s)`),
+        element("span", "sonantia-node-metric", available ? `hasta sec. ${text(originInventory.available_through_sequence)}` : "sin secuencias"),
+        element("span", "sonantia-node-metric", Array.isArray(originInventory.gaps) && originInventory.gaps.length ? `${originInventory.gaps.length} brecha(s)` : "sin brechas")
+      );
+      card.append(
+        head,
+        element("strong", "", text(item.name || item.display_name, `Nodo ${fallback.city || nodeId}`)),
+        element("small", "", `${text(item.city || item.location || fallback.city, fallback.city || "Ubicación pendiente")} · ${text(item.platform, fallback.platform || "Plataforma pendiente")}`),
+        metrics
+      );
+      target.append(card);
+    });
+    byId("network-caption").textContent = `${text(network?.network_name, "Sonantia Network")} · ${nodes.length} nodos definidos`;
+  }
+
+  function renderOwnFeed(feed) {
+    const messages = Array.isArray(feed?.messages) ? feed.messages : [];
+    byId("own-caption").textContent = `${messages.length} mensaje(s) · actualizado ${formatDate(feed?.generated_at, true)}`;
+    renderMessageList(byId("own-messages"), messages, `${localNode.node_id} todavía no ha publicado mensajes Sonantia.`, localNode.node_id);
+  }
+
+  function renderRelays(relays, network) {
+    const target = byId("relay-groups");
+    target.replaceChildren();
+    let total = 0;
+    relayNodeIds.forEach((nodeId) => {
+      const result = relays[nodeId] || {ok: false, data: null};
+      const relay = result.data || {};
+      const messages = Array.isArray(relay.messages) ? relay.messages : [];
+      total += messages.length;
+      const configured = networkNodes(network).find((item) => item.node_id === nodeId) || {};
+      const fallback = nodeMeta[nodeId] || {};
+      const details = element("details", `sonantia-relay ${nodeClass(nodeId)}`);
+      if (messages.length) details.open = true;
+      const summary = element("summary", "");
+      const copy = element("span", "sonantia-relay-copy");
+      copy.append(
+        element("strong", "", `${nodeId} · ${text(configured.city || configured.location, fallback.city || nodeId)}`),
+        element("small", "", `${text(configured.platform, fallback.platform || "Plataforma pendiente")} · ${result.ok ? "relay consultado" : "recurso no disponible"}`)
+      );
+      summary.append(copy, element("span", "sonantia-relay-count", `${messages.length} mensaje(s)`));
+      const body = element("div", "sonantia-relay-body");
+      if (!result.ok) body.append(element("p", "sonantia-empty", `Este relay no pudo ser leído. ${localNode.node_id} continúa funcionando de manera independiente.`));
+      else renderMessageList(body, messages, `${nodeId} todavía no aporta mensajes a la red.`, nodeId);
+      details.append(summary, body);
+      target.append(details);
+    });
+    byId("relay-caption").textContent = `${total} mensaje(s) remotos en ${relayNodeIds.length} relays`;
+  }
+
+  function renderStatus(network, sonantiaStatus) {
+    const target = byId("status-panel");
+    target.replaceChildren();
+    appendDefinitionList(target, [
+      ["Red", network?.network_name],
+      ["Protocolo", `${text(network?.protocol_name, "Red Sonantia Network")} ${text(network?.protocol_version, "1.0")}`],
+      ["Época", network?.network_epoch],
+      ["Nodo de referencia", `${text(network?.reference_node_id, localNode.node_id)} · ${text(network?.reference_node_name, localNode.name)}`],
+      ["Implementación", sonantiaStatus?.implementation_state || network?.implementation_state],
+      ["Resultado", sonantiaStatus?.result],
+      ["Estado operativo", sonantiaStatus?.result],
+      ["Última ejecución", sonantiaStatus?.generated_at ? formatDate(sonantiaStatus.generated_at) : null],
+      ["Feed", sonantiaStatus?.feed_message_count !== undefined ? `${sonantiaStatus.feed_message_count} mensajes` : null],
+      ["Archivo", sonantiaStatus?.archive_message_count !== undefined ? `${sonantiaStatus.archive_message_count} mensajes` : null],
+      ["Recursos", sonantiaStatus?.publication_file_count !== undefined ? `${sonantiaStatus.publication_file_count} archivos` : null],
+    ]);
+  }
+
+  function renderInventory(inventory) {
+    const target = byId("inventory-panel");
+    target.replaceChildren();
+    const entries = Object.entries(inventory?.origins || {});
+    byId("inventory-count").textContent = String(entries.length);
+    if (!entries.length) {
+      target.append(element("p", "sonantia-empty", "No hay inventario disponible."));
+      return;
+    }
+    const list = element("div", "sonantia-inventory-list");
+    entries.forEach(([nodeId, item]) => {
+      const row = element("article", `sonantia-inventory-row ${nodeClass(nodeId)}`);
+      const head = element("div", "sonantia-inventory-head");
+      head.append(element("strong", "", `${nodeId} · ${nodeMeta[nodeId]?.city || nodeId}`), element("span", "", text(item.role, "origen")));
+      const metrics = element("div", "sonantia-inventory-metrics");
+      metrics.append(
+        element("span", "", `Desde ${text(item.available_from_sequence)}`),
+        element("span", "", `Hasta ${text(item.available_through_sequence)}`),
+        element("span", "", Array.isArray(item.gaps) && item.gaps.length ? `Brechas ${item.gaps.join(", ")}` : "Sin brechas"),
+        element("span", "", `Archivo ${text(item.archive_through)}`)
+      );
+      row.append(head, metrics);
+      list.append(row);
+    });
+    target.append(list);
+  }
+
+  function renderEvents(interactions) {
+    const target = byId("events-panel");
+    target.replaceChildren();
+    const events = Array.isArray(interactions?.events) ? interactions.events : [];
+    byId("events-count").textContent = String(number(interactions?.event_count || events.length));
+    if (!events.length) {
+      target.append(element("p", "sonantia-empty", "No hay interacciones registradas."));
+      return;
+    }
+    const list = element("div", "sonantia-event-list");
+    events.slice(0, 20).forEach((event) => {
+      const row = element("article", "sonantia-event");
+      row.append(
+        element("strong", "", `${text(event.event_type, "evento")} · ${text(event.result, "sin resultado")}`),
+        element("small", "", formatDate(event.occurred_at)),
+        element("small", "", event.peer_node_id ? `Nodo relacionado: ${event.peer_node_id}` : "Evento local")
+      );
+      if (event.message_id || event.detail || event.error) {
+        const details = element("details", "sonantia-node-details");
+        details.append(element("summary", "", "Ver referencia técnica"));
+        const body = element("div", "sonantia-node-details-body");
+        appendDefinitionList(body, [["ID del mensaje", event.message_id], ["Detalle", event.detail], ["Error", event.error]], "sonantia-technical-dl");
+        details.append(body);
+        row.append(details);
+      }
+      list.append(row);
+    });
+    target.append(list);
+  }
+
+  async function renderArchive(index) {
+    const target = byId("archive-panel");
+    target.replaceChildren();
+    const months = Array.isArray(index?.months) ? index.months : [];
+    byId("archive-count").textContent = String(number(index?.message_count));
+    appendDefinitionList(target, [
+      ["Mensajes", index?.message_count],
+      ["Primera secuencia", index?.first_sequence],
+      ["Última secuencia", index?.last_sequence],
+      ["Períodos", months.length],
+      ["Actualizado", index?.generated_at ? formatDate(index.generated_at) : null],
+    ]);
+    if (!months.length) {
+      target.append(element("p", "sonantia-empty", "El archivo histórico todavía está vacío."));
+      return;
+    }
+    const list = element("div", "sonantia-archive-list");
+    months.slice().reverse().forEach((month) => {
+      const details = element("details", "sonantia-node-details");
+      details.append(element("summary", "", `${text(month.period)} · ${number(month.message_count)} mensaje(s)`));
+      const body = element("div", "sonantia-node-details-body sonantia-archive-list");
+      body.append(element("p", "sonantia-loading", "Expanda para cargar los días del período."));
+      details.addEventListener("toggle", async () => {
+        if (!details.open || details.dataset.loaded === "true") return;
+        details.dataset.loaded = "true";
+        const origin = text(index.origin_node_id, localNode.node_id);
+        const monthPath = `./archive/${origin}/${month.path}`;
+        const monthResult = await loadJson(monthPath);
+        const monthDocument = monthResult.data;
+        body.replaceChildren();
+        const days = Array.isArray(monthDocument?.days) ? monthDocument.days : [];
+        if (!days.length) {
+          body.append(element("p", "sonantia-empty", "No hay días disponibles en este período."));
+          return;
+        }
+        days.slice().reverse().forEach((day) => {
+          const dayDetails = element("details", "sonantia-node-details");
+          dayDetails.append(element("summary", "", `${text(day.date)} · ${number(day.message_count)} mensaje(s)`));
+          const dayBody = element("div", "sonantia-node-details-body sonantia-message-list");
+          dayBody.append(element("p", "sonantia-loading", "Cargando mensajes…"));
+          dayDetails.addEventListener("toggle", async () => {
+            if (!dayDetails.open || dayDetails.dataset.loaded === "true") return;
+            dayDetails.dataset.loaded = "true";
+            const prefix = monthPath.slice(0, monthPath.lastIndexOf("/") + 1);
+            const dayResult = await loadJson(prefix + day.path);
+            renderMessageList(dayBody, Array.isArray(dayResult.data?.messages) ? dayResult.data.messages : [], "No hay mensajes en este día.", origin);
+          });
+          dayDetails.append(dayBody);
+          body.append(dayDetails);
+        });
+      });
+      details.append(body);
+      list.append(details);
+    });
+    target.append(list);
+  }
+
+  function renderSummary(feed, relays, inventory, interactions, archive, network, status) {
+    const ownCount = number(feed?.message_count || feed?.messages?.length);
+    const relayCount = relayNodeIds.reduce((sum, nodeId) => sum + number(relays[nodeId]?.data?.message_count || relays[nodeId]?.data?.messages?.length), 0);
+    const origins = Object.values(inventory?.origins || {});
+    const activeOrigins = origins.filter((item) => item && item.available_through_sequence !== null && item.available_through_sequence !== undefined).length;
+    const totalNodes = networkNodes(network).length;
+    const result = text(status?.result || status?.implementation_state || network?.implementation_state, "Sin datos");
+    const tone = statusTone(result);
+    const statusCard = byId("kpi-status-card");
+    statusCard.className = `sonantia-kpi sonantia-kpi-${tone}`;
+    byId("kpi-status").textContent = result;
+    byId("kpi-status-detail").textContent = "Superficie nativa Sonantia 1.0";
+    byId("kpi-own").textContent = String(ownCount);
+    byId("kpi-relay").textContent = String(relayCount);
+    byId("kpi-origins").textContent = `${activeOrigins}/${totalNodes}`;
+    byId("kpi-archive").textContent = String(number(archive?.message_count));
+    byId("kpi-events").textContent = String(number(interactions?.event_count || interactions?.events?.length));
+    byId("kpi-files").textContent = String(number(status?.publication_file_count));
+
+    const timestamps = [feed?.generated_at, inventory?.generated_at, interactions?.generated_at, archive?.generated_at, network?.generated_at, status?.generated_at]
+      .filter(Boolean).map((value) => new Date(value)).filter((date) => !Number.isNaN(date.getTime()));
+    const latest = timestamps.length ? new Date(Math.max(...timestamps.map((date) => date.getTime()))) : null;
+    byId("kpi-updated").textContent = latest ? formatDate(latest.toISOString(), true) : "—";
+  }
+
+  async function initialize() {
+    const baseResults = await Promise.all([
+      loadJson("./feed.json"),
+      loadJson("./inventory.json"),
+      loadJson("./network.json"),
+      loadJson("./sonantia-status.json"),
+      loadJson("./interactions/current.json"),
+      loadJson("./archive/index.json"),
+      ...relayNodeIds.map((nodeId) => loadJson(`./relay/${nodeId}.json`)),
+    ]);
+    const [feedResult, inventoryResult, networkResult, sonantiaStatusResult, interactionsResult, archiveResult, ...relayResults] = baseResults;
+    const feed = feedResult.data || {messages: [], message_count: 0};
+    const inventory = inventoryResult.data || {origins: {}};
+    const network = networkResult.data || {network_name: "Sonantia Network", protocol_name: "Red Sonantia Network", protocol_version: "1.0", nodes: fallbackNodes};
+    const sonantiaStatus = sonantiaStatusResult.data || {};
+    const interactions = interactionsResult.data || {events: [], event_count: 0};
+    const archive = archiveResult.data || {months: [], message_count: 0};
+    const relays = Object.fromEntries(relayNodeIds.map((nodeId, index) => [nodeId, relayResults[index]]));
+
+    renderOwnFeed(feed);
+    renderRelays(relays, network);
+    renderNetworkOverview(network, inventory, Object.fromEntries(relayNodeIds.map((nodeId) => [nodeId, relays[nodeId]?.data])), feed, sonantiaStatus);
+    renderStatus(network, sonantiaStatus);
+    renderInventory(inventory);
+    renderEvents(interactions);
+    await renderArchive(archive);
+    renderSummary(feed, relays, inventory, interactions, archive, network, sonantiaStatus);
+
+    const failed = baseResults.filter((result) => !result.ok).length;
+    if (failed) console.warn(`Sonantia: vista parcial; ${failed} recurso(s) no disponibles`);
+  }
+
+  initialize().catch((error) => {
+    console.error("Sonantia: error no controlado", error);
+    document.querySelectorAll(".sonantia-loading").forEach((item) => {
+      item.classList.remove("sonantia-loading");
+      item.classList.add("sonantia-error");
+      item.textContent = "No fue posible cargar esta sección.";
+    });
+  });
+})();
+</script>
+{% endblock %}

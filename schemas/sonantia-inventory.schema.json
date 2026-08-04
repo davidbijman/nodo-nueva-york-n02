@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sonantia.network/schemas/inventory-1.0.schema.json",
+  "title": "Inventario de secuencias de Red Sonantia Network v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "network_id",
+    "protocol_version",
+    "network_epoch",
+    "document_type",
+    "node_id",
+    "generated_at",
+    "origins"
+  ],
+  "properties": {
+    "network_id": {
+      "const": "sonantia-network"
+    },
+    "protocol_version": {
+      "const": "1.0"
+    },
+    "network_epoch": {
+      "pattern": "^SN1-[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "document_type": {
+      "const": "inventory"
+    },
+    "node_id": {
+      "pattern": "^N[0-9]{2}$"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "origins": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "available_from_sequence",
+          "available_through_sequence",
+          "gaps",
+          "archive_through"
+        ],
+        "properties": {
+          "role": {
+            "enum": [
+              "origin",
+              "relay",
+              "custodian"
+            ]
+          },
+          "available_from_sequence": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "available_through_sequence": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
+          "gaps": {
+            "type": "array",
+            "items": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "uniqueItems": true
+          },
+          "archive_through": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}

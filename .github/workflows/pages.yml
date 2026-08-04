@@ -1,0 +1,77 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "config/**"
+      - "schemas/**"
+      - "tests/**"
+      - "data/**"
+      - "public/**"
+      - "pyproject.toml"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Restore node state
+        shell: bash
+        run: |
+          if git ls-remote --exit-code --heads origin node-state >/dev/null 2>&1; then
+            git fetch origin node-state:refs/remotes/origin/node-state
+            rm -rf data
+            git checkout origin/node-state -- data
+          else
+            echo "node-state branch not found; using data from main as initial seed."
+          fi
+
+      - name: Configure Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install dependencies
+        run: python -m pip install -e ".[dev]"
+
+      - name: Render public site
+        run: python -m distributed_node.cli render
+
+      - name: Validate generated resources
+        run: python -m distributed_node.cli validate-public
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload public directory
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

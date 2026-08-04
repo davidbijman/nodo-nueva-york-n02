@@ -1,0 +1,56 @@
+{
+  "network_id": "sonantia-network",
+  "network_name": "Sonantia Network",
+  "protocol_name": "Red Sonantia Network",
+  "protocol_version": "1.0",
+  "network_epoch": "SN1-2026-08-02",
+  "message_id_prefix": "SN1",
+  "implementation_state": "active",
+  "storage": {
+    "archive_period": "daily",
+    "own_feed_limit": 48,
+    "relay_retention_hours": 168,
+    "relay_limit_per_origin": 168,
+    "interaction_limit": 200,
+    "data_directory": "data/sonantia",
+    "active_public_directory": "public"
+  },
+  "nodes": [
+    {
+      "node_id": "N01",
+      "display_name": "Nodo Santiago",
+      "platform": "gitlab",
+      "enabled": true,
+      "public_url": "https://dbijman.gitlab.io/nodo-santiago-n01/",
+      "feed_url": "https://dbijman.gitlab.io/nodo-santiago-n01/feed.json",
+      "status_url": "https://dbijman.gitlab.io/nodo-santiago-n01/sonantia-status.json"
+    },
+    {
+      "node_id": "N02",
+      "display_name": "Nodo Nueva York",
+      "platform": "github",
+      "enabled": true,
+      "public_url": "https://davidbijman.github.io/nodo-nueva-york-n02/",
+      "feed_url": "https://davidbijman.github.io/nodo-nueva-york-n02/feed.json",
+      "status_url": "https://davidbijman.github.io/nodo-nueva-york-n02/sonantia-status.json"
+    },
+    {
+      "node_id": "N03",
+      "display_name": "Nodo Falkenstein",
+      "platform": "framagit",
+      "enabled": false,
+      "public_url": "https://nodo-falkenstein-n03-5222a9.frama.io/",
+      "feed_url": "https://nodo-falkenstein-n03-5222a9.frama.io/feed.json",
+      "status_url": "https://nodo-falkenstein-n03-5222a9.frama.io/sonantia-status.json"
+    },
+    {
+      "node_id": "N04",
+      "display_name": "Nodo Tokio",
+      "platform": "cloudflare",
+      "enabled": false,
+      "public_url": "https://nodo-tokio-n04.nodo-tokio-n04-dbijman.workers.dev/",
+      "feed_url": "https://nodo-tokio-n04.nodo-tokio-n04-dbijman.workers.dev/feed.json",
+      "status_url": "https://nodo-tokio-n04.nodo-tokio-n04-dbijman.workers.dev/sonantia-status.json"
+    }
+  ]
+}

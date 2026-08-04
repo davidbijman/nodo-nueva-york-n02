@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sonantia.network/schemas/message-1.0.schema.json",
+  "title": "Mensaje canónico de Red Sonantia Network v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "network_id",
+    "protocol_version",
+    "network_epoch",
+    "message_id",
+    "origin_node_id",
+    "sequence",
+    "created_at",
+    "visibility",
+    "language",
+    "text",
+    "context",
+    "generator",
+    "content_hash"
+  ],
+  "properties": {
+    "network_id": {"const": "sonantia-network"},
+    "protocol_version": {"const": "1.0"},
+    "network_epoch": {
+      "type": "string",
+      "pattern": "^SN1-[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "message_id": {
+      "type": "string",
+      "pattern": "^SN1-N[0-9]{2}-[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}-[0-9]{2}-[0-9]{2}Z-[0-9]{6}$"
+    },
+    "origin_node_id": {"type": "string", "pattern": "^N[0-9]{2}$"},
+    "sequence": {"type": "integer", "minimum": 1, "maximum": 999999},
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+    },
+    "visibility": {"const": "public"},
+    "language": {"type": "string", "pattern": "^[a-z]{2}$"},
+    "text": {"type": "string", "minLength": 1, "maxLength": 10000},
+    "context": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "weather": {"type": ["object", "null"]},
+        "astronomy": {"type": ["object", "null"]},
+        "geology": {"type": ["object", "null"]},
+        "economy": {"type": ["object", "null"]}
+      }
+    },
+    "generator": {"type": ["object", "null"], "additionalProperties": true},
+    "content_hash": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  }
+}
