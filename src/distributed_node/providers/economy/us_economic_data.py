@@ -136,7 +136,7 @@ def _snapshot_from_series(
         _indicator("Euro (USD por EUR)", _format_decimal(euro)),
         _indicator("Libra (USD por GBP)", _format_decimal(pound)),
         _indicator("Yen (JPY por USD)", _format_decimal(yen, digits=2)),
-        _indicator("Dólar canadiense (CAD por USD)", _format_decimal(cad)),
+        _indicator("Dólar canadiense", _format_decimal(cad)),
     ]
     inflation = [
         _indicator("IPC mensual", _format_percent(monthly_inflation), "inflation"),

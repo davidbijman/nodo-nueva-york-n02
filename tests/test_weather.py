@@ -278,7 +278,7 @@ def test_open_meteo_current_provider_normalizes_a_single_complete_source() -> No
     snapshot = open_meteo_source_snapshot(weather, configured_node)
     assert snapshot["status"] == "available"
     assert snapshot["station_code"] == OPEN_METEO_CURRENT_PROVIDER
-    assert snapshot["name"] == "Open-Meteo"
+    assert snapshot["name"] == "Central Park - Nueva York"
     assert len(snapshot["metrics"]) == 6
 
     invalid = open_meteo_full_payload()

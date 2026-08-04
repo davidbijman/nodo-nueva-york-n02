@@ -27,7 +27,7 @@ estado, al feed y a las vistas HTML.
 | Meteorología | `open-meteo-current` | Condiciones actuales en las coordenadas de N02 |
 | Astronomía | `nasa-jpl-horizons` | Observador situado en `40.7789, -73.9692`, elevación `43 m` |
 | Economía | `us-economic-data` | Indicadores oficiales de Estados Unidos mediante FRED |
-| Geología | `usgs-earthquakes` | Sismos de las últimas 24 horas informados para el estado de Nueva York |
+| Geología | `usgs-earthquakes` | Sismos de los últimos 7 días para el estado de Nueva York; si no existen, se consulta la región cercana |
 
 El bloque económico conserva la estructura ya implementada: cuatro indicadores
 generales y tres indicadores de inflación/tasa. No publica datos de empleo ni de

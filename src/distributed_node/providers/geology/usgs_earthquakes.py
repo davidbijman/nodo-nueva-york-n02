@@ -14,10 +14,19 @@ from ...sonantia_protocol import isoformat_utc
 PROVIDER_ID = "usgs-earthquakes"
 PROVIDER_LABEL = "U.S. Geological Survey (USGS)"
 REGION_LABEL = "Estado de Nueva York"
+NEARBY_REGION_LABEL = "Nueva York y región cercana"
 COUNTRY_CODE = "US"
 USGS_QUERY_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query"
-WINDOW_HOURS = 24
+WINDOW_HOURS = 168
 SEARCH_RADIUS_KM = 550
+
+# Rectángulo geográfico que cubre el estado de Nueva York. El filtro textual
+# posterior evita conservar eventos de estados o provincias vecinos incluidos
+# por la forma rectangular de la consulta.
+NEW_YORK_MIN_LATITUDE = 40.4774
+NEW_YORK_MAX_LATITUDE = 45.0153
+NEW_YORK_MIN_LONGITUDE = -79.7624
+NEW_YORK_MAX_LONGITUDE = -71.7517
 
 
 def unavailable_usgs_snapshot(
@@ -55,12 +64,19 @@ def _optional_float(value: Any) -> float | None:
         return None
 
 
+def _is_new_york_place(place: str) -> bool:
+    normalized = place.casefold().strip()
+    return "new york" in normalized or normalized.endswith(", ny")
+
+
 def normalize_usgs_payload(
     payload: dict[str, Any],
     node: NodeConfig,
     moment: datetime,
     *,
     source_url: str = USGS_QUERY_URL,
+    region_label: str = REGION_LABEL,
+    restrict_to_new_york: bool = True,
 ) -> dict[str, Any]:
     features = payload.get("features")
     if not isinstance(features, list):
@@ -78,7 +94,7 @@ def normalize_usgs_payload(
             continue
 
         place = str(properties.get("place") or "").strip()
-        if "new york" not in place.casefold():
+        if restrict_to_new_york and not _is_new_york_place(place):
             continue
 
         coordinates = geometry.get("coordinates")
@@ -125,7 +141,7 @@ def normalize_usgs_payload(
         "status": "available",
         "provider": PROVIDER_ID,
         "provider_label": PROVIDER_LABEL,
-        "region_label": REGION_LABEL,
+        "region_label": region_label,
         "country_code": COUNTRY_CODE,
         "source_url": source_url,
         "generated_at": generated_at,
@@ -137,6 +153,27 @@ def normalize_usgs_payload(
     }
 
 
+def _request_usgs_payload(
+    active_client: httpx.Client,
+    params: dict[str, Any],
+    *,
+    timeout_seconds: float,
+) -> tuple[dict[str, Any], str]:
+    response = active_client.get(
+        USGS_QUERY_URL,
+        params=params,
+        timeout=timeout_seconds,
+    )
+    response.raise_for_status()
+    source_url = str(response.request.url)
+    if response.status_code == 204 or not response.content:
+        return {"features": []}, source_url
+    payload = response.json()
+    if not isinstance(payload, dict):
+        raise ValueError("USGS entregó una respuesta JSON inválida")
+    return payload, source_url
+
+
 def fetch_usgs_snapshot(
     node: NodeConfig,
     moment: datetime,
@@ -146,34 +183,57 @@ def fetch_usgs_snapshot(
 ) -> dict[str, Any]:
     end = moment.astimezone(UTC)
     start = end - timedelta(hours=WINDOW_HOURS)
-    params = {
+    common_params = {
         "format": "geojson",
         "starttime": isoformat_utc(start),
         "endtime": isoformat_utc(end),
-        "latitude": node.logical_location.latitude,
-        "longitude": node.logical_location.longitude,
-        "maxradiuskm": SEARCH_RADIUS_KM,
         "eventtype": "earthquake",
         "orderby": "time",
         "limit": 200,
     }
+    state_params = {
+        **common_params,
+        "minlatitude": NEW_YORK_MIN_LATITUDE,
+        "maxlatitude": NEW_YORK_MAX_LATITUDE,
+        "minlongitude": NEW_YORK_MIN_LONGITUDE,
+        "maxlongitude": NEW_YORK_MAX_LONGITUDE,
+    }
+    nearby_params = {
+        **common_params,
+        "latitude": node.logical_location.latitude,
+        "longitude": node.logical_location.longitude,
+        "maxradiuskm": SEARCH_RADIUS_KM,
+    }
+
     owns_client = client is None
     active_client = client or httpx.Client(follow_redirects=True)
     try:
-        response = active_client.get(
-            USGS_QUERY_URL,
-            params=params,
-            timeout=timeout_seconds,
+        payload, source_url = _request_usgs_payload(
+            active_client,
+            state_params,
+            timeout_seconds=timeout_seconds,
         )
-        response.raise_for_status()
-        payload = response.json()
-        if not isinstance(payload, dict):
-            raise ValueError("USGS entregó una respuesta JSON inválida")
+        state_snapshot = normalize_usgs_payload(
+            payload,
+            node,
+            moment,
+            source_url=source_url,
+        )
+        if state_snapshot["events"]:
+            return state_snapshot
+
+        payload, source_url = _request_usgs_payload(
+            active_client,
+            nearby_params,
+            timeout_seconds=timeout_seconds,
+        )
         return normalize_usgs_payload(
             payload,
             node,
             moment,
-            source_url=str(response.request.url),
+            source_url=source_url,
+            region_label=NEARBY_REGION_LABEL,
+            restrict_to_new_york=False,
         )
     except (httpx.HTTPError, ValueError, TypeError) as exc:
         return unavailable_usgs_snapshot(moment, f"{type(exc).__name__}: {exc}")
