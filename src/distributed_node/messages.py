@@ -82,6 +82,7 @@ class Composition:
     group_id: str
     selected_values: list[GeneratorSelectedValue]
     next_phrase_cursor: dict[str, Any] | None = None
+    affirmation_text: str | None = None
 
 
 def build_cycle_context(
@@ -400,11 +401,14 @@ def _compose_contextual(
     phrase, next_cursor = _select_phrase(catalog, stored_cursor)
     opening_text = render_catalog_text(opening.text, context)
     declaration_text = _render_fragment(declaration.text, context)
-    affirmation = _inline_affirmation(
+    standalone_affirmation = _as_sentence(
         _soften_repeated_recipient_name(
             _render_fragment(phrase.text, context),
             str(recipient_name),
-        ),
+        )
+    )
+    affirmation = _inline_affirmation(
+        standalone_affirmation,
         str(recipient_name),
     )
     closing = _as_sentence(f"{declaration_text} {affirmation}")
@@ -431,6 +435,7 @@ def _compose_contextual(
         group_id="contextual",
         selected_values=selected_values,
         next_phrase_cursor=next_cursor,
+        affirmation_text=standalone_affirmation,
     )
 
 
@@ -594,6 +599,7 @@ def generate_sonantia_text(
             "group_id": composition.group_id,
             "selection_policy": catalog.definition.selection_policy,
             "selected_values": selected_values,
+            "affirmation_text": composition.affirmation_text,
         },
         next_phrase_cursor=composition.next_phrase_cursor,
         fallback=False,

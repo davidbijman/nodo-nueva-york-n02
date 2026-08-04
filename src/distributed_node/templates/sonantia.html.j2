@@ -891,6 +891,8 @@
   }
 
   function affirmationFromMessage(message) {
+    const generatedAffirmation = message?.generator?.affirmation_text;
+    if (generatedAffirmation) return polishAffirmation(generatedAffirmation);
     const sentences = messageSentences(message?.text);
     let selected = [...sentences].reverse().find((sentence) => /David Alexander Bijman Molina/i.test(sentence));
     if (!selected) selected = [...sentences].reverse().find((sentence) => !isContextSentence(sentence));
