@@ -50,53 +50,117 @@
   .sonantia-kpi span { display:block; margin-bottom:.32rem; color:var(--muted); font-size:.65rem; font-weight:800; letter-spacing:.055em; text-transform:uppercase; }
   .sonantia-kpi strong { display:block; overflow:hidden; color:#eaf4ff; font-size:1.22rem; line-height:1.15; text-overflow:ellipsis; white-space:nowrap; }
   .sonantia-kpi small { display:block; margin-top:.26rem; color:#8fa4bb; font-size:.65rem; line-height:1.35; }
-  .sonantia-network-overview {
+  .index-network-panel {
+    --sonantia-n01:#4ad4c6;
+    --sonantia-n02:#63b3ff;
+    --sonantia-n03:#b899ff;
+    --sonantia-n04:#f3b95f;
     display:grid;
     gap:.72rem;
-    padding:.92rem;
-    border:1px solid rgba(99, 179, 255, .16);
-    border-radius:.76rem;
-    background:rgba(7, 12, 21, .5);
+    margin-top:.15rem;
+    border-color:rgba(99, 179, 255, .18);
+    background:
+      radial-gradient(circle at 92% 0, rgba(74, 212, 198, .1), transparent 22rem),
+      linear-gradient(145deg, rgba(18, 29, 46, .98), rgba(10, 17, 29, .98));
   }
-  .sonantia-section-head {
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    gap:1rem;
-    margin-bottom:.7rem;
-  }
-  .sonantia-section-head h2 { margin:0; font-size:1.18rem; }
-  .sonantia-section-head p { margin:0; color:var(--muted); font-size:.75rem; }
-  .sonantia-node-grid {
-    display:grid;
-    grid-template-columns:1fr;
-    gap:.5rem;
-  }
-  .sonantia-node-card {
+  .index-network-heading { display:flex; flex-wrap:wrap; justify-content:space-between; gap:.55rem 1rem; align-items:end; }
+  .index-network-heading .eyebrow { justify-self:start; text-align:left; }
+  .index-network-heading h2 { margin:.1rem 0 0; font-size:1.18rem; }
+  .index-network-caption { margin:0; color:var(--muted); font-size:.66rem; }
+  .index-network-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:.48rem; }
+  .index-network-card {
     --node-color:var(--sonantia-n02);
-    --node-rgb:var(--sonantia-n02-rgb);
     position:relative;
     display:grid;
-    gap:.35rem;
+    gap:.3rem;
     min-width:0;
-    padding:.72rem;
-    border:1px solid rgba(var(--node-rgb), .25);
-    border-radius:.65rem;
-    background:
-      radial-gradient(circle at 100% 0%, rgba(var(--node-rgb), .13), transparent 55%),
-      rgba(8, 14, 24, .76);
+    padding:.62rem;
+    border:1px solid color-mix(in srgb, var(--node-color) 24%, transparent);
+    border-top:2px solid var(--node-color);
+    border-radius:.55rem;
+    background:rgba(6, 12, 21, .55);
+    color:inherit;
+    text-decoration:none;
+    cursor:pointer;
+    transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease;
   }
-  .sonantia-node-n02 { --node-color:var(--sonantia-n02); --node-rgb:var(--sonantia-n02-rgb); }
-  .sonantia-node-n03 { --node-color:var(--sonantia-n03); --node-rgb:var(--sonantia-n03-rgb); }
-  .sonantia-node-n04 { --node-color:var(--sonantia-n04); --node-rgb:var(--sonantia-n04-rgb); }
-  .sonantia-node-card-head { display:flex; justify-content:space-between; gap:.55rem; align-items:flex-start; }
-  .sonantia-node-id { display:inline-flex; align-items:center; gap:.38rem; color:var(--node-color); font-size:.72rem; font-weight:900; letter-spacing:.055em; }
-  .sonantia-node-id::before { content:""; width:.48rem; height:.48rem; flex:0 0 .48rem; border-radius:50%; background:var(--node-color); box-shadow:0 0 .55rem rgba(var(--node-rgb), .55); }
-  .sonantia-node-state { padding:.12rem .34rem; border-radius:999px; color:var(--node-color); background:rgba(var(--node-rgb), .1); font-size:.56rem; font-weight:800; text-transform:uppercase; white-space:nowrap; }
-  .sonantia-node-card strong { overflow:hidden; color:#e6f1fc; font-size:.82rem; text-overflow:ellipsis; white-space:nowrap; }
-  .sonantia-node-card small { color:var(--muted); font-size:.63rem; line-height:1.35; }
-  .sonantia-node-metrics { display:flex; flex-wrap:wrap; gap:.28rem; margin-top:.05rem; }
-  .sonantia-node-metric { padding:.14rem .34rem; border:1px solid rgba(var(--node-rgb), .16); border-radius:999px; color:#bdd0e2; background:rgba(var(--node-rgb), .055); font-size:.56rem; white-space:nowrap; }
+  .index-network-card:hover,
+  .index-network-card:focus-visible {
+    z-index:4;
+    transform:translateY(-2px);
+    border-color:color-mix(in srgb, var(--node-color) 58%, transparent);
+    background:color-mix(in srgb, var(--node-color) 9%, rgba(6, 12, 21, .92));
+    box-shadow:0 .65rem 1.35rem rgba(0, 0, 0, .3), 0 0 0 1px color-mix(in srgb, var(--node-color) 18%, transparent);
+    outline:none;
+  }
+  .index-network-card:focus-visible { box-shadow:0 .65rem 1.35rem rgba(0, 0, 0, .3), 0 0 0 2px var(--node-color); }
+  .index-network-card[aria-disabled="true"] { cursor:default; opacity:.76; }
+  .index-network-n01 { --node-color:var(--sonantia-n01); }
+  .index-network-n02 { --node-color:var(--sonantia-n02); }
+  .index-network-n03 { --node-color:var(--sonantia-n03); }
+  .index-network-n04 { --node-color:var(--sonantia-n04); }
+  .index-network-card-head { display:flex; justify-content:space-between; gap:.4rem; align-items:flex-start; }
+  .index-network-id { display:inline-flex; align-items:center; gap:.3rem; color:var(--node-color); font-size:.7rem; font-weight:900; letter-spacing:.05em; }
+  .index-network-id::before { content:""; width:.44rem; height:.44rem; border-radius:50%; background:var(--node-color); box-shadow:0 0 .5rem var(--node-color); }
+  .index-network-state { padding:.1rem .3rem; border-radius:999px; color:var(--node-color); background:color-mix(in srgb, var(--node-color) 10%, transparent); font-size:.53rem; font-weight:800; text-transform:lowercase; white-space:nowrap; }
+  .index-network-card strong { overflow:hidden; color:#e6f1fc; font-size:.8rem; text-overflow:ellipsis; white-space:nowrap; }
+  .index-network-card small { color:var(--muted); font-size:.61rem; line-height:1.3; }
+  .index-network-metrics { display:flex; flex-wrap:wrap; gap:.25rem; }
+  .index-network-metric { padding:.12rem .3rem; border:1px solid color-mix(in srgb, var(--node-color) 16%, transparent); border-radius:999px; color:#bdd0e2; background:color-mix(in srgb, var(--node-color) 5%, transparent); font-size:.54rem; white-space:nowrap; }
+  .index-network-tooltip { position:relative; }
+  .index-network-tooltip::after {
+    content:attr(data-tooltip);
+    position:absolute;
+    left:50%;
+    bottom:calc(100% + .42rem);
+    z-index:8;
+    width:max-content;
+    max-width:min(16rem, 78vw);
+    padding:.34rem .42rem;
+    border:1px solid color-mix(in srgb, var(--node-color) 34%, transparent);
+    border-radius:.36rem;
+    background:rgba(5, 10, 18, .97);
+    color:#dcecff;
+    font-size:.56rem;
+    font-weight:500;
+    line-height:1.35;
+    letter-spacing:0;
+    text-align:left;
+    text-transform:none;
+    white-space:normal;
+    box-shadow:0 .45rem 1rem rgba(0, 0, 0, .35);
+    opacity:0;
+    pointer-events:none;
+    transform:translate(-50%, .2rem);
+    transition:opacity .14s ease, transform .14s ease;
+  }
+  .index-network-tooltip:hover::after { opacity:1; transform:translate(-50%, 0); }
+  .index-network-details {
+    display:grid;
+    gap:.15rem;
+    max-height:0;
+    overflow:hidden;
+    padding-top:0;
+    border-top:1px solid transparent;
+    color:#b8c9da;
+    font-size:.55rem;
+    line-height:1.35;
+    opacity:0;
+    transition:max-height .18s ease, opacity .18s ease, padding-top .18s ease, border-color .18s ease;
+  }
+  .index-network-card:hover .index-network-details,
+  .index-network-card:focus-visible .index-network-details {
+    max-height:7rem;
+    padding-top:.34rem;
+    border-color:color-mix(in srgb, var(--node-color) 20%, transparent);
+    opacity:1;
+  }
+  .index-network-details span { overflow-wrap:anywhere; }
+  .index-network-open { color:var(--node-color); font-weight:800; }
+  .index-network-empty { grid-column:1 / -1; margin:0; color:var(--muted); font-size:.72rem; }
+  @media (max-width:68rem) { .index-network-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+  @media (max-width:42rem) { .index-network-grid { grid-template-columns:1fr; } }
+  .sonantia-rail .index-network-grid { grid-template-columns:1fr; }
   .sonantia-layout { display:grid; grid-template-columns:minmax(0, 1fr) minmax(21rem, 27rem); gap:1rem; align-items:start; }
   .sonantia-main, .sonantia-rail { display:grid; gap:1rem; min-width:0; }
   .sonantia-rail { position:static; }
@@ -297,15 +361,16 @@
     .sonantia-layout { grid-template-columns:1fr; }
     .sonantia-rail { grid-template-columns:repeat(2, minmax(0,1fr)); }
     .sonantia-network-state,
-    .sonantia-network-overview { grid-column:1 / -1; }
-    .sonantia-node-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .index-network-panel { grid-column:1 / -1; }
+    .sonantia-rail .index-network-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 760px) {
     .sonantia-summary { grid-template-columns:repeat(2, minmax(0, 1fr)); }
     .sonantia-message-detail-grid { grid-template-columns:1fr; }
   }
   @media (max-width: 580px) {
-    .sonantia-summary, .sonantia-node-grid, .sonantia-rail, .sonantia-context-summary, .sonantia-resource-grid { grid-template-columns:1fr; }
+    .sonantia-summary, .sonantia-rail, .sonantia-context-summary, .sonantia-resource-grid { grid-template-columns:1fr; }
+    .sonantia-rail .index-network-grid { grid-template-columns:1fr; }
     .sonantia-context-summary { grid-template-areas:"weather" "astronomy" "geology" "economy"; }
     .sonantia-section-head, .sonantia-message-head { align-items:flex-start; flex-direction:column; }
     .sonantia-message time { white-space:normal; }
@@ -351,12 +416,17 @@
         </div>
       </details>
 
-      <section class="sonantia-network-overview" aria-labelledby="sonantia-network-title">
-        <div class="sonantia-section-head">
-          <div><p class="eyebrow">Panorama distribuido</p><h2 id="sonantia-network-title">Nodos de Sonantia</h2></div>
-          <p id="network-caption">Cargando topología...</p>
+      <section class="index-network-panel" aria-labelledby="sonantia-network-title">
+        <div class="index-network-heading">
+          <div>
+            <p class="eyebrow">Panorama distribuido</p>
+            <h2 id="sonantia-network-title">Nodos de Sonantia</h2>
+          </div>
+          <p id="network-caption" class="index-network-caption">Sonantia Network · cargando topología</p>
         </div>
-        <div id="network-nodes" class="sonantia-node-grid"><p class="sonantia-empty sonantia-loading">Cargando nodos…</p></div>
+        <div id="network-nodes" class="index-network-grid" aria-live="polite">
+          <p class="index-network-empty">Cargando nodos…</p>
+        </div>
       </section>
 
       <details class="sonantia-panel" open>
@@ -403,6 +473,7 @@
     name: {{ node.display_name|tojson }},
     city: {{ node.logical_location.city|tojson }},
     platform: {{ node.infrastructure.provider|tojson }},
+    public_url: {{ node.public_url|tojson }},
     timezone: {{ node.logical_location.timezone|tojson }},
   };
   const fallbackNodes = [
@@ -412,7 +483,10 @@
       node_id: {{ card.peer.node_id|tojson }},
       name: {{ card.peer.display_name|tojson }},
       city: {{ card.peer.display_name|replace("Nodo ", "")|tojson }},
-      platform: null,
+      platform: {{ card.peer.platform|tojson }},
+      public_url: {{ card.peer.public_url|tojson }},
+      feed_url: {{ card.peer.feed_url|tojson }},
+      status_url: {{ card.peer.status_url|tojson }},
     },
     {% endfor %}
   ];
@@ -460,6 +534,30 @@
     if (className) item.className = className;
     if (value !== undefined && value !== null) item.textContent = String(value);
     return item;
+  }
+
+  function tooltipElement(tag, className, value, tooltip) {
+    const item = element(tag, `${className} index-network-tooltip`, value);
+    item.dataset.tooltip = tooltip;
+    item.title = tooltip;
+    return item;
+  }
+
+  function formatNetworkTimestamp(value) {
+    if (!value) return "sin fecha informada";
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return String(value);
+    return new Intl.DateTimeFormat("es-CL", {
+      timeZone: localNode.timezone || "UTC",
+      dateStyle: "short",
+      timeStyle: "medium",
+    }).format(parsed);
+  }
+
+  function networkStateDescription(state, isLocal) {
+    if (isLocal) return `Estado publicado por el nodo local: ${state}.`;
+    if (state === "inventariado") return `${localNode.node_id} conserva mensajes válidos de este nodo en su relay y conoce su última secuencia.`;
+    return `El nodo está definido en la topología, pero ${localNode.node_id} todavía no dispone de mensajes válidos en el relay.`;
   }
 
   function appendDefinitionList(container, entries, className = "sonantia-dl") {
@@ -1223,23 +1321,63 @@
       const nodeId = text(item.node_id, localNode.node_id);
       const fallback = nodeMeta[nodeId] || {};
       const originInventory = origins[nodeId] || {};
-      const relay = nodeId === localNode.node_id ? feed : relays[nodeId];
-      const messages = number(relay?.message_count || relay?.messages?.length);
-      const available = originInventory.available_through_sequence !== null && originInventory.available_through_sequence !== undefined;
-      const card = element("article", `sonantia-node-card ${nodeClass(nodeId)}`);
-      const head = element("div", "sonantia-node-card-head");
-      head.append(element("span", "sonantia-node-id", nodeId), element("span", "sonantia-node-state", nodeId === localNode.node_id ? text(status?.result, "referencia") : (available ? "inventariado" : "sin datos")));
-      const metrics = element("div", "sonantia-node-metrics");
+      const nodeDocument = nodeId === localNode.node_id ? feed : (relays[nodeId] || {});
+      const messageCount = number(nodeDocument?.message_count ?? nodeDocument?.messages?.length);
+      const sequence = originInventory.available_through_sequence;
+      const hasSequence = sequence !== null && sequence !== undefined;
+      const gaps = Array.isArray(originInventory.gaps) ? originInventory.gaps.length : 0;
+      const state = nodeId === localNode.node_id
+        ? text(status?.result, "referencia")
+        : (hasSequence ? "inventariado" : "sin datos");
+      const isLocal = nodeId === localNode.node_id;
+      const publicUrl = item.public_url || item.feed_url || "";
+      const card = element(publicUrl ? "a" : "article", `index-network-card index-network-${nodeId.toLowerCase()}`);
+      if (publicUrl) {
+        card.href = publicUrl;
+        card.rel = "external";
+      } else {
+        card.setAttribute("aria-disabled", "true");
+      }
+      const nodeName = text(item.name || item.display_name, `Nodo ${fallback.city || nodeId}`);
+      const nodeCity = text(item.city || item.location || fallback.city, fallback.city || "Ubicación pendiente");
+      const nodePlatform = text(item.platform, fallback.platform || "Plataforma pendiente");
+      const stateHelp = networkStateDescription(state, isLocal);
+      const generatedAt = formatNetworkTimestamp(nodeDocument.generated_at || status?.generated_at);
+      const destinationHost = (() => {
+        try { return publicUrl ? new URL(publicUrl, window.location.href).host : "URL no informada"; }
+        catch { return publicUrl || "URL no informada"; }
+      })();
+      card.setAttribute(
+        "aria-label",
+        `${nodeName}, ${state}, ${messageCount} mensajes. ${publicUrl ? "Abrir sitio público." : "Sin enlace público."}`,
+      );
+      card.title = publicUrl
+        ? `Abrir ${nodeName}. ${stateHelp}`
+        : `${nodeName}. ${stateHelp}`;
+
+      const head = element("div", "index-network-card-head");
+      head.append(
+        tooltipElement("span", "index-network-id", nodeId, `Identificador único del nodo dentro de Sonantia Network: ${nodeId}.`),
+        tooltipElement("span", "index-network-state", state, stateHelp),
+      );
+      const metrics = element("div", "index-network-metrics");
       metrics.append(
-        element("span", "sonantia-node-metric", `${messages} mensaje(s)`),
-        element("span", "sonantia-node-metric", available ? `hasta sec. ${text(originInventory.available_through_sequence)}` : "sin secuencias"),
-        element("span", "sonantia-node-metric", Array.isArray(originInventory.gaps) && originInventory.gaps.length ? `${originInventory.gaps.length} brecha(s)` : "sin brechas")
+        tooltipElement("span", "index-network-metric", `${messageCount} mensaje(s)`, `Cantidad de mensajes disponibles en el feed local o en el relay conservado por ${localNode.node_id}.`),
+        tooltipElement("span", "index-network-metric", hasSequence ? `hasta sec. ${sequence}` : "sin secuencias", hasSequence ? `Última secuencia continua conocida para ${nodeId}: ${sequence}.` : `${localNode.node_id} aún no conoce una secuencia válida para este nodo.`),
+        tooltipElement("span", "index-network-metric", gaps ? `${gaps} brecha(s)` : "sin brechas", gaps ? `El inventario registra ${gaps} secuencia(s) ausente(s) para este origen.` : "No se detectan brechas dentro del rango de secuencias disponible."),
+      );
+      const details = element("span", "index-network-details");
+      details.append(
+        element("span", "", `Actualización del documento: ${generatedAt}`),
+        element("span", "", `Destino: ${destinationHost}`),
+        element("span", "index-network-open", publicUrl ? "Abrir sitio público del nodo ↗" : "Sitio público no informado"),
       );
       card.append(
         head,
-        element("strong", "", text(item.name || item.display_name, `Nodo ${fallback.city || nodeId}`)),
-        element("small", "", `${text(item.city || item.location || fallback.city, fallback.city || "Ubicación pendiente")} · ${text(item.platform, fallback.platform || "Plataforma pendiente")}`),
-        metrics
+        tooltipElement("strong", "", nodeName, publicUrl ? `Abrir la portada pública de ${nodeName}.` : `Nombre público del nodo ${nodeId}.`),
+        tooltipElement("small", "", `${nodeCity} · ${nodePlatform}`, "Ubicación lógica declarada y plataforma de publicación del nodo."),
+        metrics,
+        details,
       );
       target.append(card);
     });

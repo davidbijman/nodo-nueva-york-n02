@@ -414,28 +414,6 @@
       margin:0;
       font-size:.72rem;
     }
-    .identity-card dl { grid-template-columns:1fr; gap:.18rem; }
-    .identity-card dd { margin:0 0 .55rem; }
-    .identity-under-astronomy {
-      display:grid;
-      grid-template-columns:auto auto minmax(0, 1fr);
-      gap:.5rem 1rem;
-      align-items:start;
-    }
-    .identity-under-astronomy h2,
-    .identity-under-astronomy p { margin:0; }
-    .identity-under-astronomy dl {
-      grid-template-columns:repeat(5, max-content);
-      gap:.2rem 1rem;
-      align-items:baseline;
-      margin:0;
-      font-size:.78rem;
-    }
-    .identity-under-astronomy dt { color:var(--ink); }
-    .identity-under-astronomy dd {
-      margin:0;
-      color:#c7d7ef;
-    }
     .section-heading {
       display:grid;
       grid-template-columns:1fr;
@@ -719,12 +697,12 @@
       gap:.45rem 1rem;
       align-items:flex-end;
     }
-    .weather-composite-heading h3 { margin:.04rem 0 0; font-size:.78rem; }
+    .weather-composite-heading h3 { margin:.04rem 0 0; font-size:.86rem; }
     .weather-composite-heading .eyebrow {
       display:block;
       margin:0;
       color:var(--muted);
-      font-size:.58rem;
+      font-size:.64rem;
       text-align:left;
     }
     .weather-composite-legend {
@@ -733,7 +711,7 @@
       justify-content:flex-end;
       gap:.18rem .55rem;
       color:var(--muted);
-      font-size:.55rem;
+      font-size:.62rem;
     }
     .weather-composite-legend span::before {
       content:"";
@@ -769,13 +747,13 @@
     }
     .weather-composite-svg:focus-visible { box-shadow:inset 0 0 0 2px var(--blue); }
     .weather-chart-grid line { stroke:rgba(158, 172, 192, .12); stroke-width:1; }
-    .weather-chart-grid text { fill:#8190a7; font-size:6.4px; }
+    .weather-chart-grid text { fill:#91a2b8; font-size:7.4px; }
     .weather-chart-grid .weather-day-marker {
       stroke:rgba(158, 172, 192, .35);
       stroke-dasharray:4 4;
     }
-    .weather-band-labels > text { fill:#dcecff; font-size:7.2px; font-weight:750; }
-    .weather-band-labels .weather-axis-value { font-size:6px; font-weight:650; }
+    .weather-band-labels > text { fill:#dcecff; font-size:8.2px; font-weight:750; }
+    .weather-band-labels .weather-axis-value { font-size:7px; font-weight:650; }
     .weather-series-temperature polyline,
     .weather-series-humidity polyline,
     .weather-series-pressure polyline,
@@ -815,7 +793,7 @@
       border-radius:.4rem;
       background:rgba(10, 17, 30, .96);
       color:var(--muted);
-      font-size:.57rem;
+      font-size:.64rem;
       box-shadow:0 .45rem 1rem rgba(0, 0, 0, .22);
       pointer-events:none;
     }
@@ -848,9 +826,9 @@
       border-radius:.35rem;
       background:rgba(23, 34, 53, .48);
       color:var(--muted);
-      font-size:.54rem;
+      font-size:.61rem;
     }
-    .weather-composite-latest strong { color:var(--ink); font-size:.62rem; }
+    .weather-composite-latest strong { color:var(--ink); font-size:.69rem; }
     .weather-table-wrap {
       max-width:100%;
       overflow:auto;
@@ -858,12 +836,12 @@
       border-radius:.45rem;
       background:rgba(7, 11, 20, .38);
     }
-    .weather-table { font-size:.62rem; line-height:1.2; }
+    .weather-table { font-size:.68rem; line-height:1.2; }
     .weather-table th, .weather-table td { padding:.34rem .38rem; }
     .weather-table {
       min-width:47rem;
       table-layout:fixed;
-      font-size:.62rem;
+      font-size:.68rem;
       line-height:1.18;
     }
     .weather-col-icon { width:2.8rem; }
@@ -881,7 +859,7 @@
       background:#152239;
       color:#dcecff;
       padding:.22rem .22rem;
-      font-size:.6rem;
+      font-size:.66rem;
       letter-spacing:.025em;
       white-space:nowrap;
     }
@@ -1167,8 +1145,6 @@
       .right-rail { position:static; grid-row:1; grid-template-columns:repeat(2, minmax(0, 1fr)); }
       .site-end-cards { grid-template-columns:1fr; }
       .earth-context-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); }
-      .identity-under-astronomy { grid-template-columns:1fr; }
-      .identity-under-astronomy dl { grid-template-columns:max-content 1fr; }
       .eyebrow, .weather-attribution { justify-self:center; text-align:center; }
     }
     @media (max-width:54rem) {

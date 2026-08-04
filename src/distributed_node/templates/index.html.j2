@@ -115,6 +115,7 @@
   .index-network-grid { display:grid; grid-template-columns:repeat(4, minmax(0, 1fr)); gap:.48rem; }
   .index-network-card {
     --node-color:var(--sonantia-n02);
+    position:relative;
     display:grid;
     gap:.3rem;
     min-width:0;
@@ -123,7 +124,23 @@
     border-top:2px solid var(--node-color);
     border-radius:.55rem;
     background:rgba(6, 12, 21, .55);
+    color:inherit;
+    text-decoration:none;
+    cursor:pointer;
+    transition:transform .16s ease, border-color .16s ease, box-shadow .16s ease, background .16s ease;
   }
+  .index-network-card:hover,
+  .index-network-card:focus-visible {
+    z-index:4;
+    transform:translateY(-2px);
+    border-color:color-mix(in srgb, var(--node-color) 58%, transparent);
+    background:color-mix(in srgb, var(--node-color) 9%, rgba(6, 12, 21, .92));
+    box-shadow:0 .65rem 1.35rem rgba(0, 0, 0, .3), 0 0 0 1px color-mix(in srgb, var(--node-color) 18%, transparent);
+    outline:none;
+  }
+  .index-network-card:focus-visible { box-shadow:0 .65rem 1.35rem rgba(0, 0, 0, .3), 0 0 0 2px var(--node-color); }
+  .index-network-card[aria-disabled="true"] { cursor:default; opacity:.76; }
+  .index-network-n01 { --node-color:var(--sonantia-n01); }
   .index-network-n02 { --node-color:var(--sonantia-n02); }
   .index-network-n03 { --node-color:var(--sonantia-n03); }
   .index-network-n04 { --node-color:var(--sonantia-n04); }
@@ -135,6 +152,56 @@
   .index-network-card small { color:var(--muted); font-size:.61rem; line-height:1.3; }
   .index-network-metrics { display:flex; flex-wrap:wrap; gap:.25rem; }
   .index-network-metric { padding:.12rem .3rem; border:1px solid color-mix(in srgb, var(--node-color) 16%, transparent); border-radius:999px; color:#bdd0e2; background:color-mix(in srgb, var(--node-color) 5%, transparent); font-size:.54rem; white-space:nowrap; }
+  .index-network-tooltip { position:relative; }
+  .index-network-tooltip::after {
+    content:attr(data-tooltip);
+    position:absolute;
+    left:50%;
+    bottom:calc(100% + .42rem);
+    z-index:8;
+    width:max-content;
+    max-width:min(16rem, 78vw);
+    padding:.34rem .42rem;
+    border:1px solid color-mix(in srgb, var(--node-color) 34%, transparent);
+    border-radius:.36rem;
+    background:rgba(5, 10, 18, .97);
+    color:#dcecff;
+    font-size:.56rem;
+    font-weight:500;
+    line-height:1.35;
+    letter-spacing:0;
+    text-align:left;
+    text-transform:none;
+    white-space:normal;
+    box-shadow:0 .45rem 1rem rgba(0, 0, 0, .35);
+    opacity:0;
+    pointer-events:none;
+    transform:translate(-50%, .2rem);
+    transition:opacity .14s ease, transform .14s ease;
+  }
+  .index-network-tooltip:hover::after { opacity:1; transform:translate(-50%, 0); }
+  .index-network-details {
+    display:grid;
+    gap:.15rem;
+    max-height:0;
+    overflow:hidden;
+    padding-top:0;
+    border-top:1px solid transparent;
+    color:#b8c9da;
+    font-size:.55rem;
+    line-height:1.35;
+    opacity:0;
+    transition:max-height .18s ease, opacity .18s ease, padding-top .18s ease, border-color .18s ease;
+  }
+  .index-network-card:hover .index-network-details,
+  .index-network-card:focus-visible .index-network-details {
+    max-height:7rem;
+    padding-top:.34rem;
+    border-color:color-mix(in srgb, var(--node-color) 20%, transparent);
+    opacity:1;
+  }
+  .index-network-details span { overflow-wrap:anywhere; }
+  .index-network-open { color:var(--node-color); font-weight:800; }
   .index-network-empty { grid-column:1 / -1; margin:0; color:var(--muted); font-size:.72rem; }
   @media (max-width:68rem) { .index-network-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); } }
   @media (max-width:42rem) { .index-network-grid { grid-template-columns:1fr; } }
@@ -444,17 +511,6 @@
   {% endif %}
   <p class="external-link"><a href="{{ astronomy.source_url if astronomy else 'https://ssd.jpl.nasa.gov/horizons/' }}" rel="external">Abrir NASA/JPL Horizons</a></p>
 </section>
-<section class="rail-card identity-card identity-under-astronomy">
-  <h2>Identidad y estado</h2>
-  <p><span class="status {{ status.status }}">{{ status.status }}</span></p>
-  <dl>
-    <dt>ID</dt><dd>{{ node.node_id }}</dd>
-    <dt>Rol</dt><dd>{{ node.node_role }}</dd>
-    <dt>Ubicación</dt><dd>{{ node.logical_location.city }}, {{ node.logical_location.country }} · {{ node.logical_location.zone }}</dd>
-    <dt>Zona horaria</dt><dd>{{ node.logical_location.timezone }}</dd>
-    <dt>Protocolo</dt><dd>{{ node.protocol_version }}</dd>
-  </dl>
-</section>
 <section class="index-network-panel" aria-labelledby="index-network-title">
   <div class="index-network-heading">
     <div>
@@ -483,6 +539,7 @@
     name: {{ node.display_name|tojson }},
     city: {{ node.logical_location.city|tojson }},
     platform: {{ node.infrastructure.provider|tojson }},
+    public_url: {{ node.public_url|tojson }},
   };
   const fallbackNodes = [
     localNode,
@@ -491,7 +548,10 @@
       node_id: {{ card.peer.node_id|tojson }},
       name: {{ card.peer.display_name|tojson }},
       city: {{ card.peer.display_name|replace("Nodo ", "")|tojson }},
-      platform: null,
+      platform: {{ card.peer.platform|tojson }},
+      public_url: {{ card.peer.public_url|tojson }},
+      feed_url: {{ card.peer.feed_url|tojson }},
+      status_url: {{ card.peer.status_url|tojson }},
     },
     {% endfor %}
   ];
@@ -510,6 +570,27 @@
     if (className) item.className = className;
     if (value !== undefined && value !== null) item.textContent = String(value);
     return item;
+  };
+  const tooltipElement = (tag, className, value, tooltip) => {
+    const item = element(tag, `${className} index-network-tooltip`, value);
+    item.dataset.tooltip = tooltip;
+    item.title = tooltip;
+    return item;
+  };
+  const formatTimestamp = (value) => {
+    if (!value) return "sin fecha informada";
+    const parsed = new Date(value);
+    if (Number.isNaN(parsed.getTime())) return String(value);
+    return new Intl.DateTimeFormat("es-CL", {
+      timeZone: document.body.dataset.localTimezone || "UTC",
+      dateStyle: "short",
+      timeStyle: "medium",
+    }).format(parsed);
+  };
+  const stateDescription = (state, isLocal) => {
+    if (isLocal) return `Estado publicado por el nodo local: ${state}.`;
+    if (state === "inventariado") return `${localNode.node_id} conserva mensajes válidos de este nodo en su relay y conoce su última secuencia.`;
+    return `El nodo está definido en la topología, pero ${localNode.node_id} todavía no dispone de mensajes válidos en el relay.`;
   };
 
   Promise.all([
@@ -534,8 +615,8 @@
     target.replaceChildren();
     nodes.forEach((item) => {
       const origin = origins[item.node_id] || {};
-      const document = item.node_id === localNode.node_id ? feed : (relays[item.node_id] || {});
-      const messageCount = Number(document.message_count ?? document.messages?.length ?? 0);
+      const nodeDocument = item.node_id === localNode.node_id ? feed : (relays[item.node_id] || {});
+      const messageCount = Number(nodeDocument.message_count ?? nodeDocument.messages?.length ?? 0);
       const sequence = origin.available_through_sequence;
       const hasSequence = sequence !== null && sequence !== undefined;
       const gaps = Array.isArray(origin.gaps) ? origin.gaps.length : 0;
@@ -543,20 +624,53 @@
         ? (status.result || "referencia")
         : (hasSequence ? "inventariado" : "sin datos");
 
-      const card = element("article", `index-network-card index-network-${item.node_id.toLowerCase()}`);
+      const isLocal = item.node_id === localNode.node_id;
+      const publicUrl = item.public_url || item.feed_url || "";
+      const card = element(publicUrl ? "a" : "article", `index-network-card index-network-${item.node_id.toLowerCase()}`);
+      if (publicUrl) {
+        card.href = publicUrl;
+        card.rel = "external";
+      } else {
+        card.setAttribute("aria-disabled", "true");
+      }
+      const nodeName = item.name || item.display_name || `Nodo ${item.node_id}`;
+      const stateHelp = stateDescription(state, isLocal);
+      const generatedAt = formatTimestamp(nodeDocument.generated_at || status.generated_at);
+      const destinationHost = (() => {
+        try { return publicUrl ? new URL(publicUrl, window.location.href).host : "URL no informada"; }
+        catch { return publicUrl || "URL no informada"; }
+      })();
+      card.setAttribute(
+        "aria-label",
+        `${nodeName}, ${state}, ${messageCount} mensajes. ${publicUrl ? "Abrir sitio público." : "Sin enlace público."}`,
+      );
+      card.title = publicUrl
+        ? `Abrir ${nodeName}. ${stateHelp}`
+        : `${nodeName}. ${stateHelp}`;
+
       const head = element("div", "index-network-card-head");
-      head.append(element("span", "index-network-id", item.node_id), element("span", "index-network-state", state));
+      head.append(
+        tooltipElement("span", "index-network-id", item.node_id, `Identificador único del nodo dentro de Sonantia Network: ${item.node_id}.`),
+        tooltipElement("span", "index-network-state", state, stateHelp),
+      );
       const metrics = element("div", "index-network-metrics");
       metrics.append(
-        element("span", "index-network-metric", `${messageCount} mensaje(s)`),
-        element("span", "index-network-metric", hasSequence ? `hasta sec. ${sequence}` : "sin secuencias"),
-        element("span", "index-network-metric", gaps ? `${gaps} brecha(s)` : "sin brechas"),
+        tooltipElement("span", "index-network-metric", `${messageCount} mensaje(s)`, `Cantidad de mensajes disponibles en el feed local o en el relay conservado por ${localNode.node_id}.`),
+        tooltipElement("span", "index-network-metric", hasSequence ? `hasta sec. ${sequence}` : "sin secuencias", hasSequence ? `Última secuencia continua conocida para ${item.node_id}: ${sequence}.` : `${localNode.node_id} aún no conoce una secuencia válida para este nodo.`),
+        tooltipElement("span", "index-network-metric", gaps ? `${gaps} brecha(s)` : "sin brechas", gaps ? `El inventario registra ${gaps} secuencia(s) ausente(s) para este origen.` : "No se detectan brechas dentro del rango de secuencias disponible."),
+      );
+      const details = element("span", "index-network-details");
+      details.append(
+        element("span", "", `Actualización del documento: ${generatedAt}`),
+        element("span", "", `Destino: ${destinationHost}`),
+        element("span", "index-network-open", publicUrl ? "Abrir sitio público del nodo ↗" : "Sitio público no informado"),
       );
       card.append(
         head,
-        element("strong", "", item.name || item.display_name || `Nodo ${item.node_id}`),
-        element("small", "", `${item.city || "Ubicación pendiente"} · ${item.platform || "plataforma pendiente"}`),
+        tooltipElement("strong", "", nodeName, publicUrl ? `Abrir la portada pública de ${nodeName}.` : `Nombre público del nodo ${item.node_id}.`),
+        tooltipElement("small", "", `${item.city || "Ubicación pendiente"} · ${item.platform || "plataforma pendiente"}`, "Ubicación lógica declarada y plataforma de publicación del nodo."),
         metrics,
+        details,
       );
       target.append(card);
     });
@@ -565,6 +679,6 @@
     console.error("No fue posible cargar el panorama Sonantia", error);
     target.replaceChildren(element("p", "index-network-empty", "El panorama distribuido no está disponible durante esta carga."));
   });
-})();
+})()
 </script>
 {% endblock %}
