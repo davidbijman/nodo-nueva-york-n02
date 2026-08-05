@@ -5,10 +5,184 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-08-05T12:20:24Z",
+  "generated_at": "2026-08-05T14:41:32Z",
   "retention_hours": 168,
-  "message_count": 34,
+  "message_count": 35,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-08-05T13-11-13Z-000035",
+      "origin_node_id": "N01",
+      "sequence": 35,
+      "created_at": "2026-08-05T13:11:13Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Con aprecio, enviamos esta publicación desde Santiago. La medición combinada de las fuentes disponibles aporta una humedad relativa de 88,0 % y una lluvia acumulada durante el día de 0,0 mm. Este registro destaca que cada experiencia positiva confirma que su realidad se llena de oportunidades para disfrutar y agradecer y que cada nuevo día amplía el bienestar emocional de David Alexander Bijman Molina.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-08-05T13:11:13Z",
+          "observed_at": "2026-08-05T13:09:23Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-05T13:00:00Z",
+          "measurement_source_count": 2,
+          "measurement_source_codes": [
+            "RMCL0098",
+            "RMCL0174"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 11.55,
+            "relative_humidity_percent": 88.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1019.3,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 35.77,
+            "condition_code": 3
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-05T13:11:13Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 54.764969,
+            "elevation_deg": 17.791439,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-05T13:11:13Z",
+          "observed_at": "2026-08-05T12:40:39Z",
+          "window_hours": 24,
+          "count": 25,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20260805T084039-001",
+            "occurred_at": "2026-08-05T12:40:39Z",
+            "local_time": "2026-08-05 08:40:39",
+            "location": "38 km al SO de Ollagüe",
+            "magnitude": 2.6,
+            "magnitude_text": "2.6 Mlv",
+            "depth_km": 133.0,
+            "depth": "133 km",
+            "latitude": -21.489,
+            "longitude": -68.492,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/378088.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-05T13:11:13Z",
+          "observed_at": "2026-08-05T13:11:13Z",
+          "date": "5 de agosto de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$40.844,79",
+              "group": "general"
+            },
+            {
+              "label": "UTM (AGO)",
+              "value": "$71.649",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$914,46",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.054,01",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (JUN) mensual",
+              "value": "0,0",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (JUN) anual",
+              "value": "4,3",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-aprecio"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-promedio-estaciones-humedad-lluvia-diaria"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-registro"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-001822"
+          }
+        ],
+        "affirmation_text": "Cada experiencia positiva confirma que su realidad se llena de oportunidades para disfrutar y agradecer y que cada nuevo día amplía el bienestar emocional de David Alexander Bijman Molina."
+      },
+      "content_hash": "sha256:9bd490c16f5179e4e94057f5170b6485d9ab89a9abd08ed91befe5120ee32b16"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
