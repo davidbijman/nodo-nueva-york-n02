@@ -5,10 +5,358 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-08-04T23:28:44Z",
+  "generated_at": "2026-08-05T03:39:09Z",
   "retention_hours": 168,
-  "message_count": 28,
+  "message_count": 30,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-08-05T03-09-52Z-000030",
+      "origin_node_id": "N01",
+      "sequence": 30,
+      "created_at": "2026-08-05T03:09:52Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "En este ciclo, Santiago vuelve a dejar constancia en la red. Los datos meteorológicos disponibles muestran una presión atmosférica de 1022,04 hPa y una radiación solar de 0,0 W/m². La publicación pone el acento en la idea de que David Alexander Bijman Molina elige entornos que apoyan su salud y su paz.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-08-05T03:09:52Z",
+          "observed_at": "2026-08-05T02:59:19Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-05T03:00:00Z",
+          "measurement_source_count": 2,
+          "measurement_source_codes": [
+            "RMCL0098",
+            "RMCL0174"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 11.7,
+            "relative_humidity_percent": 87.5,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1022.04,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 3
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-05T03:09:52Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 239.809258,
+            "elevation_deg": -62.267816,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-05T03:09:52Z",
+          "observed_at": "2026-08-05T01:01:55Z",
+          "window_hours": 24,
+          "count": 26,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20260804T210155-001",
+            "occurred_at": "2026-08-05T01:01:55Z",
+            "local_time": "2026-08-04 21:01:55",
+            "location": "63 km al E de Socaire",
+            "magnitude": 2.7,
+            "magnitude_text": "2.7 Mlv",
+            "depth_km": 237.0,
+            "depth": "237 km",
+            "latitude": -23.644,
+            "longitude": -67.279,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/378015.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-05T03:09:52Z",
+          "observed_at": "2026-08-05T03:09:52Z",
+          "date": "4 de agosto de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$40.844,79",
+              "group": "general"
+            },
+            {
+              "label": "UTM (AGO)",
+              "value": "$71.649",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$924,89",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.064,56",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (JUN) mensual",
+              "value": "0,0",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (JUN) anual",
+              "value": "4,3",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-ciclo-presente"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-datos-presion-radiacion-solar"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-resonancia"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-000147"
+          }
+        ],
+        "affirmation_text": "David Alexander Bijman Molina elige entornos que apoyan su salud y su paz."
+      },
+      "content_hash": "sha256:f85e5b67e8b13e507f4b17877b09b2531d0693043f9932972022752fee0e85ed"
+    },
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-08-05T01-10-04Z-000029",
+      "origin_node_id": "N01",
+      "sequence": 29,
+      "created_at": "2026-08-05T01:10:04Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Reciban un saludo afectuoso emitido desde Santiago. La medición combinada de las fuentes disponibles aporta una lluvia acumulada durante el día de 0,0 mm y una radiación solar de 0,0 W/m². Junto con este saludo, afirmamos que las ideas creativas producen resultados positivos para David Alexander Bijman Molina. De este modo, David convierte el progreso en ingresos, reservas y patrimonio sostenible.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-08-05T01:10:04Z",
+          "observed_at": "2026-08-05T01:09:24Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-05T01:00:00Z",
+          "measurement_source_count": 2,
+          "measurement_source_codes": [
+            "RMCL0098",
+            "RMCL0174"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 12.5,
+            "relative_humidity_percent": 85.5,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1022.81,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 2
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-05T01:10:04Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 265.544595,
+            "elevation_deg": -38.551577,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-05T01:10:04Z",
+          "observed_at": "2026-08-05T00:43:51Z",
+          "window_hours": 24,
+          "count": 30,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20260804T204351-001",
+            "occurred_at": "2026-08-05T00:43:51Z",
+            "local_time": "2026-08-04 20:43:51",
+            "location": "12 km al SE de Huasco",
+            "magnitude": 2.7,
+            "magnitude_text": "2.7 Mlv",
+            "depth_km": 50.0,
+            "depth": "50 km",
+            "latitude": -28.553,
+            "longitude": -71.159,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/378013.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-05T01:10:04Z",
+          "observed_at": "2026-08-05T01:10:04Z",
+          "date": "4 de agosto de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$40.844,79",
+              "group": "general"
+            },
+            {
+              "label": "UTM (AGO)",
+              "value": "$71.649",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$924,89",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.064,56",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (JUN) mensual",
+              "value": "0,0",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (JUN) anual",
+              "value": "4,3",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-saludo-afectuoso"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-promedio-estaciones-lluvia-diaria-radiacion-solar"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-saludo"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-003908"
+          }
+        ],
+        "affirmation_text": "Las ideas creativas producen resultados positivos para David Alexander Bijman Molina. De este modo, David convierte el progreso en ingresos, reservas y patrimonio sostenible."
+      },
+      "content_hash": "sha256:85ef809dd0c8a1bd6f089fa2f23cf7b1b90848cf0d26f74dd9336613b7a773f0"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
