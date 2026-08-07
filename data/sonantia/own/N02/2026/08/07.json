@@ -5,9 +5,9 @@
   "document_type": "daily-archive",
   "origin_node_id": "N02",
   "date": "2026-08-07",
-  "message_count": 18,
+  "message_count": 19,
   "first_sequence": 27,
-  "last_sequence": 44,
+  "last_sequence": 45,
   "messages": [
     {
       "network_id": "sonantia-network",
@@ -2906,6 +2906,167 @@
         "affirmation_text": "Para David Alexander Bijman Molina, reinvertir una parte de sus ganancias representa un paso concreto hacia un crecimiento más rápido de sus proyectos."
       },
       "content_hash": "sha256:ad2e1990fe8ecc95015fe3fa750e64c1166019f7a52f9c3d646d1517f9b67345"
+    },
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N02-2026-08-07T23-51-58Z-000045",
+      "origin_node_id": "N02",
+      "sequence": 45,
+      "created_at": "2026-08-07T23:51:58Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Saludos desde Nueva York. La fuente meteorológica comunica una humedad relativa de 93,0 % y una lluvia acumulada durante el día de 3,0 mm. En continuidad con la publicación anterior, sostenemos que para David Alexander Bijman Molina, crear productos y servicios de pago recurrente representa un paso concreto hacia ingresos más previsibles y constantes.",
+      "context": {
+        "location": {
+          "zone": "north-america",
+          "country": "Estados Unidos",
+          "country_code": "US",
+          "city": "Nueva York",
+          "timezone": "America/New_York",
+          "latitude": 40.7789,
+          "longitude": -73.9692,
+          "elevation_m": 43.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "open-meteo-current",
+          "requested_at": "2026-08-07T23:51:58Z",
+          "observed_at": "2026-08-07T23:45:00Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-07T23:45:00Z",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "open-meteo-current"
+          ],
+          "location": {
+            "latitude": 40.78858,
+            "longitude": -73.9661
+          },
+          "data": {
+            "temperature_c": 23.7,
+            "relative_humidity_percent": 93.0,
+            "precipitation_mm": 3.0,
+            "pressure_hpa": 1018.1,
+            "wind_speed_kmh": 14.6,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 65
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-07T23:51:58Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Nueva York · coordenadas N02",
+            "longitude_deg": -73.9692,
+            "latitude_deg": 40.7789,
+            "elevation_km": 0.043,
+            "timezone": "America/New_York"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 290.207818,
+            "elevation_deg": 1.523622,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "usgs-earthquakes",
+          "provider_label": "U.S. Geological Survey (USGS)",
+          "region_label": "Nueva York y región cercana",
+          "country_code": "US",
+          "generated_at": "2026-08-07T23:51:58Z",
+          "observed_at": "2026-08-07T23:51:58Z",
+          "window_hours": 168,
+          "count": 0,
+          "source_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-07-31T23%3A51%3A58Z&endtime=2026-08-07T23%3A51%3A58Z&eventtype=earthquake&orderby=time&limit=200&latitude=40.7789&longitude=-73.9692&maxradiuskm=550",
+          "recent_event": null
+        },
+        "economy": {
+          "status": "available",
+          "provider": "us-economic-data",
+          "provider_label": "Federal Reserve Economic Data (FRED)",
+          "region_label": "Estados Unidos",
+          "country_code": "US",
+          "generated_at": "2026-08-07T23:51:58Z",
+          "observed_at": "2026-08-07T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-08-07",
+          "indicators": [
+            {
+              "label": "Euro (USD por EUR)",
+              "value": "1,1519",
+              "group": "general"
+            },
+            {
+              "label": "Libra (USD por GBP)",
+              "value": "1,3470",
+              "group": "general"
+            },
+            {
+              "label": "Yen (JPY por USD)",
+              "value": "159,16",
+              "group": "general"
+            },
+            {
+              "label": "Dólar canadiense",
+              "value": "1,4028",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC mensual",
+              "value": "-0,35%",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC anual",
+              "value": "—",
+              "group": "inflation"
+            },
+            {
+              "label": "Tasa Fed",
+              "value": "3,75%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://fred.stlouisfed.org/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-saludo-directo"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-proveedor-humedad-lluvia-diaria"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-continuidad"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-002340"
+          }
+        ],
+        "affirmation_text": "Para David Alexander Bijman Molina, crear productos y servicios de pago recurrente representa un paso concreto hacia ingresos más previsibles y constantes."
+      },
+      "content_hash": "sha256:6ede1334190fa8522d921895ed330f9f16ccbd1117a20ccedf642f2c378a3c3b"
     }
   ]
 }
