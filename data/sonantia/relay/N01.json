@@ -5,10 +5,184 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-08-07T23:51:58Z",
+  "generated_at": "2026-08-08T02:25:23Z",
   "retention_hours": 168,
-  "message_count": 65,
+  "message_count": 66,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-08-08T01-10-00Z-000066",
+      "origin_node_id": "N01",
+      "sequence": 66,
+      "created_at": "2026-08-08T01:10:00Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Desde Santiago hacemos llegar un mensaje cordial. La medición combinada de las fuentes disponibles aporta una humedad relativa de 72,0 % y una presión atmosférica de 1023,31 hPa. Para completar el mensaje, señalamos que la alegría, la unión y la tranquilidad de David Alexander Bijman Molina se fortalecen, pues David disfruta de una cercanía renovada con sus seres queridos y la alegría de volver a verse fortalece sus vínculos.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-08-08T01:10:00Z",
+          "observed_at": "2026-08-08T01:09:21Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-08T01:00:00Z",
+          "measurement_source_count": 2,
+          "measurement_source_codes": [
+            "RMCL0098",
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 8.15,
+            "relative_humidity_percent": 72.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1023.31,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 2
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-08T01:10:00Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 264.573751,
+            "elevation_deg": -38.210102,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-08T01:10:00Z",
+          "observed_at": "2026-08-07T22:58:03Z",
+          "window_hours": 24,
+          "count": 31,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20260807T185803-001",
+            "occurred_at": "2026-08-07T22:58:03Z",
+            "local_time": "2026-08-07 18:58:03",
+            "location": "66 km al NE de Calama",
+            "magnitude": 2.5,
+            "magnitude_text": "2.5 Mlv",
+            "depth_km": 120.0,
+            "depth": "120 km",
+            "latitude": -21.933,
+            "longitude": -68.646,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/378384.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-08T01:10:00Z",
+          "observed_at": "2026-08-08T01:10:00Z",
+          "date": "7 de agosto de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$40.844,79",
+              "group": "general"
+            },
+            {
+              "label": "UTM (AGO)",
+              "value": "$71.649",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$913,86",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.053,08",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (JUL) mensual",
+              "value": "0,1",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (JUL) anual",
+              "value": "3,5",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-mensaje-cordial"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-promedio-estaciones-humedad-presion"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-cierre"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-004015"
+          }
+        ],
+        "affirmation_text": "La alegría, la unión y la tranquilidad de David Alexander Bijman Molina se fortalecen, pues David disfruta de una cercanía renovada con sus seres queridos y la alegría de volver a verse fortalece sus vínculos."
+      },
+      "content_hash": "sha256:e169b806b7546dc4f837bf64d6afb4548c86d9a53b19e3e89d08d62e70a07623"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
