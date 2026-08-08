@@ -5,10 +5,184 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-08-08T09:05:22Z",
+  "generated_at": "2026-08-08T09:58:11Z",
   "retention_hours": 168,
-  "message_count": 69,
+  "message_count": 70,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-08-08T09-09-21Z-000070",
+      "origin_node_id": "N01",
+      "sequence": 70,
+      "created_at": "2026-08-08T09:09:21Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Con aprecio, enviamos esta publicación desde Santiago. El panorama meteorológico incluye una presión atmosférica de 1024,26 hPa y una radiación solar de 0,0 W/m². A partir del contexto disponible, recordamos que cada día, David Alexander Bijman Molina confirma que la estabilidad de su hogar mejora progresivamente; al mismo tiempo, percibe una base familiar cada vez más segura.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-08-08T09:09:21Z",
+          "observed_at": "2026-08-08T08:59:21Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-08T09:00:00Z",
+          "measurement_source_count": 2,
+          "measurement_source_codes": [
+            "RMCL0098",
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 6.7,
+            "relative_humidity_percent": 82.5,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1024.26,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 2
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-08T09:09:21Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 89.378525,
+            "elevation_deg": -29.255933,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-08T09:09:21Z",
+          "observed_at": "2026-08-08T07:27:45Z",
+          "window_hours": 24,
+          "count": 30,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20260808T032745-001",
+            "occurred_at": "2026-08-08T07:27:45Z",
+            "local_time": "2026-08-08 03:27:45",
+            "location": "38 km al SE de Pica",
+            "magnitude": 2.6,
+            "magnitude_text": "2.6 Mlv",
+            "depth_km": 113.0,
+            "depth": "113 km",
+            "latitude": -20.735,
+            "longitude": -69.077,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/378416.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-08T09:09:21Z",
+          "observed_at": "2026-08-08T09:09:21Z",
+          "date": "8 de agosto de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$40.844,79",
+              "group": "general"
+            },
+            {
+              "label": "UTM (AGO)",
+              "value": "$71.649",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$913,86",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.053,08",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (JUL) mensual",
+              "value": "0,1",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (JUL) anual",
+              "value": "3,5",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-aprecio"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-panorama-presion-radiacion-solar"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-antecedentes"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-001259"
+          }
+        ],
+        "affirmation_text": "Cada día, David Alexander Bijman Molina confirma que la estabilidad de su hogar mejora progresivamente; al mismo tiempo, percibe una base familiar cada vez más segura."
+      },
+      "content_hash": "sha256:3dc9698570f73b671e50cd4128ba0910328b0796f23c3aa3e7bd02eb25f865c1"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
