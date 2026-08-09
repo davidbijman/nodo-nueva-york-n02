@@ -1,0 +1,167 @@
+{
+  "network_id": "sonantia-network",
+  "protocol_version": "1.0",
+  "network_epoch": "SN1-2026-08-02",
+  "document_type": "daily-archive",
+  "origin_node_id": "N02",
+  "date": "2026-08-09",
+  "message_count": 1,
+  "first_sequence": 67,
+  "last_sequence": 67,
+  "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N02-2026-08-09T02-32-57Z-000067",
+      "origin_node_id": "N02",
+      "sequence": 67,
+      "created_at": "2026-08-09T02:32:57Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Desde la observación local de Nueva York, compartimos este saludo. En el momento de la emisión se observan una humedad relativa de 75,0 % y una radiación solar de 0,0 W/m². La transmisión comparte la idea de que una mejora continua se manifiesta en el hogar de David Alexander Bijman Molina: cada integrante encuentra nuevas razones para confiar y las expectativas positivas unen y motivan a su familia.",
+      "context": {
+        "location": {
+          "zone": "north-america",
+          "country": "Estados Unidos",
+          "country_code": "US",
+          "city": "Nueva York",
+          "timezone": "America/New_York",
+          "latitude": 40.7789,
+          "longitude": -73.9692,
+          "elevation_m": 43.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "open-meteo-current",
+          "requested_at": "2026-08-09T02:32:57Z",
+          "observed_at": "2026-08-09T02:30:00Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-09T02:30:00Z",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "open-meteo-current"
+          ],
+          "location": {
+            "latitude": 40.78858,
+            "longitude": -73.9661
+          },
+          "data": {
+            "temperature_c": 25.3,
+            "relative_humidity_percent": 75.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1014.1,
+            "wind_speed_kmh": 11.7,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 0
+          }
+        },
+        "astronomy": {
+          "status": "unavailable",
+          "generated_at": "2026-08-09T02:32:57Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Nueva York · coordenadas N02",
+            "longitude_deg": -73.9692,
+            "latitude_deg": 40.7789,
+            "elevation_km": 0.043,
+            "timezone": "America/New_York"
+          },
+          "target_count": 0,
+          "available_target_count": 0,
+          "reference_target": null
+        },
+        "geology": {
+          "status": "available",
+          "provider": "usgs-earthquakes",
+          "provider_label": "U.S. Geological Survey (USGS)",
+          "region_label": "Nueva York y región cercana",
+          "country_code": "US",
+          "generated_at": "2026-08-09T02:32:57Z",
+          "observed_at": "2026-08-09T02:32:57Z",
+          "window_hours": 168,
+          "count": 0,
+          "source_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-02T02%3A32%3A57Z&endtime=2026-08-09T02%3A32%3A57Z&eventtype=earthquake&orderby=time&limit=200&latitude=40.7789&longitude=-73.9692&maxradiuskm=550",
+          "recent_event": null
+        },
+        "economy": {
+          "status": "available",
+          "provider": "us-economic-data",
+          "provider_label": "Federal Reserve Economic Data (FRED)",
+          "region_label": "Estados Unidos",
+          "country_code": "US",
+          "generated_at": "2026-08-09T02:32:57Z",
+          "observed_at": "2026-08-08T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-08-08",
+          "indicators": [
+            {
+              "label": "Euro (USD por EUR)",
+              "value": "1,1519",
+              "group": "general"
+            },
+            {
+              "label": "Libra (USD por GBP)",
+              "value": "1,3470",
+              "group": "general"
+            },
+            {
+              "label": "Yen (JPY por USD)",
+              "value": "159,16",
+              "group": "general"
+            },
+            {
+              "label": "Dólar canadiense",
+              "value": "1,4028",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC mensual",
+              "value": "-0,35%",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC anual",
+              "value": "—",
+              "group": "inflation"
+            },
+            {
+              "label": "Tasa Fed",
+              "value": "3,75%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://fred.stlouisfed.org/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-observacion-local"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-emision-humedad-radiacion-solar"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-transmision"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-001518"
+          }
+        ],
+        "affirmation_text": "Una mejora continua se manifiesta en el hogar de David Alexander Bijman Molina: cada integrante encuentra nuevas razones para confiar y las expectativas positivas unen y motivan a su familia."
+      },
+      "content_hash": "sha256:5d32ca044110bbba8b73fd412b81566d05610b2acd185a4aec3f056880ed0107"
+    }
+  ]
+}
