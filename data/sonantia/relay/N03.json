@@ -5,10 +5,487 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N03",
-  "generated_at": "2026-08-10T02:38:35Z",
+  "generated_at": "2026-08-10T04:59:12Z",
   "retention_hours": 168,
-  "message_count": 125,
+  "message_count": 128,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N03-2026-08-10T04-45-08Z-000128",
+      "origin_node_id": "N03",
+      "sequence": 128,
+      "created_at": "2026-08-10T04:45:08Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Buenos días desde Falkenstein. El nodo N03 comparte una nueva transmisión con la red.",
+      "context": {
+        "location": {
+          "zone": "europe",
+          "country": "Alemania",
+          "country_code": "DE",
+          "city": "Falkenstein",
+          "timezone": "Europe/Berlin",
+          "latitude": 50.4667,
+          "longitude": 12.3667,
+          "elevation_m": 600.0
+        },
+        "weather": {
+          "status": "unavailable",
+          "provider": "brightsky-dwd",
+          "requested_at": "2026-08-10T04:45:08Z",
+          "observed_at": null,
+          "condition_provider": "brightsky-dwd",
+          "condition_observed_at": null,
+          "measurement_source_count": 0,
+          "measurement_source_codes": [],
+          "location": {
+            "latitude": 50.4667,
+            "longitude": 12.3667
+          },
+          "data": {
+            "temperature_c": null,
+            "relative_humidity_percent": null,
+            "precipitation_mm": null,
+            "pressure_hpa": null,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": null,
+            "condition_code": null
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-10T04:45:08Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Falkenstein · coordenadas N03",
+            "longitude_deg": 12.3667,
+            "latitude_deg": 50.4667,
+            "elevation_km": 0.6,
+            "timezone": "Europe/Berlin"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 74.162826,
+            "elevation_deg": 7.136901,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "emsc-earthquakes",
+          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
+          "region_label": "Europa central",
+          "country_code": "DE",
+          "generated_at": "2026-08-10T04:45:08Z",
+          "observed_at": "2026-08-05T21:05:00Z",
+          "window_hours": 168,
+          "count": 3,
+          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-03T04%3A45%3A08&endtime=2026-08-10T04%3A45%3A08&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
+          "recent_event": {
+            "event_id": "20260805_0000371",
+            "occurred_at": "2026-08-05T21:05:00Z",
+            "local_time": "2026-08-05 23:05:00",
+            "location": "POLAND",
+            "magnitude": 2.0,
+            "magnitude_text": "2.0",
+            "depth_km": -5.8,
+            "depth": "-5.8 km",
+            "latitude": 51.5559,
+            "longitude": 16.0357,
+            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-03T04%3A45%3A08&endtime=2026-08-10T04%3A45%3A08&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "ecb-euro-area",
+          "provider_label": "Banco Central Europeo (ECB)",
+          "region_label": "Alemania y zona euro",
+          "country_code": "DE",
+          "generated_at": "2026-08-10T04:45:08Z",
+          "observed_at": "2026-08-10T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-08-10",
+          "indicators": [
+            {
+              "label": "Dólar estadounidense (USD por EUR)",
+              "value": "1,1535",
+              "group": "general"
+            },
+            {
+              "label": "Libra esterlina (GBP por EUR)",
+              "value": "0,8577",
+              "group": "general"
+            },
+            {
+              "label": "Franco suizo (CHF por EUR)",
+              "value": "0,9347",
+              "group": "general"
+            },
+            {
+              "label": "Yen japonés (JPY por EUR)",
+              "value": "182,64",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "Inflación Alemania",
+              "value": "2,8%",
+              "group": "inflation"
+            },
+            {
+              "label": "Inflación zona euro",
+              "value": "2,9%",
+              "group": "inflation"
+            },
+            {
+              "label": "Facilidad de depósito BCE",
+              "value": "2,25%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://data.ecb.europa.eu/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "general-fallback",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "fallback",
+            "value_id": "respaldo-saludo"
+          }
+        ],
+        "affirmation_text": null
+      },
+      "content_hash": "sha256:df5ee06ad635c61bb396c4325d912fcf4a1dcc9804393bc5b8ae9041e4fe4ed4"
+    },
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N03-2026-08-10T03-45-00Z-000127",
+      "origin_node_id": "N03",
+      "sequence": 127,
+      "created_at": "2026-08-10T03:45:00Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "El Nodo Falkenstein conserva la continuidad de la red con un saludo público.",
+      "context": {
+        "location": {
+          "zone": "europe",
+          "country": "Alemania",
+          "country_code": "DE",
+          "city": "Falkenstein",
+          "timezone": "Europe/Berlin",
+          "latitude": 50.4667,
+          "longitude": 12.3667,
+          "elevation_m": 600.0
+        },
+        "weather": {
+          "status": "unavailable",
+          "provider": "brightsky-dwd",
+          "requested_at": "2026-08-10T03:45:00Z",
+          "observed_at": null,
+          "condition_provider": "brightsky-dwd",
+          "condition_observed_at": null,
+          "measurement_source_count": 0,
+          "measurement_source_codes": [],
+          "location": {
+            "latitude": 50.4667,
+            "longitude": 12.3667
+          },
+          "data": {
+            "temperature_c": null,
+            "relative_humidity_percent": null,
+            "precipitation_mm": null,
+            "pressure_hpa": null,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": null,
+            "condition_code": null
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-10T03:45:00Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Falkenstein · coordenadas N03",
+            "longitude_deg": 12.3667,
+            "latitude_deg": 50.4667,
+            "elevation_km": 0.6,
+            "timezone": "Europe/Berlin"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 62.724688,
+            "elevation_deg": -1.722115,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "emsc-earthquakes",
+          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
+          "region_label": "Europa central",
+          "country_code": "DE",
+          "generated_at": "2026-08-10T03:45:00Z",
+          "observed_at": "2026-08-05T21:05:00Z",
+          "window_hours": 168,
+          "count": 3,
+          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-03T03%3A45%3A00&endtime=2026-08-10T03%3A45%3A00&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
+          "recent_event": {
+            "event_id": "20260805_0000371",
+            "occurred_at": "2026-08-05T21:05:00Z",
+            "local_time": "2026-08-05 23:05:00",
+            "location": "POLAND",
+            "magnitude": 2.0,
+            "magnitude_text": "2.0",
+            "depth_km": -5.8,
+            "depth": "-5.8 km",
+            "latitude": 51.5559,
+            "longitude": 16.0357,
+            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-03T03%3A45%3A00&endtime=2026-08-10T03%3A45%3A00&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "ecb-euro-area",
+          "provider_label": "Banco Central Europeo (ECB)",
+          "region_label": "Alemania y zona euro",
+          "country_code": "DE",
+          "generated_at": "2026-08-10T03:45:00Z",
+          "observed_at": "2026-08-10T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-08-10",
+          "indicators": [
+            {
+              "label": "Dólar estadounidense (USD por EUR)",
+              "value": "1,1535",
+              "group": "general"
+            },
+            {
+              "label": "Libra esterlina (GBP por EUR)",
+              "value": "0,8577",
+              "group": "general"
+            },
+            {
+              "label": "Franco suizo (CHF por EUR)",
+              "value": "0,9347",
+              "group": "general"
+            },
+            {
+              "label": "Yen japonés (JPY por EUR)",
+              "value": "182,64",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "Inflación Alemania",
+              "value": "2,8%",
+              "group": "inflation"
+            },
+            {
+              "label": "Inflación zona euro",
+              "value": "2,9%",
+              "group": "inflation"
+            },
+            {
+              "label": "Facilidad de depósito BCE",
+              "value": "2,25%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://data.ecb.europa.eu/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "general-fallback",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "fallback",
+            "value_id": "respaldo-continuidad"
+          }
+        ],
+        "affirmation_text": null
+      },
+      "content_hash": "sha256:0ddf89246f4b739cbdcec40b1c979b83bd6820b1cabbfaa6d94845bc1c13c2e3"
+    },
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N03-2026-08-10T02-45-03Z-000126",
+      "origin_node_id": "N03",
+      "sequence": 126,
+      "created_at": "2026-08-10T02:45:03Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Buenas noches desde Falkenstein. El nodo N03 comparte una nueva transmisión con la red.",
+      "context": {
+        "location": {
+          "zone": "europe",
+          "country": "Alemania",
+          "country_code": "DE",
+          "city": "Falkenstein",
+          "timezone": "Europe/Berlin",
+          "latitude": 50.4667,
+          "longitude": 12.3667,
+          "elevation_m": 600.0
+        },
+        "weather": {
+          "status": "unavailable",
+          "provider": "brightsky-dwd",
+          "requested_at": "2026-08-10T02:45:03Z",
+          "observed_at": null,
+          "condition_provider": "brightsky-dwd",
+          "condition_observed_at": null,
+          "measurement_source_count": 0,
+          "measurement_source_codes": [],
+          "location": {
+            "latitude": 50.4667,
+            "longitude": 12.3667
+          },
+          "data": {
+            "temperature_c": null,
+            "relative_humidity_percent": null,
+            "precipitation_mm": null,
+            "pressure_hpa": null,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": null,
+            "condition_code": null
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-10T02:45:03Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Falkenstein · coordenadas N03",
+            "longitude_deg": 12.3667,
+            "latitude_deg": 50.4667,
+            "elevation_km": 0.6,
+            "timezone": "Europe/Berlin"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 50.597058,
+            "elevation_deg": -9.681379,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "emsc-earthquakes",
+          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
+          "region_label": "Europa central",
+          "country_code": "DE",
+          "generated_at": "2026-08-10T02:45:03Z",
+          "observed_at": "2026-08-05T21:05:00Z",
+          "window_hours": 168,
+          "count": 3,
+          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-03T02%3A45%3A03&endtime=2026-08-10T02%3A45%3A03&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
+          "recent_event": {
+            "event_id": "20260805_0000371",
+            "occurred_at": "2026-08-05T21:05:00Z",
+            "local_time": "2026-08-05 23:05:00",
+            "location": "POLAND",
+            "magnitude": 2.0,
+            "magnitude_text": "2.0",
+            "depth_km": -5.8,
+            "depth": "-5.8 km",
+            "latitude": 51.5559,
+            "longitude": 16.0357,
+            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-03T02%3A45%3A03&endtime=2026-08-10T02%3A45%3A03&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "ecb-euro-area",
+          "provider_label": "Banco Central Europeo (ECB)",
+          "region_label": "Alemania y zona euro",
+          "country_code": "DE",
+          "generated_at": "2026-08-10T02:45:03Z",
+          "observed_at": "2026-08-10T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-08-10",
+          "indicators": [
+            {
+              "label": "Dólar estadounidense (USD por EUR)",
+              "value": "1,1535",
+              "group": "general"
+            },
+            {
+              "label": "Libra esterlina (GBP por EUR)",
+              "value": "0,8577",
+              "group": "general"
+            },
+            {
+              "label": "Franco suizo (CHF por EUR)",
+              "value": "0,9347",
+              "group": "general"
+            },
+            {
+              "label": "Yen japonés (JPY por EUR)",
+              "value": "182,64",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "Inflación Alemania",
+              "value": "2,8%",
+              "group": "inflation"
+            },
+            {
+              "label": "Inflación zona euro",
+              "value": "2,9%",
+              "group": "inflation"
+            },
+            {
+              "label": "Facilidad de depósito BCE",
+              "value": "2,25%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://data.ecb.europa.eu/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "general-fallback",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "fallback",
+            "value_id": "respaldo-saludo"
+          }
+        ],
+        "affirmation_text": null
+      },
+      "content_hash": "sha256:a91f75a52b20ca80b4c2477dbd86ce80dcc1c3f152743276382be92e63e4b483"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
