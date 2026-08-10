@@ -5,10 +5,184 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-08-10T21:05:31Z",
+  "generated_at": "2026-08-10T22:02:19Z",
   "retention_hours": 168,
   "message_count": 81,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-08-10T21-09-06Z-000100",
+      "origin_node_id": "N01",
+      "sequence": 100,
+      "created_at": "2026-08-10T21:09:06Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Santiago comparte el pulso de esta tarde. La medición combinada de las fuentes disponibles aporta una presión atmosférica de 1021,14 hPa y una radiación solar de 34,55 W/m². A partir del contexto disponible, recordamos que cada jornada crea mejores condiciones para la familia de David Alexander Bijman Molina: David percibe un ambiente afectivo más seguro y estable y la serenidad emocional se fortalece alrededor de sus seres queridos.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-08-10T21:09:06Z",
+          "observed_at": "2026-08-10T20:59:29Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-10T21:00:00Z",
+          "measurement_source_count": 2,
+          "measurement_source_codes": [
+            "RMCL0098",
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 8.9,
+            "relative_humidity_percent": 63.5,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1021.14,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 34.55,
+            "condition_code": 3
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-10T21:09:06Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 296.814796,
+            "elevation_deg": 10.969266,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-10T21:09:06Z",
+          "observed_at": "2026-08-10T19:50:56Z",
+          "window_hours": 24,
+          "count": 34,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20260810T155056-001",
+            "occurred_at": "2026-08-10T19:50:56Z",
+            "local_time": "2026-08-10 15:50:56",
+            "location": "33 km al NO de Quintero",
+            "magnitude": 3.2,
+            "magnitude_text": "3.2 Mlv",
+            "depth_km": 26.0,
+            "depth": "26 km",
+            "latitude": -32.605,
+            "longitude": -71.808,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/378743.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-10T21:09:06Z",
+          "observed_at": "2026-08-10T21:09:06Z",
+          "date": "10 de agosto de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$40.846,11",
+              "group": "general"
+            },
+            {
+              "label": "UTM (AGO)",
+              "value": "$71.649",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$911,77",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.054,31",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (JUL) mensual",
+              "value": "0,1",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (JUL) anual",
+              "value": "3,5",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-pulso-ciudad"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-promedio-estaciones-presion-radiacion-solar"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-antecedentes"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-003117"
+          }
+        ],
+        "affirmation_text": "Cada jornada crea mejores condiciones para la familia de David Alexander Bijman Molina: David percibe un ambiente afectivo más seguro y estable y la serenidad emocional se fortalece alrededor de sus seres queridos."
+      },
+      "content_hash": "sha256:8734d67d3334eee1d8927d6252f9477669e0073d5b66a869f7eae606dc971ad9"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
@@ -13835,134 +14009,6 @@
         ]
       },
       "content_hash": "sha256:f23d951f6dac24b5727f85b5b3e0674c8228400c0307e439ef722c7a557cc089"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N01-2026-08-03T21-08-27Z-000019",
-      "origin_node_id": "N01",
-      "sequence": 19,
-      "created_at": "2026-08-03T21:08:27Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "El Nodo Santiago permanece activo y saluda desde Santiago. Como señal del entorno, se integran una temperatura de 18,2 °C y una lluvia acumulada durante el día de 0,15 mm. Junto con estos datos, declaramos que de manera natural y sostenida, las noches de David Alexander Bijman Molina favorecen una recuperación física y mental completa, mientras su organismo aprovecha mejor cada periodo de reposo. (referencias astronómicas: Ganímedes elev. 6.2°, az. 297.5°; Calisto elev. 6.1°, az. 297.5°; Saturno elev. -59.6°, az. 171.5°; última actividad sísmica registrada: M 4.6 Mw, 19 km al E de Alto del Carmen, 2026-08-03 16:47:06, prof. 98 km)",
-      "context": {
-        "weather": {
-          "status": "available",
-          "provider": "redmeteo-station-aggregate",
-          "observed_at": "2026-08-03T20:59:23Z",
-          "condition_provider": "open-meteo-best-match",
-          "condition_observed_at": "2026-08-03T21:00:00Z",
-          "measurement_source_count": 2,
-          "measurement_source_codes": [
-            "RMCL0098",
-            "RMCL0174"
-          ],
-          "location": {
-            "latitude": -33.4164,
-            "longitude": -70.6068
-          },
-          "data": {
-            "temperature_c": 18.2,
-            "relative_humidity_percent": 61.0,
-            "precipitation_mm": 0.15,
-            "pressure_hpa": 1021.64,
-            "wind_speed_kmh": null,
-            "solar_radiation_wm2": 60.08,
-            "condition_code": 3
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-08-03T21:08:27Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Santiago de Chile"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "azimuth_deg": 298.703353,
-            "elevation_deg": 10.027283,
-            "visibility": "sobre el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "generated_at": "2026-08-03T21:08:27Z",
-          "window_hours": 24,
-          "count": 34,
-          "recent_event": {
-            "local_time": "2026-08-03 16:47:06",
-            "location": "19 km al E de Alto del Carmen",
-            "magnitude": "4.6 Mw"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "generated_at": "2026-08-03T21:08:27Z",
-          "date": "3 de agosto de 2026",
-          "indicators": [
-            {
-              "label": "UF",
-              "value": "$40.844,79",
-              "group": "general"
-            },
-            {
-              "label": "UTM (AGO)",
-              "value": "$71.649",
-              "group": "general"
-            },
-            {
-              "label": "Dólar observado",
-              "value": "$928,42",
-              "group": "general"
-            },
-            {
-              "label": "Euro",
-              "value": "$1.070,35",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "IPC (JUN) mensual",
-              "value": "0,0",
-              "group": "inflation"
-            },
-            {
-              "label": "IPC (JUN) anual",
-              "value": "4,3",
-              "group": "inflation"
-            },
-            {
-              "label": "TPM",
-              "value": "4,5%",
-              "group": "inflation"
-            }
-          ]
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-legacy-bridge",
-        "catalog_version": "2026-08-01-redmeteo-aggregate-01",
-        "source_protocol_version": "0.1",
-        "source_message_id": "N01-20260803T210827Z-000182",
-        "source_generator_id": "context-composer-02",
-        "source_catalog_hash": "sha256:c61115c075795eacf9b917a03b824d5a2b14fc41e1798c0f685577bae7e4d8d6",
-        "source_group_id": "contextual",
-        "selected_value_ids": [
-          "apertura-nodo-activo",
-          "fuente-clima-senal-temperatura-lluvia-diaria",
-          "declaracion-datos",
-          "consolidado-frase-004004",
-          "astronomy-seismic"
-        ]
-      },
-      "content_hash": "sha256:43e7b3de372cb26176080cdceae3f31039b4e0f6ee0b89d12e23019f5db0693f"
     }
   ]
 }
