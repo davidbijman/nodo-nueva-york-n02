@@ -130,16 +130,8 @@ def normalize_response(
         condition_provider=OPEN_METEO_PROVIDER,
         condition_observed_at=observed_at,
         location=WeatherLocation(
-            latitude=(
-                latitude
-                if latitude is not None
-                else node.logical_location.latitude
-            ),
-            longitude=(
-                longitude
-                if longitude is not None
-                else node.logical_location.longitude
-            ),
+            latitude=(latitude if latitude is not None else node.logical_location.latitude),
+            longitude=(longitude if longitude is not None else node.logical_location.longitude),
         ),
         data=WeatherData(condition_code=_condition_code(current)),
     )
@@ -201,9 +193,7 @@ def fetch_weather(
                 response.raise_for_status()
                 payload = response.json()
                 if not isinstance(payload, dict):
-                    raise ValueError(
-                        "Open-Meteo entregó una respuesta JSON inválida"
-                    )
+                    raise ValueError("Open-Meteo entregó una respuesta JSON inválida")
                 return normalize_response(payload, node, requested_at)
             except (httpx.HTTPError, ValueError, TypeError):
                 continue
@@ -230,9 +220,7 @@ def normalize_current_weather_response(
     observed_at = _observed_at(current)
     data = WeatherData(
         temperature_c=_optional_number(current, "temperature_2m"),
-        relative_humidity_percent=_optional_number(
-            current, "relative_humidity_2m"
-        ),
+        relative_humidity_percent=_optional_number(current, "relative_humidity_2m"),
         precipitation_mm=_optional_number(current, "precipitation"),
         pressure_hpa=_optional_number(current, "pressure_msl"),
         wind_speed_kmh=_optional_number(current, "wind_speed_10m"),
@@ -260,14 +248,8 @@ def normalize_current_weather_response(
         measurement_source_count=1,
         measurement_source_codes=[OPEN_METEO_CURRENT_PROVIDER],
         location=WeatherLocation(
-            latitude=(
-                latitude
-                if latitude is not None
-                else node.logical_location.latitude
-            ),
-            longitude=(
-                longitude if longitude is not None else node.logical_location.longitude
-            ),
+            latitude=(latitude if latitude is not None else node.logical_location.latitude),
+            longitude=(longitude if longitude is not None else node.logical_location.longitude),
         ),
         data=data,
     )
@@ -331,12 +313,8 @@ def fetch_current_weather(
                 response.raise_for_status()
                 payload = response.json()
                 if not isinstance(payload, dict):
-                    raise ValueError(
-                        "Open-Meteo entregó una respuesta JSON inválida"
-                    )
-                return normalize_current_weather_response(
-                    payload, node, requested_at
-                )
+                    raise ValueError("Open-Meteo entregó una respuesta JSON inválida")
+                return normalize_current_weather_response(payload, node, requested_at)
             except (httpx.HTTPError, ValueError, TypeError):
                 continue
     finally:
@@ -358,9 +336,7 @@ def open_meteo_source_snapshot(weather: Weather, node: NodeConfig) -> dict[str, 
     updated_at_local = "—"
     if weather.observed_at:
         try:
-            observed = datetime.fromisoformat(
-                weather.observed_at.replace("Z", "+00:00")
-            )
+            observed = datetime.fromisoformat(weather.observed_at.replace("Z", "+00:00"))
 
             updated_at_local = (
                 observed.astimezone(ZoneInfo(node.logical_location.timezone))
@@ -411,9 +387,7 @@ def open_meteo_source_snapshot(weather: Weather, node: NodeConfig) -> dict[str, 
             "value": _format_metric(weather.data.solar_radiation_wm2, "W/m²"),
         },
     ]
-    available_metrics = [
-        metric for metric in metrics if metric["value"] != "—"
-    ]
+    available_metrics = [metric for metric in metrics if metric["value"] != "—"]
     return {
         "label": "Proveedor meteorológico principal",
         "source_label": "Open-Meteo",

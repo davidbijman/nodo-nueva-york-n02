@@ -27,9 +27,7 @@ MESSAGE_ID_PATTERN = re.compile(
     r"(?P<hour>\d{2})-(?P<minute>\d{2})-(?P<second>\d{2})Z-"
     r"(?P<sequence>\d{6})$"
 )
-ISO_UTC_PATTERN = re.compile(
-    r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$"
-)
+ISO_UTC_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
 CONTENT_HASH_PATTERN = re.compile(r"^sha256:[0-9a-f]{64}$")
 
 CANONICAL_MESSAGE_FIELDS = (
@@ -92,10 +90,7 @@ def build_sonantia_message_id(
         raise ValueError(f"Prefijo de protocolo no soportado: {prefix}")
     if not 1 <= sequence <= 999_999:
         raise ValueError("La secuencia debe estar entre 1 y 999999")
-    return (
-        f"{prefix}-{node_id}-{readable_protocol_timestamp(moment)}-"
-        f"{sequence:06d}"
-    )
+    return f"{prefix}-{node_id}-{readable_protocol_timestamp(moment)}-{sequence:06d}"
 
 
 def parse_sonantia_message_id(message_id: str) -> SonantiaMessageIdentity:
@@ -129,10 +124,7 @@ def canonical_message_payload(message: Mapping[str, Any]) -> dict[str, Any]:
     missing = [field for field in CANONICAL_MESSAGE_FIELDS if field not in message]
     if missing:
         raise ValueError(f"Faltan campos canónicos: {', '.join(missing)}")
-    return {
-        field: deepcopy(message[field])
-        for field in CANONICAL_MESSAGE_FIELDS
-    }
+    return {field: deepcopy(message[field]) for field in CANONICAL_MESSAGE_FIELDS}
 
 
 def canonical_json_bytes(value: Mapping[str, Any]) -> bytes:
@@ -152,9 +144,7 @@ def canonical_json_bytes(value: Mapping[str, Any]) -> bytes:
 
 def calculate_content_hash(message: Mapping[str, Any]) -> str:
     """Calcula SHA-256 sobre el contenido canónico del mensaje."""
-    digest = hashlib.sha256(
-        canonical_json_bytes(canonical_message_payload(message))
-    ).hexdigest()
+    digest = hashlib.sha256(canonical_json_bytes(canonical_message_payload(message))).hexdigest()
     return f"sha256:{digest}"
 
 
@@ -191,9 +181,7 @@ def validate_sonantia_message(
         raise ValueError("protocol_version no corresponde a la versión 1.0")
 
     network_epoch = canonical["network_epoch"]
-    if not isinstance(network_epoch, str) or not NETWORK_EPOCH_PATTERN.fullmatch(
-        network_epoch
-    ):
+    if not isinstance(network_epoch, str) or not NETWORK_EPOCH_PATTERN.fullmatch(network_epoch):
         raise ValueError("network_epoch no cumple el formato Sonantia")
     if expected_epoch is not None and network_epoch != expected_epoch:
         raise ValueError("network_epoch pertenece a otra época de red")
@@ -216,9 +204,7 @@ def validate_sonantia_message(
         raise ValueError("text debe contener entre 1 y 10000 caracteres")
     if not isinstance(canonical["context"], dict):
         raise ValueError("context debe ser un objeto JSON")
-    if canonical["generator"] is not None and not isinstance(
-        canonical["generator"], dict
-    ):
+    if canonical["generator"] is not None and not isinstance(canonical["generator"], dict):
         raise ValueError("generator debe ser un objeto JSON o null")
 
     validate_content_hash(message)

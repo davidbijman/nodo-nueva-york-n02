@@ -15,7 +15,10 @@
     "declarations",
     "fallback_messages",
     "source_templates",
-    "phrase_collections"
+    "weather_pair_profiles",
+    "phrase_collections",
+    "opening_families",
+    "declaration_families"
   ],
   "properties": {
     "catalog_version": {
@@ -132,6 +135,28 @@
           }
         }
       }
+    },
+    "weather_pair_profiles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1024,
+      "items": {
+        "$ref": "#/$defs/weatherPairProfile"
+      }
+    },
+    "opening_families": {
+      "type": "array",
+      "maxItems": 128,
+      "items": {
+        "$ref": "#/$defs/openingFamily"
+      }
+    },
+    "declaration_families": {
+      "type": "array",
+      "maxItems": 128,
+      "items": {
+        "$ref": "#/$defs/declarationFamily"
+      }
     }
   },
   "$defs": {
@@ -176,9 +201,139 @@
     "weightedValues": {
       "type": "array",
       "minItems": 1,
-      "maxItems": 100,
+      "maxItems": 2048,
       "items": {
         "$ref": "#/$defs/value"
+      }
+    },
+    "weatherPairProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pair_profile_id",
+        "base_pair_id",
+        "fact_ids",
+        "orientation",
+        "joiner_id",
+        "joiner",
+        "weight",
+        "legacy_equivalent"
+      ],
+      "properties": {
+        "pair_profile_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "base_pair_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "fact_ids": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        },
+        "orientation": {
+          "enum": [
+            "canonical",
+            "reversed"
+          ]
+        },
+        "joiner_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "joiner": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "weight": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "legacy_equivalent": {
+          "type": "boolean"
+        }
+      }
+    },
+    "openingFamily": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_id",
+        "description",
+        "priority",
+        "eligibility",
+        "opening_ids"
+      ],
+      "properties": {
+        "family_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "description": {
+          "type": "string"
+        },
+        "priority": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "eligibility": {
+          "type": "object"
+        },
+        "opening_ids": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2048,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        }
+      }
+    },
+    "declarationFamily": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "family_id",
+        "axis",
+        "description",
+        "selection_bias",
+        "member_count",
+        "declaration_ids"
+      ],
+      "properties": {
+        "family_id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "axis": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "description": {
+          "type": "string"
+        },
+        "selection_bias": {
+          "type": "number",
+          "minimum": 0.1,
+          "maximum": 10.0
+        },
+        "member_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "declaration_ids": {
+          "type": "array",
+          "maxItems": 2048,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/identifier"
+          }
+        }
       }
     }
   }

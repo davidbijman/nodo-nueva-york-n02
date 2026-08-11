@@ -105,9 +105,7 @@ def _snapshot_from_series(
 ) -> dict[str, Any]:
     euro_date, euro = _latest_value(series[SERIES_EURO]) if SERIES_EURO in series else ("", None)
     pound_date, pound = (
-        _latest_value(series[SERIES_POUND])
-        if SERIES_POUND in series
-        else ("", None)
+        _latest_value(series[SERIES_POUND]) if SERIES_POUND in series else ("", None)
     )
     yen_date, yen = _latest_value(series[SERIES_YEN]) if SERIES_YEN in series else ("", None)
     cad_date, cad = (
@@ -127,9 +125,7 @@ def _snapshot_from_series(
             annual_inflation = _percentage_change(latest_cpi, cpi[-13][1])
 
     rate_date, fed_rate = (
-        _latest_value(series[SERIES_FED_RATE])
-        if SERIES_FED_RATE in series
-        else ("", None)
+        _latest_value(series[SERIES_FED_RATE]) if SERIES_FED_RATE in series else ("", None)
     )
 
     indicators = [
@@ -149,11 +145,7 @@ def _snapshot_from_series(
         return unavailable_us_economic_snapshot(moment, "; ".join(errors) or "sin datos")
 
     observed_date = max(
-        (
-            date
-            for date in (euro_date, pound_date, yen_date, cad_date, cpi_date, rate_date)
-            if date
-        ),
+        (date for date in (euro_date, pound_date, yen_date, cad_date, cpi_date, rate_date) if date),
         default="",
     )
     generated_at = isoformat_utc(moment)

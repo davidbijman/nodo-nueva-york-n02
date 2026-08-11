@@ -28,14 +28,10 @@ MOMENT = datetime(2026, 8, 1, 12, 6, tzinfo=UTC)
 
 
 def node() -> NodeConfig:
-    return NodeConfig.model_validate_json(
-        (ROOT / "config/node.json").read_text(encoding="utf-8")
-    )
+    return NodeConfig.model_validate_json((ROOT / "config/node.json").read_text(encoding="utf-8"))
 
 
-def open_meteo_payload(
-    *, code: int = 2, include_coordinates: bool = False
-) -> dict[str, Any]:
+def open_meteo_payload(*, code: int = 2, include_coordinates: bool = False) -> dict[str, Any]:
     payload: dict[str, Any] = {
         "current": {
             "time": "2026-08-01T09:00:00-03:00",
@@ -46,7 +42,6 @@ def open_meteo_payload(
     if include_coordinates:
         payload.update({"latitude": -33.45, "longitude": -70.67})
     return payload
-
 
 
 def open_meteo_full_payload() -> dict[str, Any]:
@@ -126,9 +121,7 @@ def test_open_meteo_condition_adapter_is_minimal_and_failure_safe() -> None:
         ),
         (
             "invalid-json",
-            httpx.MockTransport(
-                lambda request: httpx.Response(200, content=b"{")
-            ),
+            httpx.MockTransport(lambda request: httpx.Response(200, content=b"{")),
         ),
     ]
 
@@ -146,10 +139,7 @@ def test_open_meteo_condition_adapter_is_minimal_and_failure_safe() -> None:
                 attempts=1,
             )
         assert unavailable.status == "unavailable", name
-        assert all(
-            value is None
-            for value in unavailable.data.model_dump().values()
-        ), name
+        assert all(value is None for value in unavailable.data.model_dump().values()), name
 
 
 def test_station_payloads_are_normalized_and_aggregated_per_parameter() -> None:

@@ -60,9 +60,7 @@ def test_weather_history_uses_valid_timestamps_and_full_width_chart() -> None:
     chart = _weather_composite_chart(measurements)
 
     assert len(measurements) == 2
-    expected = datetime.fromisoformat("2026-08-01T11:00:00+00:00").astimezone(
-        ZoneInfo("UTC")
-    )
+    expected = datetime.fromisoformat("2026-08-01T11:00:00+00:00").astimezone(ZoneInfo("UTC"))
     assert measurements[1]["local_time"] == expected.isoformat(timespec="minutes")
     assert chart is not None
     assert chart["viewbox_width"] == 1600

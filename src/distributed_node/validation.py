@@ -88,10 +88,7 @@ def validate_public(root: Path) -> list[Path]:
         (path, schema_dir / "sonantia-archive-index.schema.json")
         for path in public_dir.glob("archive/N[0-9][0-9]/**/index.json")
     )
-    daily_pattern = (
-        "archive/N[0-9][0-9]/[0-9][0-9][0-9][0-9]/"
-        "[0-9][0-9]/[0-3][0-9].json"
-    )
+    daily_pattern = "archive/N[0-9][0-9]/[0-9][0-9][0-9][0-9]/[0-9][0-9]/[0-3][0-9].json"
     targets.extend(
         (path, schema_dir / "sonantia-daily-archive.schema.json")
         for path in public_dir.glob(daily_pattern)
@@ -182,8 +179,7 @@ def validate_message_flow(
                 raise ValueError("max_age_minutes debe ser mayor que cero")
             if age_minutes > max_age_minutes:
                 raise ValueError(
-                    "El flujo Sonantia está atrasado: "
-                    f"{age_minutes:.1f} min sin un mensaje nuevo"
+                    f"El flujo Sonantia está atrasado: {age_minutes:.1f} min sin un mensaje nuevo"
                 )
 
     return {

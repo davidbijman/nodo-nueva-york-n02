@@ -37,7 +37,6 @@ def _observer(node: NodeConfig) -> dict[str, Any]:
     }
 
 
-
 ASTRONOMY_TARGETS = (
     {"command": "10", "name": "Sol", "kind": "estrella", "icon": "☀️"},
     {"command": "301", "name": "Luna", "kind": "satélite", "icon": "🌙"},
@@ -195,9 +194,7 @@ def _request_target(
         "CENTER": OBSERVER_CENTER,
         "COORD_TYPE": "GEODETIC",
         "SITE_COORD": _quoted(
-            f"{observer['longitude_deg']},"
-            f"{observer['latitude_deg']},"
-            f"{observer['elevation_km']}"
+            f"{observer['longitude_deg']},{observer['latitude_deg']},{observer['elevation_km']}"
         ),
         "TLIST": _horizons_time(moment),
         "TLIST_TYPE": "CAL",
@@ -341,12 +338,8 @@ def fetch_astronomy_snapshot(
                 )
             except (httpx.HTTPError, ValueError, TypeError) as exc:
                 errors.append(f"{target['name']}: {type(exc).__name__}: {exc}")
-                targets.append(
-                    {**target, "status": "unavailable", "error": str(exc)}
-                )
-        available_targets = [
-            target for target in targets if target.get("status") == "available"
-        ]
+                targets.append({**target, "status": "unavailable", "error": str(exc)})
+        available_targets = [target for target in targets if target.get("status") == "available"]
         if not available_targets:
             return unavailable_astronomy_snapshot(
                 moment,

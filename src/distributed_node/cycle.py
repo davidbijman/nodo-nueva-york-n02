@@ -154,9 +154,7 @@ def run_cycle(
     started_clock = time.perf_counter()
     cycle_moment = (moment or utc_now()).astimezone(UTC)
     node, network, operator_message = load_core_configuration(root / "config")
-    remove_deprecated_artifacts(
-        root, public_directory=network.storage.active_public_directory
-    )
+    remove_deprecated_artifacts(root, public_directory=network.storage.active_public_directory)
     storage = build_sonantia_storage(root, network, node)
     storage.ensure_core_consistency(moment=cycle_moment)
     storage.append_interaction(
@@ -317,9 +315,7 @@ def render_existing(root: Path, *, moment: datetime | None = None) -> list[str]:
     """Regenera HTML y JSON desde el estado Sonantia sin crear mensajes."""
     render_moment = (moment or utc_now()).astimezone(UTC)
     node, network, operator_message = load_core_configuration(root / "config")
-    remove_deprecated_artifacts(
-        root, public_directory=network.storage.active_public_directory
-    )
+    remove_deprecated_artifacts(root, public_directory=network.storage.active_public_directory)
     storage = build_sonantia_storage(root, network, node)
     storage.ensure_core_consistency(moment=render_moment)
     context = collect_node_context(node, render_moment)
@@ -369,9 +365,7 @@ def rebuild_archive(root: Path, *, moment: datetime | None = None) -> dict[str, 
     """Recupera el núcleo y republica índices desde los archivos diarios 1.0."""
     archive_moment = (moment or utc_now()).astimezone(UTC)
     node, network, _ = load_core_configuration(root / "config")
-    remove_deprecated_artifacts(
-        root, public_directory=network.storage.active_public_directory
-    )
+    remove_deprecated_artifacts(root, public_directory=network.storage.active_public_directory)
     storage = build_sonantia_storage(root, network, node)
     storage.recover_core_from_archives(moment=archive_moment)
     publish_active_sonantia_surface(root, generated_at=archive_moment)

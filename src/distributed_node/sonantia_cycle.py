@@ -128,6 +128,7 @@ def _compact_geology(snapshot: dict[str, Any] | None) -> dict[str, Any] | None:
                 "generated_at",
                 "observed_at",
                 "window_hours",
+                "search_stage",
                 "count",
                 "source_url",
             ),
@@ -211,6 +212,9 @@ def generate_and_store_sonantia_message(
             now,
             sequence,
             phrase_cursor=generator_state.get("phrase_cursor"),
+            astronomy_snapshot=astronomy_snapshot,
+            geology_snapshot=geology_snapshot,
+            economy_snapshot=economy_snapshot,
             trailing_reference=trailing_reference,
         )
         message = build_sonantia_message(

@@ -28,9 +28,7 @@ def load_sonantia_configuration(root: Path) -> SonantiaNetworkConfig:
     try:
         return load_network_configuration(root / "config")
     except (OSError, TypeError, ValueError) as exc:
-        raise SonantiaActivationError(
-            "No se pudo cargar config/sonantia-network.json"
-        ) from exc
+        raise SonantiaActivationError("No se pudo cargar config/sonantia-network.json") from exc
 
 
 def load_local_node_configuration(root: Path) -> NodeConfig:
@@ -72,9 +70,7 @@ def build_sonantia_storage(
     local_node: NodeConfig | None = None,
 ) -> SonantiaStorage:
     node = local_node or load_local_node_configuration(root)
-    settings = SonantiaStorageSettings.from_mapping(
-        configuration.storage.model_dump(mode="json")
-    )
+    settings = SonantiaStorageSettings.from_mapping(configuration.storage.model_dump(mode="json"))
     known_node_ids = tuple(item.node_id for item in configuration.nodes)
     return SonantiaStorage(
         root,

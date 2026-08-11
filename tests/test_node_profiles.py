@@ -81,10 +81,7 @@ def test_node_profiles_propagate_identity_location_and_weather_mode(
     assert node.infrastructure.provider == profile.platform
     assert node.context_sources.weather.provider == profile.weather_provider
     assert node.context_sources.weather.mode == profile.weather_mode
-    assert (
-        node.context_sources.weather.condition_provider
-        == profile.condition_provider
-    )
+    assert node.context_sources.weather.condition_provider == profile.condition_provider
 
     observer = _observer(node)
     assert observer["name"] == f"{profile.city} · coordenadas {profile.node_id}"
@@ -117,10 +114,7 @@ def test_node_profiles_collect_the_expected_number_of_weather_sources(
                 redmeteo.close()
 
     assert context.weather.status == "available"
-    assert (
-        context.weather.measurement_source_count
-        == profile.expected_weather_source_count
-    )
+    assert context.weather.measurement_source_count == profile.expected_weather_source_count
     assert len(context.weather_sources) == profile.expected_weather_source_count
     assert context.weather.location.latitude == profile.latitude
     assert context.weather.location.longitude == profile.longitude

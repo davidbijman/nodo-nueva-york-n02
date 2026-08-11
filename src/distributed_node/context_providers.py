@@ -91,13 +91,9 @@ class ProviderRegistry:
 
     def register(self, domain: str, provider_id: str, fetcher: ProviderFetcher) -> None:
         if domain not in self._providers:
-            raise ProviderConfigurationError(
-                f"Dominio de proveedor desconocido: {domain}"
-            )
+            raise ProviderConfigurationError(f"Dominio de proveedor desconocido: {domain}")
         if provider_id in self._providers[domain]:
-            raise ProviderConfigurationError(
-                f"Proveedor duplicado para {domain}: {provider_id}"
-            )
+            raise ProviderConfigurationError(f"Proveedor duplicado para {domain}: {provider_id}")
         self._providers[domain][provider_id] = fetcher
 
     def resolve(self, domain: str, provider_id: str) -> ProviderFetcher:
@@ -110,9 +106,7 @@ class ProviderRegistry:
 
     def provider_ids(self, domain: str) -> tuple[str, ...]:
         if domain not in self._providers:
-            raise ProviderConfigurationError(
-                f"Dominio de proveedor desconocido: {domain}"
-            )
+            raise ProviderConfigurationError(f"Dominio de proveedor desconocido: {domain}")
         return tuple(sorted(self._providers[domain]))
 
 
@@ -159,9 +153,7 @@ def _open_meteo_current_provider(
     )
     return WeatherProviderResult(
         weather=weather,
-        source_snapshots={
-            WEATHER_OPEN_METEO_CURRENT: open_meteo_source_snapshot(weather, node)
-        },
+        source_snapshots={WEATHER_OPEN_METEO_CURRENT: open_meteo_source_snapshot(weather, node)},
     )
 
 
@@ -343,9 +335,7 @@ def default_provider_registry() -> ProviderRegistry:
     registry.register("economy", ECONOMY_CHILE_BCENTRAL, _chile_bcentral_provider)
     registry.register("economy", ECONOMY_US_DATA, _us_economic_provider)
     registry.register("geology", GEOLOGY_CHILE_CSN, _chile_csn_provider)
-    registry.register(
-        "geology", GEOLOGY_USGS_EARTHQUAKES, _usgs_earthquakes_provider
-    )
+    registry.register("geology", GEOLOGY_USGS_EARTHQUAKES, _usgs_earthquakes_provider)
     return registry
 
 
@@ -360,9 +350,7 @@ def validate_context_provider_configuration(
     if weather.enabled:
         providers.resolve("weather", weather.provider)
         if weather.mode == "composite" and not weather.condition_provider:
-            raise ProviderConfigurationError(
-                "El clima compuesto requiere condition_provider"
-            )
+            raise ProviderConfigurationError("El clima compuesto requiere condition_provider")
         if weather.mode == "single" and weather.condition_provider:
             raise ProviderConfigurationError(
                 "El clima de fuente única no debe declarar condition_provider"
@@ -410,11 +398,7 @@ def collect_node_context(
         condition_weather = unavailable_weather(node, isoformat_utc(moment))
 
     weather_fetcher = providers.resolve("weather", weather_config.provider)
-    source_client = (
-        redmeteo_client
-        if weather_config.mode == "composite"
-        else weather_client
-    )
+    source_client = redmeteo_client if weather_config.mode == "composite" else weather_client
     weather_result = weather_fetcher(
         node,
         moment,
@@ -438,9 +422,7 @@ def collect_node_context(
             settings=astronomy_config.settings,
         )
     else:
-        astronomy = _disabled_astronomy_snapshot(
-            node, moment, astronomy_config.provider
-        )
+        astronomy = _disabled_astronomy_snapshot(node, moment, astronomy_config.provider)
 
     economy_config = sources.economy
     if economy_config.enabled and fetch_economy:

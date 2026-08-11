@@ -91,28 +91,14 @@ def test_sonantia_storage_keeps_daily_own_messages_and_bounded_relays(
     assert storage.next_own_sequence() == 4
 
     day_one = json.loads(
-        (
-            tmp_path
-            / "data"
-            / "sonantia"
-            / "own"
-            / "N01"
-            / "2026"
-            / "08"
-            / "02.json"
-        ).read_text(encoding="utf-8")
+        (tmp_path / "data" / "sonantia" / "own" / "N01" / "2026" / "08" / "02.json").read_text(
+            encoding="utf-8"
+        )
     )
     day_two = json.loads(
-        (
-            tmp_path
-            / "data"
-            / "sonantia"
-            / "own"
-            / "N01"
-            / "2026"
-            / "08"
-            / "03.json"
-        ).read_text(encoding="utf-8")
+        (tmp_path / "data" / "sonantia" / "own" / "N01" / "2026" / "08" / "03.json").read_text(
+            encoding="utf-8"
+        )
     )
     assert [item["sequence"] for item in day_one["messages"]] == [1, 2]
     assert [item["sequence"] for item in day_two["messages"]] == [3]
@@ -141,10 +127,13 @@ def test_sonantia_storage_keeps_daily_own_messages_and_bounded_relays(
     ]
     for message in relay_messages:
         assert storage.upsert_relay_message(message, received_at=third) == "stored"
-    assert storage.upsert_relay_message(
-        relay_messages[-1],
-        received_at=third,
-    ) == "duplicate"
+    assert (
+        storage.upsert_relay_message(
+            relay_messages[-1],
+            received_at=third,
+        )
+        == "duplicate"
+    )
 
     relay = storage.load_relay("N02", moment=third)
     assert [item["sequence"] for item in relay["messages"]] == [8, 7]
@@ -185,15 +174,7 @@ def test_sonantia_storage_keeps_daily_own_messages_and_bounded_relays(
 
     preview_paths = storage.publish_surface(generated_at=third)
     assert tmp_path / "public" / "feed.json" in preview_paths
-    preview_archive = (
-        tmp_path
-        / "public"
-        / "archive"
-        / "N01"
-        / "2026"
-        / "08"
-        / "03.json"
-    )
+    preview_archive = tmp_path / "public" / "archive" / "N01" / "2026" / "08" / "03.json"
     assert preview_archive.exists()
     archive_mtime = preview_archive.stat().st_mtime_ns
     storage.publish_surface(generated_at=third)
@@ -234,13 +215,9 @@ def test_sonantia_storage_keeps_daily_own_messages_and_bounded_relays(
     )
     _validate(
         json.loads(
-            (
-                tmp_path
-                / "data"
-                / "sonantia"
-                / "interactions"
-                / "current.json"
-            ).read_text(encoding="utf-8")
+            (tmp_path / "data" / "sonantia" / "interactions" / "current.json").read_text(
+                encoding="utf-8"
+            )
         ),
         "sonantia-interactions.schema.json",
         schemas=schemas,
@@ -248,26 +225,12 @@ def test_sonantia_storage_keeps_daily_own_messages_and_bounded_relays(
     )
 
     archive_index = json.loads(
-        (
-            tmp_path
-            / "data"
-            / "sonantia"
-            / "own"
-            / "N01"
-            / "index.json"
-        ).read_text(encoding="utf-8")
+        (tmp_path / "data" / "sonantia" / "own" / "N01" / "index.json").read_text(encoding="utf-8")
     )
     monthly_index = json.loads(
-        (
-            tmp_path
-            / "data"
-            / "sonantia"
-            / "own"
-            / "N01"
-            / "2026"
-            / "08"
-            / "index.json"
-        ).read_text(encoding="utf-8")
+        (tmp_path / "data" / "sonantia" / "own" / "N01" / "2026" / "08" / "index.json").read_text(
+            encoding="utf-8"
+        )
     )
     _validate(
         archive_index,

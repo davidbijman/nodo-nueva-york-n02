@@ -194,9 +194,7 @@ def _merge_snapshots(
     ipc_abbr = MONTHS[MONTH_NUMBER_BY_NAME[ipc_month_name]][1] if ipc_month_name else ""
 
     current_utm = (
-        f"${current_month_row[1]}"
-        if len(current_month_row) > 1 and current_month_row[1]
-        else None
+        f"${current_month_row[1]}" if len(current_month_row) > 1 and current_month_row[1] else None
     )
     indicators = [
         _indicator("UF", _format_clp(_value_after(bcentral_lines, "Unidad de Fomento (UF)"))),

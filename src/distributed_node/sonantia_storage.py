@@ -114,13 +114,16 @@ def _read_json(path: Path, *, default: Any = None) -> Any:
 def atomic_write_json(path: Path, value: Mapping[str, Any] | Sequence[Any]) -> None:
     """Escribe JSON mediante reemplazo atómico dentro del mismo directorio."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    serialized = json.dumps(
-        value,
-        ensure_ascii=False,
-        allow_nan=False,
-        indent=2,
-        sort_keys=False,
-    ) + "\n"
+    serialized = (
+        json.dumps(
+            value,
+            ensure_ascii=False,
+            allow_nan=False,
+            indent=2,
+            sort_keys=False,
+        )
+        + "\n"
+    )
     temporary_name: str | None = None
     try:
         with tempfile.NamedTemporaryFile(
@@ -166,9 +169,7 @@ def atomic_copy_file(source: Path, destination: Path) -> None:
     except OSError as exc:
         if "temporary_name" in locals() and temporary_name is not None:
             Path(temporary_name).unlink(missing_ok=True)
-        raise SonantiaStorageError(
-            f"No se pudo copiar {source} hacia {destination}"
-        ) from exc
+        raise SonantiaStorageError(f"No se pudo copiar {source} hacia {destination}") from exc
 
 
 class SonantiaStorage:
@@ -327,9 +328,7 @@ class SonantiaStorage:
             expected_epoch=self.network_epoch,
         )
         if validated["origin_node_id"] != self.node_id:
-            raise SonantiaStorageError(
-                "Un mensaje remoto no puede archivarse como propio"
-            )
+            raise SonantiaStorageError("Un mensaje remoto no puede archivarse como propio")
 
         self.initialize(moment=now)
         created_at = _parse_iso_utc(validated["created_at"])
@@ -348,9 +347,7 @@ class SonantiaStorage:
                 if int(validated["sequence"]) > int(core["last_own_sequence"]):
                     self.recover_core_from_archives(moment=now)
                 return "duplicate"
-            raise SonantiaMessageConflictError(
-                "message_id propio ya existe con otro content_hash"
-            )
+            raise SonantiaMessageConflictError("message_id propio ya existe con otro content_hash")
 
         for existing in messages:
             if int(existing.get("sequence", -1)) == int(validated["sequence"]):
@@ -362,8 +359,7 @@ class SonantiaStorage:
         expected_sequence = int(core["last_own_sequence"]) + 1
         if int(validated["sequence"]) != expected_sequence:
             raise SonantiaSequenceError(
-                f"Se esperaba la secuencia {expected_sequence} y se recibió "
-                f"{validated['sequence']}"
+                f"Se esperaba la secuencia {expected_sequence} y se recibió {validated['sequence']}"
             )
 
         messages.append(validated)
@@ -403,10 +399,12 @@ class SonantiaStorage:
             archive = _read_json(path, default={})
             messages = archive.get("messages") or []
             for message in reversed(messages):
-                collected.append(validate_sonantia_message(
-                    message,
-                    expected_epoch=self.network_epoch,
-                ))
+                collected.append(
+                    validate_sonantia_message(
+                        message,
+                        expected_epoch=self.network_epoch,
+                    )
+                )
                 if len(collected) >= wanted:
                     return collected
         return collected
@@ -474,9 +472,7 @@ class SonantiaStorage:
         origin_node_id: str,
         moment: datetime,
     ) -> list[dict[str, Any]]:
-        cutoff = moment.astimezone(UTC) - timedelta(
-            hours=self.settings.relay_retention_hours
-        )
+        cutoff = moment.astimezone(UTC) - timedelta(hours=self.settings.relay_retention_hours)
         unique: dict[str, dict[str, Any]] = {}
         for candidate in messages:
             validated = validate_sonantia_message(
@@ -484,16 +480,11 @@ class SonantiaStorage:
                 expected_epoch=self.network_epoch,
             )
             if validated["origin_node_id"] != origin_node_id:
-                raise SonantiaStorageError(
-                    "Un relay mezcla mensajes de distintos orígenes"
-                )
+                raise SonantiaStorageError("Un relay mezcla mensajes de distintos orígenes")
             if _parse_iso_utc(validated["created_at"]) < cutoff:
                 continue
             existing = unique.get(validated["message_id"])
-            if (
-                existing is not None
-                and existing["content_hash"] != validated["content_hash"]
-            ):
+            if existing is not None and existing["content_hash"] != validated["content_hash"]:
                 raise SonantiaMessageConflictError(
                     "Un relay contiene el mismo message_id con hashes distintos"
                 )
@@ -538,9 +529,7 @@ class SonantiaStorage:
                 document["messages"] = pruned
                 atomic_write_json(path, document)
                 return "duplicate"
-            raise SonantiaMessageConflictError(
-                "message_id remoto ya existe con otro content_hash"
-            )
+            raise SonantiaMessageConflictError("message_id remoto ya existe con otro content_hash")
 
         current.append(validated)
         pruned = self._prune_relay_messages(
@@ -632,9 +621,7 @@ class SonantiaStorage:
                 }
                 continue
             relay = self.load_relay(origin_node_id, moment=now)
-            available_from, available_through, gaps = self._sequence_window(
-                relay["messages"]
-            )
+            available_from, available_through, gaps = self._sequence_window(relay["messages"])
             origins[origin_node_id] = {
                 "role": "relay",
                 "available_from_sequence": available_from,
@@ -712,16 +699,13 @@ class SonantiaStorage:
         compact_details = deepcopy(dict(details or {}))
         forbidden = INTERACTION_RESERVED_DETAIL_KEYS.intersection(compact_details)
         if forbidden:
-            raise ValueError(
-                "details no puede duplicar payloads: " + ", ".join(sorted(forbidden))
-            )
+            raise ValueError("details no puede duplicar payloads: " + ", ".join(sorted(forbidden)))
 
         self.initialize(moment=now)
         core = self.load_core()
         event_sequence = int(core["last_event_sequence"]) + 1
         event_id = (
-            f"SN1-{self.node_id}-EVT-"
-            f"{now.strftime('%Y-%m-%dT%H-%M-%SZ')}-{event_sequence:06d}"
+            f"SN1-{self.node_id}-EVT-{now.strftime('%Y-%m-%dT%H-%M-%SZ')}-{event_sequence:06d}"
         )
         event: dict[str, Any] = {
             "event_id": event_id,
@@ -830,19 +814,10 @@ class SonantiaStorage:
                     expected_epoch=self.network_epoch,
                 )
                 if validated["origin_node_id"] != self.node_id:
-                    raise SonantiaStorageError(
-                        "El archivo propio contiene un origen remoto"
-                    )
-                if (
-                    latest is None
-                    or int(validated["sequence"]) > int(latest["sequence"])
-                ):
+                    raise SonantiaStorageError("El archivo propio contiene un origen remoto")
+                if latest is None or int(validated["sequence"]) > int(latest["sequence"]):
                     latest = validated
-        previous = (
-            self.load_core()
-            if self.core_path.exists()
-            else self._empty_core(moment)
-        )
+        previous = self.load_core() if self.core_path.exists() else self._empty_core(moment)
         recovered = self._empty_core(moment)
         recovered["last_event_sequence"] = int(previous.get("last_event_sequence", 0))
         recovered["generator_state"] = deepcopy(previous.get("generator_state") or {})

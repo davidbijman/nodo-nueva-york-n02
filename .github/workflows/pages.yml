@@ -55,8 +55,8 @@ jobs:
           cache: pip
           cache-dependency-path: pyproject.toml
 
-      - name: Install dependencies
-        run: python -m pip install -e ".[dev]"
+      - name: Install runtime dependencies
+        run: python -m pip install -e .
 
       - name: Render public site
         run: python -m distributed_node.cli render

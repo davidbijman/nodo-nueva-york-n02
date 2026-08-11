@@ -1,4 +1,4 @@
-"""Adaptador USGS para los sismos recientes del estado de Nueva York."""
+"""Adaptador USGS para la región geológica cercana al nodo N02."""
 
 from __future__ import annotations
 
@@ -13,20 +13,12 @@ from ...sonantia_protocol import isoformat_utc
 
 PROVIDER_ID = "usgs-earthquakes"
 PROVIDER_LABEL = "U.S. Geological Survey (USGS)"
-REGION_LABEL = "Estado de Nueva York"
-NEARBY_REGION_LABEL = "Nueva York y región cercana"
+REGION_LABEL = "Región geológica cercana a N02"
 COUNTRY_CODE = "US"
 USGS_QUERY_URL = "https://earthquake.usgs.gov/fdsnws/event/1/query"
-WINDOW_HOURS = 168
+REGIONAL_WINDOW_HOURS = 168
+EXTENDED_WINDOW_HOURS = 720
 SEARCH_RADIUS_KM = 550
-
-# Rectángulo geográfico que cubre el estado de Nueva York. El filtro textual
-# posterior evita conservar eventos de estados o provincias vecinos incluidos
-# por la forma rectangular de la consulta.
-NEW_YORK_MIN_LATITUDE = 40.4774
-NEW_YORK_MAX_LATITUDE = 45.0153
-NEW_YORK_MIN_LONGITUDE = -79.7624
-NEW_YORK_MAX_LONGITUDE = -71.7517
 
 
 def unavailable_usgs_snapshot(
@@ -43,7 +35,8 @@ def unavailable_usgs_snapshot(
         "source_url": USGS_QUERY_URL,
         "generated_at": generated_at,
         "observed_at": None,
-        "window_hours": WINDOW_HOURS,
+        "window_hours": REGIONAL_WINDOW_HOURS,
+        "search_stage": "unavailable",
         "count": 0,
         "events": [],
         "error": error,
@@ -64,11 +57,6 @@ def _optional_float(value: Any) -> float | None:
         return None
 
 
-def _is_new_york_place(place: str) -> bool:
-    normalized = place.casefold().strip()
-    return "new york" in normalized or normalized.endswith(", ny")
-
-
 def normalize_usgs_payload(
     payload: dict[str, Any],
     node: NodeConfig,
@@ -76,7 +64,8 @@ def normalize_usgs_payload(
     *,
     source_url: str = USGS_QUERY_URL,
     region_label: str = REGION_LABEL,
-    restrict_to_new_york: bool = True,
+    window_hours: int = REGIONAL_WINDOW_HOURS,
+    search_stage: str = "regional-7d",
 ) -> dict[str, Any]:
     features = payload.get("features")
     if not isinstance(features, list):
@@ -94,8 +83,6 @@ def normalize_usgs_payload(
             continue
 
         place = str(properties.get("place") or "").strip()
-        if restrict_to_new_york and not _is_new_york_place(place):
-            continue
 
         coordinates = geometry.get("coordinates")
         if not isinstance(coordinates, list) or len(coordinates) < 3:
@@ -146,7 +133,8 @@ def normalize_usgs_payload(
         "source_url": source_url,
         "generated_at": generated_at,
         "observed_at": events[0]["occurred_at"] if events else generated_at,
-        "window_hours": WINDOW_HOURS,
+        "window_hours": window_hours,
+        "search_stage": search_stage,
         "count": len(events),
         "events": events,
         "error": None,
@@ -182,59 +170,67 @@ def fetch_usgs_snapshot(
     timeout_seconds: float = 10.0,
 ) -> dict[str, Any]:
     end = moment.astimezone(UTC)
-    start = end - timedelta(hours=WINDOW_HOURS)
-    common_params = {
-        "format": "geojson",
-        "starttime": isoformat_utc(start),
-        "endtime": isoformat_utc(end),
-        "eventtype": "earthquake",
-        "orderby": "time",
-        "limit": 200,
-    }
-    state_params = {
-        **common_params,
-        "minlatitude": NEW_YORK_MIN_LATITUDE,
-        "maxlatitude": NEW_YORK_MAX_LATITUDE,
-        "minlongitude": NEW_YORK_MIN_LONGITUDE,
-        "maxlongitude": NEW_YORK_MAX_LONGITUDE,
-    }
-    nearby_params = {
-        **common_params,
-        "latitude": node.logical_location.latitude,
-        "longitude": node.logical_location.longitude,
-        "maxradiuskm": SEARCH_RADIUS_KM,
-    }
+
+    def common_params(window_hours: int) -> dict[str, Any]:
+        start = end - timedelta(hours=window_hours)
+        return {
+            "format": "geojson",
+            "starttime": isoformat_utc(start),
+            "endtime": isoformat_utc(end),
+            "eventtype": "earthquake",
+            "orderby": "time",
+            "limit": 200,
+        }
+
+    searches = (
+        {
+            "window_hours": REGIONAL_WINDOW_HOURS,
+            "region_label": REGION_LABEL,
+            "search_stage": "regional-7d",
+            "params": {
+                **common_params(REGIONAL_WINDOW_HOURS),
+                "latitude": node.logical_location.latitude,
+                "longitude": node.logical_location.longitude,
+                "maxradiuskm": SEARCH_RADIUS_KM,
+            },
+        },
+        {
+            "window_hours": EXTENDED_WINDOW_HOURS,
+            "region_label": REGION_LABEL,
+            "search_stage": "regional-30d",
+            "params": {
+                **common_params(EXTENDED_WINDOW_HOURS),
+                "latitude": node.logical_location.latitude,
+                "longitude": node.logical_location.longitude,
+                "maxradiuskm": SEARCH_RADIUS_KM,
+            },
+        },
+    )
 
     owns_client = client is None
     active_client = client or httpx.Client(follow_redirects=True)
     try:
-        payload, source_url = _request_usgs_payload(
-            active_client,
-            state_params,
-            timeout_seconds=timeout_seconds,
-        )
-        state_snapshot = normalize_usgs_payload(
-            payload,
-            node,
-            moment,
-            source_url=source_url,
-        )
-        if state_snapshot["events"]:
-            return state_snapshot
+        last_snapshot: dict[str, Any] | None = None
+        for search in searches:
+            payload, source_url = _request_usgs_payload(
+                active_client,
+                search["params"],
+                timeout_seconds=timeout_seconds,
+            )
+            snapshot = normalize_usgs_payload(
+                payload,
+                node,
+                moment,
+                source_url=source_url,
+                region_label=str(search["region_label"]),
+                window_hours=int(search["window_hours"]),
+                search_stage=str(search["search_stage"]),
+            )
+            last_snapshot = snapshot
+            if snapshot["events"]:
+                return snapshot
 
-        payload, source_url = _request_usgs_payload(
-            active_client,
-            nearby_params,
-            timeout_seconds=timeout_seconds,
-        )
-        return normalize_usgs_payload(
-            payload,
-            node,
-            moment,
-            source_url=source_url,
-            region_label=NEARBY_REGION_LABEL,
-            restrict_to_new_york=False,
-        )
+        return last_snapshot or unavailable_usgs_snapshot(moment)
     except (httpx.HTTPError, ValueError, TypeError) as exc:
         return unavailable_usgs_snapshot(moment, f"{type(exc).__name__}: {exc}")
     finally:

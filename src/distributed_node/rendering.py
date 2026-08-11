@@ -95,11 +95,7 @@ def _peer_cards(
     relays: dict[str, dict[str, Any]],
     timezone_name: str,
 ) -> list[dict[str, Any]]:
-    observed_by_id = {
-        item.get("node_id"): item
-        for item in peer_status
-        if isinstance(item, dict)
-    }
+    observed_by_id = {item.get("node_id"): item for item in peer_status if isinstance(item, dict)}
     cards: list[dict[str, Any]] = []
     for peer in network.nodes:
         if peer.node_id == local_node_id:
@@ -140,9 +136,7 @@ def _weather_icon(
         return "⛈️", "Tormenta"
     if "snow" in normalized:
         return "🌨️", "Nieve"
-    if "freezing" in normalized and (
-        "rain" in normalized or "drizzle" in normalized
-    ):
+    if "freezing" in normalized and ("rain" in normalized or "drizzle" in normalized):
         return "🌧️", "Precipitación helada"
     if "rain" in normalized or "drizzle" in normalized:
         return "🌧️", "Lluvia o llovizna"
@@ -155,11 +149,7 @@ def _weather_icon(
     if normalized == "mainly-clear":
         return "🌤️", "Cielo mayormente despejado"
     if normalized == "clear-sky":
-        return (
-            ("☀️", "Cielo despejado")
-            if is_day
-            else ("🌙", "Noche despejada")
-        )
+        return ("☀️", "Cielo despejado") if is_day else ("🌙", "Noche despejada")
     if "cloud" in normalized:
         return "☁️", "Nubosidad"
     return "🌡️", "Condición meteorológica"
@@ -173,25 +163,15 @@ def _condition_label(condition: int | str | None) -> str:
 
 
 def _current_condition_snapshot(weather: Weather, node: NodeConfig) -> dict[str, Any]:
-    reference_time = (
-        weather.condition_observed_at
-        or weather.observed_at
-        or weather.requested_at
-    )
+    reference_time = weather.condition_observed_at or weather.observed_at or weather.requested_at
     reference_datetime = _try_local_datetime(
         reference_time,
         node.logical_location.timezone,
     )
     local_time = (
-        f"{reference_datetime:%Y-%m-%d %H:%M:%S}"
-        if reference_datetime is not None
-        else "—"
+        f"{reference_datetime:%Y-%m-%d %H:%M:%S}" if reference_datetime is not None else "—"
     )
-    is_day = (
-        7 <= reference_datetime.hour < 20
-        if reference_datetime is not None
-        else True
-    )
+    is_day = 7 <= reference_datetime.hour < 20 if reference_datetime is not None else True
     icon, icon_label = _weather_icon(
         weather.data.condition_code,
         is_day=is_day,
@@ -219,9 +199,8 @@ def _weather_measurements(
     candidates: list[tuple[dict[str, Any], str | None]] = []
     if current_weather is not None:
         current_document = current_weather.model_dump(mode="json")
-        current_reference = (
-            current_document.get("observed_at")
-            or current_document.get("requested_at")
+        current_reference = current_document.get("observed_at") or current_document.get(
+            "requested_at"
         )
         candidates.append((current_document, current_reference))
 
@@ -229,8 +208,7 @@ def _weather_measurements(
         (
             message
             for message in messages
-            if isinstance(message, dict)
-            and message.get("origin_node_id") == node.node_id
+            if isinstance(message, dict) and message.get("origin_node_id") == node.node_id
         ),
         key=lambda message: str(message.get("created_at") or ""),
         reverse=True,
@@ -239,9 +217,7 @@ def _weather_measurements(
         context = message.get("context") if isinstance(message.get("context"), dict) else {}
         weather = context.get("weather") if isinstance(context.get("weather"), dict) else {}
         reference_time = (
-            weather.get("observed_at")
-            or weather.get("requested_at")
-            or message.get("created_at")
+            weather.get("observed_at") or weather.get("requested_at") or message.get("created_at")
         )
         candidates.append((weather, str(reference_time or "")))
 
@@ -291,11 +267,7 @@ def _weather_measurements(
     )
     latest = datetime.fromisoformat(measurements[0]["local_time"])
     cutoff = latest - timedelta(hours=hours)
-    return [
-        item
-        for item in measurements
-        if datetime.fromisoformat(item["local_time"]) >= cutoff
-    ]
+    return [item for item in measurements if datetime.fromisoformat(item["local_time"]) >= cutoff]
 
 
 def _numeric_range(
@@ -375,9 +347,7 @@ def _area_paths(
                 paths.append(" ".join(path))
                 current = []
             continue
-        current.append(
-            (float(point["x"]), _scaled_y(float(value), value_range, top, bottom))
-        )
+        current.append((float(point["x"]), _scaled_y(float(value), value_range, top, bottom)))
     if current:
         start_x = current[0][0]
         end_x = current[-1][0]
@@ -456,9 +426,7 @@ def _weather_composite_chart(
     precipitation_max = max(
         [float(value) for value in precipitation_values if value is not None] or [0.0]
     )
-    radiation_max = max(
-        [float(value) for value in radiation_values if value is not None] or [0.0]
-    )
+    radiation_max = max([float(value) for value in radiation_values if value is not None] or [0.0])
     precipitation_range = (0.0, max(0.5, precipitation_max * 1.15))
     radiation_range = (0.0, max(100.0, radiation_max * 1.1))
 
@@ -516,11 +484,7 @@ def _weather_composite_chart(
 
     def latest_value(field: str) -> float | None:
         return next(
-            (
-                float(item[field])
-                for item in reversed(chronological)
-                if item.get(field) is not None
-            ),
+            (float(item[field]) for item in reversed(chronological) if item.get(field) is not None),
             None,
         )
 
@@ -606,6 +570,7 @@ def _weather_composite_chart(
         "end_label": f"{start:%Y-%m-%d %H:%M}",
     }
 
+
 def render_public_site(
     *,
     node: NodeConfig,
@@ -636,9 +601,7 @@ def render_public_site(
     )
     source_snapshots = weather_source_snapshots or {}
     weather_source_cards = [
-        snapshot
-        for snapshot in source_snapshots.values()
-        if isinstance(snapshot, dict)
+        snapshot for snapshot in source_snapshots.values() if isinstance(snapshot, dict)
     ]
 
     common = {

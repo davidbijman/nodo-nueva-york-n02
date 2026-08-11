@@ -47,9 +47,7 @@ class NodeProfile:
 def load_node_profile(profile_id: str) -> NodeProfile:
     if profile_id not in PROFILE_IDS:
         raise ValueError(f"Perfil de prueba desconocido: {profile_id}")
-    document = json.loads(
-        (PROFILES_DIR / f"{profile_id}.json").read_text(encoding="utf-8")
-    )
+    document = json.loads((PROFILES_DIR / f"{profile_id}.json").read_text(encoding="utf-8"))
     node = document["node"]
     weather = document["weather"]
     context = document["context"]

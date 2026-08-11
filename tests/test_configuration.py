@@ -21,9 +21,7 @@ def test_configuration_and_catalog_are_structurally_valid(tmp_path: Path) -> Non
     assert operator_message.status in {"active", "inactive"}
     assert not (ROOT / "config/peers.json").exists()
 
-    raw_network = json.loads(
-        (ROOT / "config/sonantia-network.json").read_text(encoding="utf-8")
-    )
+    raw_network = json.loads((ROOT / "config/sonantia-network.json").read_text(encoding="utf-8"))
     assert "cycle_integration" not in raw_network
     assert "preview_public_directory" not in raw_network["storage"]
 

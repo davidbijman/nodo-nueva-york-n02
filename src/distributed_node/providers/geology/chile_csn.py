@@ -55,7 +55,7 @@ def unavailable_seismic_snapshot(moment: datetime, error: str | None = None) -> 
 def _home_events(markup: str) -> list[dict[str, Any]]:
     events: list[dict[str, Any]] = []
     row_pattern = re.compile(
-        r'<tr(?P<attrs>[^>]*)>\s*'
+        r"<tr(?P<attrs>[^>]*)>\s*"
         r"<td>\s*<a\s+href=\"(?P<href>[^\"]+)\">(?P<local_time>[^<]+)</a><br>\s*"
         r"(?P<location>.*?)</td>\s*"
         r"<td>(?P<depth>.*?)</td>\s*"
@@ -80,7 +80,7 @@ def _home_events(markup: str) -> list[dict[str, Any]]:
 def _catalog_events(markup: str) -> list[dict[str, Any]]:
     events: list[dict[str, Any]] = []
     row_pattern = re.compile(
-        r'<tr(?P<attrs>[^>]*)>\s*'
+        r"<tr(?P<attrs>[^>]*)>\s*"
         r"<td>\s*<a\s+href=\"(?P<href>[^\"]+)\">(?P<local_time>[^<]+)</a><br>\s*"
         r"(?P<location>.*?)</td>\s*"
         r"<td>.*?</td>\s*"
@@ -157,9 +157,7 @@ def normalize_seismic_events(
                 "depth": depth_text,
                 "depth_km": float(depth_match.group(0).replace(",", ".")) if depth_match else None,
                 "magnitude": (
-                    float(magnitude_match.group(0).replace(",", "."))
-                    if magnitude_match
-                    else None
+                    float(magnitude_match.group(0).replace(",", ".")) if magnitude_match else None
                 ),
                 "magnitude_text": magnitude_text,
                 "felt": bool(raw_event.get("felt")),

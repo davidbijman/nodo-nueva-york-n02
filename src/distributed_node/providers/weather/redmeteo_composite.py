@@ -30,6 +30,7 @@ REDMETEO_STATIONS: dict[str, dict[str, str]] = {
     },
 }
 
+
 def _number(value: Any) -> float | None:
     try:
         parsed = float(value)
@@ -454,25 +455,19 @@ def build_composite_weather(
         if snapshot.get("status") == "available"
         and snapshot.get("station_code")
         and isinstance(snapshot.get("data"), dict)
-        and any(
-            _number(snapshot["data"].get(key)) is not None
-            for key in measurement_keys
-        )
+        and any(_number(snapshot["data"].get(key)) is not None for key in measurement_keys)
     ]
 
     return Weather(
         status=(
-            "available"
-            if any(value is not None for value in measurement_fields)
-            else "unavailable"
+            "available" if any(value is not None for value in measurement_fields) else "unavailable"
         ),
         provider=REDMETEO_AGGREGATE_PROVIDER,
         requested_at=isoformat_utc(moment),
         observed_at=_latest_observed_at(snapshots),
         condition_provider=condition_weather.provider,
         condition_observed_at=(
-            condition_weather.condition_observed_at
-            or condition_weather.observed_at
+            condition_weather.condition_observed_at or condition_weather.observed_at
         ),
         measurement_source_count=len(source_codes),
         measurement_source_codes=source_codes,

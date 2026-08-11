@@ -133,7 +133,7 @@ def test_two_native_cycles_publish_newest_messages_and_valid_surface(tmp_path: P
 
     index_html = (root / "public/index.html").read_text(encoding="utf-8")
     assert 'data-local-node-id="N02"' in index_html
-    assert 'data-weather-composite' in index_html
+    assert "data-weather-composite" in index_html
     assert 'id="weather-evolution-title"' in index_html
     assert 'preserveAspectRatio="xMinYMin meet"' in index_html
     assert "Última actualización:" not in index_html
@@ -201,8 +201,11 @@ def test_push_fallback_generates_only_when_message_flow_is_stale(tmp_path: Path)
     )
     assert recovered["action"] == "cycle"
     assert recovered["sequence"] == 2
-    assert validate_message_flow(
-        root,
-        max_age_minutes=90,
-        moment=MOMENT + timedelta(minutes=91),
-    )["last_sequence"] == 2
+    assert (
+        validate_message_flow(
+            root,
+            max_age_minutes=90,
+            moment=MOMENT + timedelta(minutes=91),
+        )["last_sequence"]
+        == 2
+    )

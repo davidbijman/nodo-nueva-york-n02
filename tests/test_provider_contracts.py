@@ -15,12 +15,8 @@ MOMENT = datetime(2026, 8, 1, 12, 0, tzinfo=UTC)
 
 def test_us_adapters_emit_common_normalized_contracts_when_disabled() -> None:
     node = node_from_profile("n02")
-    economy = _us_economic_provider(
-        node, MOMENT, client=None, enabled=False, settings={}
-    )
-    geology = _usgs_earthquakes_provider(
-        node, MOMENT, client=None, enabled=False, settings={}
-    )
+    economy = _us_economic_provider(node, MOMENT, client=None, enabled=False, settings={})
+    geology = _usgs_earthquakes_provider(node, MOMENT, client=None, enabled=False, settings={})
 
     assert EconomySnapshot.model_validate(economy).provider == "us-economic-data"
     assert EconomySnapshot.model_validate(economy).country_code == "US"
@@ -33,6 +29,4 @@ def test_country_specific_provider_rejects_incompatible_enabled_profile() -> Non
     with pytest.raises(ProviderConfigurationError, match="country_code US"):
         _us_economic_provider(node, MOMENT, client=None, enabled=True, settings={})
     with pytest.raises(ProviderConfigurationError, match="country_code US"):
-        _usgs_earthquakes_provider(
-            node, MOMENT, client=None, enabled=True, settings={}
-        )
+        _usgs_earthquakes_provider(node, MOMENT, client=None, enabled=True, settings={})

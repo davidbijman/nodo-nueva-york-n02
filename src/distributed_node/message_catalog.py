@@ -8,6 +8,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from .message_quality import normalize_phrase_template
 from .models import CatalogValue, MessageCatalog
 
 PLACEHOLDER_PATTERN = re.compile(r"\{\{([a-z_][a-z0-9_.]*)\}\}")
@@ -83,8 +84,11 @@ def _load_phrase_file(
         if match is not None:
             text = match.group(2)
         if "{{NOMBRE}}" not in text:
+            raise ValueError(f"Falta {{{{NOMBRE}}}} en {relative_path}, línea {line_number}")
+        normalized = normalize_phrase_template(text)
+        if normalized != text:
             raise ValueError(
-                f"Falta {{{{NOMBRE}}}} en {relative_path}, línea {line_number}"
+                f"La frase requiere normalización en {relative_path}, línea {line_number}"
             )
         phrase_number = len(phrases) + 1
         phrases.append(
@@ -105,11 +109,7 @@ def compile_message_catalog(
         *definition.openings,
         *definition.declarations,
         *definition.fallback_messages,
-        *(
-            value
-            for source in definition.source_templates
-            for value in source.templates
-        ),
+        *(value for source in definition.source_templates for value in source.templates),
     ]
     for value in values:
         _validate_value_paths(value)

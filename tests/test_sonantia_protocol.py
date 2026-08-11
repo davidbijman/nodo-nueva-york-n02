@@ -67,14 +67,10 @@ def test_sonantia_v1_contract_is_readable_stable_and_self_consistent() -> None:
 
     root = Path(__file__).resolve().parents[1]
     fixture = json.loads(
-        (root / "tests" / "fixtures" / "sonantia-message-v1.json").read_text(
-            encoding="utf-8"
-        )
+        (root / "tests" / "fixtures" / "sonantia-message-v1.json").read_text(encoding="utf-8")
     )
     schema = json.loads(
-        (root / "schemas" / "sonantia-message.schema.json").read_text(
-            encoding="utf-8"
-        )
+        (root / "schemas" / "sonantia-message.schema.json").read_text(encoding="utf-8")
     )
     Draft202012Validator.check_schema(schema)
     Draft202012Validator(schema).validate(fixture)
@@ -84,9 +80,7 @@ def test_sonantia_v1_contract_is_readable_stable_and_self_consistent() -> None:
         (root / "config" / "sonantia-network.json").read_text(encoding="utf-8")
     )
     network_schema = json.loads(
-        (root / "schemas" / "sonantia-network.schema.json").read_text(
-            encoding="utf-8"
-        )
+        (root / "schemas" / "sonantia-network.schema.json").read_text(encoding="utf-8")
     )
     Draft202012Validator.check_schema(network_schema)
     Draft202012Validator(network_schema).validate(network_config)

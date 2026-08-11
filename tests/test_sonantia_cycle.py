@@ -59,12 +59,7 @@ def test_native_cycle_builds_canonical_message_without_intermediate_protocol(
         },
     )
 
-    archive_path = (
-        tmp_path
-        / "data/sonantia/own"
-        / node.node_id
-        / "2026/08/02.json"
-    )
+    archive_path = tmp_path / "data/sonantia/own" / node.node_id / "2026/08/02.json"
     message = json.loads(archive_path.read_text(encoding="utf-8"))["messages"][0]
     assert result.message_id.startswith(f"SN1-{node.node_id}-")
     assert message["protocol_version"] == "1.0"

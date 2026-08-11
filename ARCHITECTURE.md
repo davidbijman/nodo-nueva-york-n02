@@ -97,16 +97,11 @@ Una fuente opcional puede degradar el ciclo sin invalidar un mensaje base.
 
 ### 3.4 Generación de mensajes
 
-El generador utiliza:
+El generador ya no está limitado a meteorología. `messages.py` construye un `MessageContext` con weather, astronomy, geology y economy; deriva características contextuales y crea `SourceContribution` por cada dominio disponible. `SourceSelector` puntúa las fuentes, selecciona una primaria y opcionalmente una secundaria, con weather como fallback factual.
 
-- secuencia Sonantia siguiente;
-- cursor persistido en `core.json`;
-- hora y ubicación local;
-- hechos meteorológicos disponibles;
-- catálogo y colecciones de frases.
+El catálogo actual contiene 1.024 aperturas, 512 declaraciones, 128 perfiles meteorológicos, 256 plantillas por dominio y 8.192 afirmaciones. Las cantidades describen el estado editorial actual, no invariantes rígidos del software.
 
-No existe un mensaje intermedio 0.1. El resultado se entrega directamente a la
-construcción canónica Sonantia.
+La selección permanece determinística: el catálogo compilado aporta `catalog_hash`; la secuencia y el instante alimentan el PRNG; el cursor de afirmaciones evita repetir una frase hasta completar la permutación de la colección activa.
 
 ### 3.5 Persistencia
 
@@ -217,13 +212,32 @@ status / error
 ```text
 provider / provider_label
 region_label / country_code
-observed_at / window_hours
+observed_at / window_hours / search_stage
 events[]
 status / error
 ```
 
 Cada evento normaliza fecha, magnitud, profundidad, ubicación y coordenadas
 cuando están disponibles.
+
+`usgs_earthquakes.py` ejecuta una búsqueda escalonada para evitar que una ventana local
+vacía se confunda con un proveedor inoperante:
+
+```text
+1. bounding box del estado de Nueva York · 168 h
+        ↓ si no hay eventos
+2. radio 550 km desde N02 · 168 h
+        ↓ si no hay eventos
+3. radio 550 km desde N02 · 720 h (30 días)
+```
+
+La primera búsqueda confía en los límites geográficos enviados al servicio FDSN de USGS;
+no aplica un segundo filtro sobre el texto `place`. Esto evita descartar eventos válidos
+por diferencias en la descripción administrativa de la ubicación. `search_stage` identifica
+`state-7d`, `nearby-7d` o `nearby-30d`, y `window_hours` siempre refleja la ventana que
+produjo el snapshot. Si USGS responde correctamente pero las tres búsquedas están vacías,
+el dominio continúa `available` con `count = 0`; `unavailable` queda reservado para fallos
+de transporte, HTTP o normalización.
 
 ## 8. Replicación
 
@@ -381,3 +395,71 @@ estado inicial comienza con secuencia cero. El clima, el observador astronómico
 la geología y la identidad local reciben las coordenadas de `config/node.json`.
 La economía publica únicamente los indicadores ya contemplados por la interfaz,
 sin datos de empleo ni remuneración horaria.
+
+
+## 16. Motor contextual multi-fuente de N02
+
+### 16.1 Fuentes y adaptadores
+
+| Dominio | Adaptador | Fuente externa |
+|---|---|---|
+| weather | `open-meteo-current` | Open-Meteo |
+| astronomy | `nasa-jpl-horizons` | NASA/JPL Horizons |
+| geology | `usgs-earthquakes` | USGS FDSN Event API |
+| economy | `us-economic-data` | Federal Reserve Economic Data (FRED) |
+
+`context_providers.py` resuelve estos adaptadores desde `config/node.json`; el compositor no contiene condicionales por `node_id`.
+
+### 16.2 Geología regional
+
+USGS se consulta alrededor de las coordenadas de Central Park con un radio de 550 km. La primera ventana cubre 168 horas (`regional-7d`); si no contiene eventos se amplía a 720 horas (`regional-30d`). El snapshot conserva la etapa y URL efectiva.
+
+El motor vuelve a calcular distancia desde N02 y ordena los eventos con magnitud como factor dominante. Conceptualmente:
+
+```text
+priority = magnitude * 100 + recency_bonus + distance_bonus
+```
+
+M < 4 es opcional; M4.x incrementa relevancia de forma continua; M >= 5 activa `mandatory=true` y geology debe participar en el mensaje.
+
+### 16.3 Construcción secuencial del mensaje
+
+```text
+run_cycle()
+  -> collect_node_context()
+  -> Open-Meteo / Horizons / USGS / FRED
+  -> generate_and_store_sonantia_message()
+  -> generate_sonantia_text()
+  -> build_cycle_context()
+  -> SourceContribution[]
+  -> SourceSelector
+  -> primary + secondary?
+  -> fact selector / weather profile
+  -> source template
+  -> contextual opening
+  -> semantic declaration
+  -> phrase cursor
+  -> canonical Sonantia message
+  -> content_hash
+  -> archive/feed/public
+```
+
+Weather utiliza los 128 perfiles para seleccionar dos hechos compatibles y su conector/orden. Astronomy puede elegir Sol/Luna visibles; geology conserva magnitud/localización y puede añadir antigüedad o distancia; economy selecciona entre indicadores FRED disponibles.
+
+### 16.4 Aperturas y declaraciones
+
+La familia `general` siempre es válida. Las aperturas pueden reforzarse con `morning`, `afternoon`, `evening`, `night`, `sunrise`, `sunset`, `rain`, `clear`, `cloudy`, bandas térmicas, humedad y radiación. Las declaraciones usan una taxonomía semántica multi-etiqueta: neutral, reflective, change, calm, beginning, data-driven, network, curiosity, resilience y otros matices.
+
+### 16.5 `catalog_hash`, PRNG y afirmaciones
+
+`message_catalog.py` compila la definición y las colecciones habilitadas y calcula `catalog_hash` mediante SHA-256 sobre una serialización JSON canónica. El generador deriva su semilla de catálogo, nodo, instante y secuencia.
+
+Las 8.192 afirmaciones se recorren mediante una permutación modular. Para cada ronda se deriva offset y paso desde SHA-256 de `catalog_hash:round`; el paso se ajusta hasta ser coprimo con el tamaño de la colección, garantizando recorrer todos los índices antes de repetir. El cursor se persiste en `data/sonantia/core.json`.
+
+### 16.6 Mensaje canónico y `content_hash`
+
+`sonantia_protocol.py` construye el documento canónico. El hash de contenido usa SHA-256 sobre los campos canónicos serializados en UTF-8 con claves ordenadas y separadores compactos. El valor se publica como `sha256:<hex>`. Este hash prueba integridad/reproducibilidad del contenido, no identidad criptográfica del operador.
+
+### 16.7 Automatización
+
+`test.yml` ejecuta validación, pytest y Ruff en push/pull request. `node-cycle.yml` ejecuta sólo responsabilidades operativas del ciclo: restaurar `node-state`, instalar dependencias runtime, generar, validar, persistir y desplegar. `pages.yml` renderiza y publica sin repetir la suite de desarrollo.

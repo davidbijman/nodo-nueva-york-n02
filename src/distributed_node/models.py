@@ -159,7 +159,41 @@ class PhraseCollection(StrictModel):
 class SourceTemplates(StrictModel):
     source_id: str = Field(pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
     enabled: bool = True
-    templates: list[CatalogValue] = Field(min_length=1, max_length=100)
+    templates: list[CatalogValue] = Field(min_length=1, max_length=1_024)
+
+
+class WeatherPairProfile(StrictModel):
+    pair_profile_id: str = Field(pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+    base_pair_id: str = Field(pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+    fact_ids: list[str] = Field(min_length=2, max_length=2)
+    orientation: Literal["canonical", "reversed"]
+    joiner_id: str = Field(pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+    joiner: str = Field(min_length=1, max_length=80)
+    weight: int = Field(default=1, ge=1)
+    legacy_equivalent: bool = False
+
+    @model_validator(mode="after")
+    def validate_fact_ids(self) -> WeatherPairProfile:
+        if len(set(self.fact_ids)) != 2:
+            raise ValueError("weather_pair_profile requiere dos fact_ids distintos")
+        return self
+
+
+class OpeningFamily(StrictModel):
+    family_id: str = Field(pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+    description: str = ""
+    priority: int = Field(default=0, ge=0, le=100)
+    eligibility: dict[str, Any] = Field(default_factory=dict)
+    opening_ids: list[str] = Field(min_length=1, max_length=2_048)
+
+
+class DeclarationFamily(StrictModel):
+    family_id: str = Field(pattern=r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+    axis: str = Field(min_length=1, max_length=40)
+    description: str = ""
+    selection_bias: float = Field(default=1.0, ge=0.1, le=10.0)
+    member_count: int = Field(default=0, ge=0)
+    declaration_ids: list[str] = Field(default_factory=list, max_length=2_048)
 
 
 class MessagePolicy(StrictModel):
@@ -176,10 +210,13 @@ class MessageCatalog(StrictModel):
     selection_policy: Literal["deterministic_factorized"]
     recipient_names: list[str] = Field(default_factory=list, max_length=32)
     policy: MessagePolicy
-    openings: list[CatalogValue] = Field(min_length=1, max_length=100)
-    declarations: list[CatalogValue] = Field(min_length=1, max_length=100)
-    fallback_messages: list[CatalogValue] = Field(min_length=1, max_length=100)
+    openings: list[CatalogValue] = Field(min_length=1, max_length=2_048)
+    declarations: list[CatalogValue] = Field(min_length=1, max_length=2_048)
+    fallback_messages: list[CatalogValue] = Field(min_length=1, max_length=1_024)
     source_templates: list[SourceTemplates] = Field(min_length=1, max_length=16)
+    weather_pair_profiles: list[WeatherPairProfile] = Field(default_factory=list, max_length=1_024)
+    opening_families: list[OpeningFamily] = Field(default_factory=list, max_length=128)
+    declaration_families: list[DeclarationFamily] = Field(default_factory=list, max_length=128)
     phrase_collections: list[PhraseCollection] = Field(min_length=1, max_length=32)
 
     @field_validator("recipient_names")
@@ -203,28 +240,38 @@ class MessageCatalog(StrictModel):
             raise ValueError("El catálogo requiere una colección de frases habilitada")
         if not any(source.enabled for source in self.source_templates):
             raise ValueError("El catálogo requiere una fuente habilitada")
-        value_ids = [
-            value.value_id
-            for values in sections
-            for value in values
-        ]
+        value_ids = [value.value_id for values in sections for value in values]
         value_ids.extend(
-            value.value_id
-            for source in self.source_templates
-            for value in source.templates
+            value.value_id for source in self.source_templates for value in source.templates
         )
         if len(value_ids) != len(set(value_ids)):
             raise ValueError("El catálogo contiene value_id duplicados")
         source_ids = [source.source_id for source in self.source_templates]
         if len(source_ids) != len(set(source_ids)):
             raise ValueError("El catálogo contiene source_id duplicados")
-        collection_ids = [
-            collection.collection_id for collection in self.phrase_collections
-        ]
+        collection_ids = [collection.collection_id for collection in self.phrase_collections]
         if len(collection_ids) != len(set(collection_ids)):
             raise ValueError("El catálogo contiene collection_id duplicados")
         if len(self.policy.source_order) != len(set(self.policy.source_order)):
             raise ValueError("source_order contiene fuentes duplicadas")
+        pair_profile_ids = [profile.pair_profile_id for profile in self.weather_pair_profiles]
+        if len(pair_profile_ids) != len(set(pair_profile_ids)):
+            raise ValueError("weather_pair_profiles contiene pair_profile_id duplicados")
+        opening_ids = {value.value_id for value in self.openings}
+        opening_family_ids = [family.family_id for family in self.opening_families]
+        if len(opening_family_ids) != len(set(opening_family_ids)):
+            raise ValueError("opening_families contiene family_id duplicados")
+        if any(not set(family.opening_ids) <= opening_ids for family in self.opening_families):
+            raise ValueError("opening_families referencia aperturas inexistentes")
+        declaration_ids = {value.value_id for value in self.declarations}
+        declaration_family_ids = [family.family_id for family in self.declaration_families]
+        if len(declaration_family_ids) != len(set(declaration_family_ids)):
+            raise ValueError("declaration_families contiene family_id duplicados")
+        if any(
+            not set(family.declaration_ids) <= declaration_ids
+            for family in self.declaration_families
+        ):
+            raise ValueError("declaration_families referencia declaraciones inexistentes")
         return self
 
 
