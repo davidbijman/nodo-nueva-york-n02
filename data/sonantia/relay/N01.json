@@ -5,10 +5,212 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-08-17T05:01:46Z",
+  "generated_at": "2026-08-17T05:53:31Z",
   "retention_hours": 168,
   "message_count": 30,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-08-17T05-10-14Z-000122",
+      "origin_node_id": "N01",
+      "sequence": 122,
+      "created_at": "2026-08-17T05:10:14Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Se abre otro fragmento del presente de Santiago. La fuente sísmica del nodo aporta un sismo de magnitud 4,8 con ubicaci?n reportada como 72 km al SE de Socaire, ocurrido hace aproximadamente 8,1 horas. El panorama meteorológico del ciclo reúne una presión atmosférica de 1014,68 hPa, junto con una radiación solar de 0,0 W/m². El contexto del nodo acompaña la reflexión de que los recursos necesarios aparecen oportunamente para David Alexander Bijman Molina. De esta manera, David transforma sus posibilidades en bienestar material verificable.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-08-17T05:10:14Z",
+          "observed_at": "2026-08-17T05:09:23Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-17T05:00:00Z",
+          "measurement_source_count": 2,
+          "measurement_source_codes": [
+            "RMCL0098",
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 8.0,
+            "relative_humidity_percent": 89.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1014.68,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 53
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-17T05:10:14Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 163.702296,
+            "elevation_deg": -69.295005,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-17T05:10:14Z",
+          "observed_at": "2026-08-17T04:04:48Z",
+          "window_hours": 24,
+          "count": 44,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20260817T000448-001",
+            "occurred_at": "2026-08-17T04:04:48Z",
+            "local_time": "2026-08-17 00:04:48",
+            "location": "62 km al SE de Sierra Gorda",
+            "magnitude": 3.1,
+            "magnitude_text": "3.1 Mlv",
+            "depth_km": 99.0,
+            "depth": "99 km",
+            "latitude": -23.283,
+            "longitude": -68.89,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/379564.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-17T05:10:14Z",
+          "observed_at": "2026-08-17T05:10:14Z",
+          "date": "17 de agosto de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$40.855,33",
+              "group": "general"
+            },
+            {
+              "label": "UTM (AGO)",
+              "value": "$71.649",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$913,15",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.056,03",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (JUL) mensual",
+              "value": "0,1",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (JUL) anual",
+              "value": "3,5",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-ampliada-479"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "general"
+          },
+          {
+            "part_id": "source-geology",
+            "value_id": "fuente-geologia-031-sismo-magnitud-sismo-antiguedad"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-ampliada-077-meteo-pair-10-canonical-junto-con"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ampliada-037"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "data-driven"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "reflective"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-002393"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "geology"
+          },
+          {
+            "part_id": "source-secondary",
+            "value_id": "weather"
+          }
+        ],
+        "affirmation_text": "Los recursos necesarios aparecen oportunamente para David Alexander Bijman Molina. De esta manera, David transforma sus posibilidades en bienestar material verificable."
+      },
+      "content_hash": "sha256:befdb9df744cbb0ad6fc999307d733afcc3620694790d1ad4da912b8061503d0"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
@@ -5418,180 +5620,6 @@
         "affirmation_text": "David Alexander Bijman Molina cultiva relaciones familiares basadas en el amor y el respeto."
       },
       "content_hash": "sha256:d123b45741e781b420f26e974cc7230fc128c35045ba5caef5f7da78c71d81b9"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N01-2026-08-10T05-10-21Z-000092",
-      "origin_node_id": "N01",
-      "sequence": 92,
-      "created_at": "2026-08-10T05:10:21Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "Un cordial saludo desde Santiago. En el momento de la emisión se observan una temperatura de 4,95 °C y una lluvia acumulada durante el día de 0,0 mm. Junto con este saludo, afirmamos que nuevas posibilidades aparecen cuando David Alexander Bijman Molina decide mantener en orden sus documentos y obligaciones y operar con calma y seguridad.",
-      "context": {
-        "location": {
-          "zone": "south-america",
-          "country": "Chile",
-          "country_code": "CL",
-          "city": "Santiago",
-          "timezone": "America/Santiago",
-          "latitude": -33.4164,
-          "longitude": -70.6068,
-          "elevation_m": 560.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "redmeteo-station-aggregate",
-          "requested_at": "2026-08-10T05:10:21Z",
-          "observed_at": "2026-08-10T05:09:20Z",
-          "condition_provider": "open-meteo-current",
-          "condition_observed_at": "2026-08-10T05:00:00Z",
-          "measurement_source_count": 2,
-          "measurement_source_codes": [
-            "RMCL0098",
-            "RMCL0059"
-          ],
-          "location": {
-            "latitude": -33.4164,
-            "longitude": -70.6068
-          },
-          "data": {
-            "temperature_c": 4.95,
-            "relative_humidity_percent": 80.5,
-            "precipitation_mm": 0.0,
-            "pressure_hpa": 1019.72,
-            "wind_speed_kmh": null,
-            "solar_radiation_wm2": 0.0,
-            "condition_code": 3
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-08-10T05:10:21Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Santiago · coordenadas N01",
-            "longitude_deg": -70.6068,
-            "latitude_deg": -33.4164,
-            "elevation_km": 0.56,
-            "timezone": "America/Santiago"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 163.010832,
-            "elevation_deg": -71.449383,
-            "visibility": "bajo el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "chile-csn",
-          "provider_label": "Centro Sismológico Nacional",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-08-10T05:10:21Z",
-          "observed_at": "2026-08-10T04:58:30Z",
-          "window_hours": 24,
-          "count": 40,
-          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
-          "recent_event": {
-            "event_id": "20260810T005830-001",
-            "occurred_at": "2026-08-10T04:58:30Z",
-            "local_time": "2026-08-10 00:58:30",
-            "location": "30 km al NE de Cobquecura",
-            "magnitude": 2.9,
-            "magnitude_text": "2.9 Mlv",
-            "depth_km": 43.0,
-            "depth": "43 km",
-            "latitude": -35.887,
-            "longitude": -72.663,
-            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/378672.html"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "chile-bcentral",
-          "provider_label": "Banco Central de Chile",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-08-10T05:10:21Z",
-          "observed_at": "2026-08-10T05:10:21Z",
-          "date": "10 de agosto de 2026",
-          "indicators": [
-            {
-              "label": "UF",
-              "value": "$40.846,11",
-              "group": "general"
-            },
-            {
-              "label": "UTM (AGO)",
-              "value": "$71.649",
-              "group": "general"
-            },
-            {
-              "label": "Dólar observado",
-              "value": "$911,77",
-              "group": "general"
-            },
-            {
-              "label": "Euro",
-              "value": "$1.054,31",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "IPC (JUL) mensual",
-              "value": "0,1",
-              "group": "inflation"
-            },
-            {
-              "label": "IPC (JUL) anual",
-              "value": "3,5",
-              "group": "inflation"
-            },
-            {
-              "label": "TPM",
-              "value": "4,5%",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-03",
-        "catalog_version": "2026-08-04-grammar-01",
-        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-saludo-cordial"
-          },
-          {
-            "part_id": "source-weather",
-            "value_id": "fuente-clima-emision-temperatura-lluvia-diaria"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-saludo"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-000437"
-          }
-        ],
-        "affirmation_text": "Nuevas posibilidades aparecen cuando David Alexander Bijman Molina decide mantener en orden sus documentos y obligaciones y operar con calma y seguridad."
-      },
-      "content_hash": "sha256:7830b52afeb67b3f54aa62e25543483601c21c38d3965705ad7f43c1ab5b806a"
     }
   ]
 }
