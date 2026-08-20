@@ -4,10 +4,116 @@
   "network_epoch": "SN1-2026-08-02",
   "document_type": "interactions",
   "node_id": "N02",
-  "generated_at": "2026-08-20T19:04:22Z",
+  "generated_at": "2026-08-20T19:48:53Z",
   "limit": 200,
   "event_count": 200,
   "events": [
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002699",
+      "event_type": "cycle_completed",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "success",
+      "details": {
+        "cycle_result": "success"
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002698",
+      "event_type": "site_generated",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "success",
+      "details": {
+        "pages": [
+          "index.html",
+          "sonantia.html"
+        ]
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002697",
+      "event_type": "message_generated",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "success",
+      "message_id": "SN1-N02-2026-08-20T19-48-53Z-000301",
+      "details": {
+        "generator_id": "sonantia-context-composer-06",
+        "fallback": false
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002696",
+      "event_type": "context_collected",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "success",
+      "details": {
+        "weather_provider": "open-meteo-current",
+        "weather_source_count": 1
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002695",
+      "event_type": "context_requested",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "success"
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002694",
+      "event_type": "peer_checked",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "success",
+      "peer_node_id": "N04",
+      "details": {
+        "message_count": 48,
+        "imported": 1,
+        "duplicates": 46,
+        "rejected": 1
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002693",
+      "event_type": "message_rejected",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "rejected",
+      "peer_node_id": "N04",
+      "details": {
+        "reason": "invalid-or-conflicting-message"
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002692",
+      "event_type": "peer_checked",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "success",
+      "peer_node_id": "N03",
+      "details": {
+        "message_count": 48,
+        "imported": 2,
+        "duplicates": 46,
+        "rejected": 0
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002691",
+      "event_type": "peer_checked",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "success",
+      "peer_node_id": "N01",
+      "details": {
+        "message_count": 48,
+        "imported": 37,
+        "duplicates": 11,
+        "rejected": 0
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-08-20T19-48-53Z-002690",
+      "event_type": "cycle_started",
+      "occurred_at": "2026-08-20T19:48:53Z",
+      "result": "success",
+      "details": {
+        "node_id": "N02"
+      }
+    },
     {
       "event_id": "SN1-N02-EVT-2026-08-20T19-04-22Z-002689",
       "event_type": "cycle_completed",
@@ -2026,111 +2132,6 @@
       "result": "success",
       "details": {
         "node_id": "N02"
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T21-44-27Z-002499",
-      "event_type": "cycle_completed",
-      "occurred_at": "2026-08-19T21:44:27Z",
-      "result": "success",
-      "details": {
-        "cycle_result": "success"
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T21-44-27Z-002498",
-      "event_type": "site_generated",
-      "occurred_at": "2026-08-19T21:44:27Z",
-      "result": "success",
-      "details": {
-        "pages": [
-          "index.html",
-          "sonantia.html"
-        ]
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T21-44-27Z-002497",
-      "event_type": "message_generated",
-      "occurred_at": "2026-08-19T21:44:27Z",
-      "result": "success",
-      "message_id": "SN1-N02-2026-08-19T21-44-27Z-000280",
-      "details": {
-        "generator_id": "sonantia-context-composer-06",
-        "fallback": false
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T21-44-27Z-002496",
-      "event_type": "context_collected",
-      "occurred_at": "2026-08-19T21:44:27Z",
-      "result": "success",
-      "details": {
-        "weather_provider": "open-meteo-current",
-        "weather_source_count": 1
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T21-44-27Z-002495",
-      "event_type": "context_requested",
-      "occurred_at": "2026-08-19T21:44:27Z",
-      "result": "success"
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T21-44-27Z-002494",
-      "event_type": "peer_checked",
-      "occurred_at": "2026-08-19T21:44:27Z",
-      "result": "success",
-      "peer_node_id": "N04",
-      "details": {
-        "message_count": 48,
-        "imported": 0,
-        "duplicates": 48,
-        "rejected": 0
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T21-44-27Z-002493",
-      "event_type": "peer_checked",
-      "occurred_at": "2026-08-19T21:44:27Z",
-      "result": "success",
-      "peer_node_id": "N03",
-      "details": {
-        "message_count": 48,
-        "imported": 0,
-        "duplicates": 48,
-        "rejected": 0
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T21-44-27Z-002492",
-      "event_type": "peer_checked",
-      "occurred_at": "2026-08-19T21:44:27Z",
-      "result": "success",
-      "peer_node_id": "N01",
-      "details": {
-        "message_count": 48,
-        "imported": 34,
-        "duplicates": 14,
-        "rejected": 0
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T21-44-27Z-002491",
-      "event_type": "cycle_started",
-      "occurred_at": "2026-08-19T21:44:27Z",
-      "result": "success",
-      "details": {
-        "node_id": "N02"
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-08-19T20-48-37Z-002490",
-      "event_type": "cycle_completed",
-      "occurred_at": "2026-08-19T20:48:37Z",
-      "result": "success",
-      "details": {
-        "cycle_result": "success"
       }
     }
   ]
