@@ -5,10 +5,212 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-08-20T04:56:52Z",
+  "generated_at": "2026-08-20T05:49:45Z",
   "retention_hours": 168,
   "message_count": 13,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-08-20T05-09-27Z-000125",
+      "origin_node_id": "N01",
+      "sequence": 125,
+      "created_at": "2026-08-20T05:09:27Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Este ciclo encuentra a Santiago bajo un cielo cubierto; comienza otro ciclo del nodo. La lectura sísmica local recoge un sismo de magnitud 5,0 con ubicaci?n reportada como 23 km al S de Caleta El Cobre, a unos 996 km del nodo. La medición meteorológica actual recoge una lluvia acumulada durante el día de 0,0 mm y una radiación solar de 0,0 W/m². La observación presente deja abierta la idea de que cada experiencia positiva confirma que sus células reciben condiciones apropiadas para funcionar con eficiencia y que la energía física de David Alexander Bijman Molina se renueva de manera sostenida.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-08-20T05:09:27Z",
+          "observed_at": "2026-08-20T04:58:37Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-08-20T05:00:00Z",
+          "measurement_source_count": 2,
+          "measurement_source_codes": [
+            "RMCL0098",
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 8.7,
+            "relative_humidity_percent": 93.5,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1026.53,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 3
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-20T05:09:27Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 164.54565,
+            "elevation_deg": -68.36685,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-20T05:09:27Z",
+          "observed_at": "2026-08-20T04:52:48Z",
+          "window_hours": 24,
+          "count": 32,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20260820T005248-001",
+            "occurred_at": "2026-08-20T04:52:48Z",
+            "local_time": "2026-08-20 00:52:48",
+            "location": "23 km al S de Caleta El Cobre",
+            "magnitude": 5.0,
+            "magnitude_text": "5.0 Mw",
+            "depth_km": 32.0,
+            "depth": "32 km",
+            "latitude": -24.46,
+            "longitude": -70.54,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/379921.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-08-20T05:09:27Z",
+          "observed_at": "2026-08-20T05:09:27Z",
+          "date": "20 de agosto de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$40.859,28",
+              "group": "general"
+            },
+            {
+              "label": "UTM (AGO)",
+              "value": "$71.649",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$920,26",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.073,94",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (JUL) mensual",
+              "value": "0,1",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (JUL) anual",
+              "value": "3,5",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-contextual-cloudy-0278"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "cloudy"
+          },
+          {
+            "part_id": "source-geology",
+            "value_id": "fuente-geologia-153-sismo-magnitud-sismo-distancia"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-ampliada-016-meteo-pair-09-canonical-y"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ampliada-059"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "observation"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "present-moment"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-001720"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "geology-mandatory"
+          },
+          {
+            "part_id": "source-secondary",
+            "value_id": "weather"
+          }
+        ],
+        "affirmation_text": "Cada experiencia positiva confirma que sus células reciben condiciones apropiadas para funcionar con eficiencia y que la energía física de David Alexander Bijman Molina se renueva de manera sostenida."
+      },
+      "content_hash": "sha256:9a197e834983a860d0d35407e2a2262ffd1f5d149aee4f6275e290a5ca95cf0d"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
@@ -2320,196 +2522,6 @@
         "affirmation_text": "La capacidad de David Alexander Bijman Molina para mantener una mentalidad positiva ante los desafíos le permite procesos de selección más favorables."
       },
       "content_hash": "sha256:9f7ce2f5cfe326e02fd9f2634121fe9832258b9eb2a520ceb2e7745418c26a20"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N01-2026-08-13T05-09-43Z-000112",
-      "origin_node_id": "N01",
-      "sequence": 112,
-      "created_at": "2026-08-13T05:09:43Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "Este ciclo encuentra a Santiago bajo condiciones despejadas; una nueva composición está por comenzar. La lectura sísmica local informa sobre un sismo de magnitud 4,4 con ubicaci?n reportada como 8 km al NO de Petorca, a unos 141 km del nodo. Este registro local invita a recordar que cuanto más delega tareas con confianza, más cerca está David Alexander Bijman Molina de posiciones de mayor responsabilidad.",
-      "context": {
-        "location": {
-          "zone": "south-america",
-          "country": "Chile",
-          "country_code": "CL",
-          "city": "Santiago",
-          "timezone": "America/Santiago",
-          "latitude": -33.4164,
-          "longitude": -70.6068,
-          "elevation_m": 560.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "redmeteo-station-aggregate",
-          "requested_at": "2026-08-13T05:09:43Z",
-          "observed_at": "2026-08-13T05:09:21Z",
-          "condition_provider": "open-meteo-current",
-          "condition_observed_at": "2026-08-13T05:00:00Z",
-          "measurement_source_count": 2,
-          "measurement_source_codes": [
-            "RMCL0098",
-            "RMCL0059"
-          ],
-          "location": {
-            "latitude": -33.4164,
-            "longitude": -70.6068
-          },
-          "data": {
-            "temperature_c": 7.2,
-            "relative_humidity_percent": 86.0,
-            "precipitation_mm": 0.0,
-            "pressure_hpa": 1017.28,
-            "wind_speed_kmh": null,
-            "solar_radiation_wm2": 0.0,
-            "condition_code": 0
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-08-13T05:09:43Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Santiago · coordenadas N01",
-            "longitude_deg": -70.6068,
-            "latitude_deg": -33.4164,
-            "elevation_km": 0.56,
-            "timezone": "America/Santiago"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 164.054709,
-            "elevation_deg": -70.611015,
-            "visibility": "bajo el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "chile-csn",
-          "provider_label": "Centro Sismológico Nacional",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-08-13T05:09:43Z",
-          "observed_at": "2026-08-13T04:58:35Z",
-          "window_hours": 24,
-          "count": 32,
-          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
-          "recent_event": {
-            "event_id": "20260813T005835-001",
-            "occurred_at": "2026-08-13T04:58:35Z",
-            "local_time": "2026-08-13 00:58:35",
-            "location": "50 km al SE de San José de Maipo",
-            "magnitude": 2.6,
-            "magnitude_text": "2.6 Mlv",
-            "depth_km": 9.0,
-            "depth": "9 km",
-            "latitude": -34.033,
-            "longitude": -70.099,
-            "url": "https://www.sismologia.cl/sismicidad/informes/2026/08/379042.html"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "chile-bcentral",
-          "provider_label": "Banco Central de Chile",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-08-13T05:09:43Z",
-          "observed_at": "2026-08-13T05:09:43Z",
-          "date": "13 de agosto de 2026",
-          "indicators": [
-            {
-              "label": "UF",
-              "value": "$40.850,06",
-              "group": "general"
-            },
-            {
-              "label": "UTM (AGO)",
-              "value": "$71.649",
-              "group": "general"
-            },
-            {
-              "label": "Dólar observado",
-              "value": "$912,00",
-              "group": "general"
-            },
-            {
-              "label": "Euro",
-              "value": "$1.050,93",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "IPC (JUL) mensual",
-              "value": "0,1",
-              "group": "inflation"
-            },
-            {
-              "label": "IPC (JUL) anual",
-              "value": "3,5",
-              "group": "inflation"
-            },
-            {
-              "label": "TPM",
-              "value": "4,5%",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-06",
-        "catalog_version": "2026-08-10-catalog-extended-04",
-        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-contextual-clear-0248"
-          },
-          {
-            "part_id": "opening-family",
-            "value_id": "clear"
-          },
-          {
-            "part_id": "source-geology",
-            "value_id": "fuente-geologia-156-sismo-magnitud-sismo-distancia"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-ampliada-015"
-          },
-          {
-            "part_id": "declaration-family",
-            "value_id": "neutral"
-          },
-          {
-            "part_id": "declaration-family",
-            "value_id": "reflective"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-007367"
-          },
-          {
-            "part_id": "source-selection",
-            "value_id": "geology"
-          }
-        ],
-        "affirmation_text": "Cuanto más delega tareas con confianza, más cerca está David Alexander Bijman Molina de posiciones de mayor responsabilidad."
-      },
-      "content_hash": "sha256:2690c821aafe0565f4b68385c5e9c20ac33d2a50d21b93e8e3d0e15c23f588e3"
     }
   ]
 }
