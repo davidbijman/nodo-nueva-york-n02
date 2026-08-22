@@ -5,10 +5,183 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N03",
-  "generated_at": "2026-08-22T04:53:27Z",
+  "generated_at": "2026-08-22T05:46:37Z",
   "retention_hours": 168,
-  "message_count": 164,
+  "message_count": 165,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N03-2026-08-22T05-45-22Z-000411",
+      "origin_node_id": "N03",
+      "sequence": 411,
+      "created_at": "2026-08-22T05:45:22Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "En esta mañana, Falkenstein comparte un mensaje para la red. Las condiciones locales presentan una temperatura de 12,4 °C y una humedad relativa de 98,0 %. Este registro destaca que la organización del hogar aporta tranquilidad a David Alexander Bijman Molina.",
+      "context": {
+        "location": {
+          "zone": "europe",
+          "country": "Alemania",
+          "country_code": "DE",
+          "city": "Falkenstein",
+          "timezone": "Europe/Berlin",
+          "latitude": 50.4667,
+          "longitude": 12.3667,
+          "elevation_m": 600.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "brightsky-dwd",
+          "requested_at": "2026-08-22T05:45:22Z",
+          "observed_at": "2026-08-22T05:30:00+00:00",
+          "condition_provider": "brightsky-dwd",
+          "condition_observed_at": "2026-08-22T05:30:00+00:00",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "9217"
+          ],
+          "location": {
+            "latitude": 50.4667,
+            "longitude": 12.3667
+          },
+          "data": {
+            "temperature_c": 12.4,
+            "relative_humidity_percent": 98.0,
+            "precipitation_mm": 1.6,
+            "pressure_hpa": 1012.8,
+            "wind_speed_kmh": 6.8,
+            "solar_radiation_wm2": 6.0,
+            "condition_code": "moderate-rain"
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-08-22T05:45:22Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Falkenstein · coordenadas N03",
+            "longitude_deg": 12.3667,
+            "latitude_deg": 50.4667,
+            "elevation_km": 0.6,
+            "timezone": "Europe/Berlin"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 88.445403,
+            "elevation_deg": 14.03455,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "emsc-earthquakes",
+          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
+          "region_label": "Europa central",
+          "country_code": "DE",
+          "generated_at": "2026-08-22T05:45:22Z",
+          "observed_at": "2026-08-20T16:24:42Z",
+          "window_hours": 168,
+          "count": 6,
+          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-15T05%3A45%3A22&endtime=2026-08-22T05%3A45%3A22&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
+          "recent_event": {
+            "event_id": "20260820_0000505",
+            "occurred_at": "2026-08-20T16:24:42Z",
+            "local_time": "2026-08-20 18:24:42",
+            "location": "POLAND",
+            "magnitude": 2.5,
+            "magnitude_text": "2.5",
+            "depth_km": 0.0,
+            "depth": "0.0 km",
+            "latitude": 51.4223,
+            "longitude": 16.1613,
+            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-15T05%3A45%3A22&endtime=2026-08-22T05%3A45%3A22&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "ecb-euro-area",
+          "provider_label": "Banco Central Europeo (ECB)",
+          "region_label": "Alemania y zona euro",
+          "country_code": "DE",
+          "generated_at": "2026-08-22T05:45:22Z",
+          "observed_at": "2026-08-22T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-08-22",
+          "indicators": [
+            {
+              "label": "Dólar estadounidense (USD por EUR)",
+              "value": "1,1699",
+              "group": "general"
+            },
+            {
+              "label": "Libra esterlina (GBP por EUR)",
+              "value": "0,8567",
+              "group": "general"
+            },
+            {
+              "label": "Franco suizo (CHF por EUR)",
+              "value": "0,9353",
+              "group": "general"
+            },
+            {
+              "label": "Yen japonés (JPY por EUR)",
+              "value": "185,66",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "Inflación Alemania",
+              "value": "2,8%",
+              "group": "inflation"
+            },
+            {
+              "label": "Inflación zona euro",
+              "value": "2,9%",
+              "group": "inflation"
+            },
+            {
+              "label": "Facilidad de depósito BCE",
+              "value": "2,25%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://data.ecb.europa.eu/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-periodo-red"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-condiciones-temperatura-humedad"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-registro"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-002070"
+          }
+        ],
+        "affirmation_text": "La organización del hogar aporta tranquilidad a David Alexander Bijman Molina."
+      },
+      "content_hash": "sha256:b62d1ff9112d7a8c6567c8b816c9bb0d2efa24c8c254bcd0a2998c26dfb2f864"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
