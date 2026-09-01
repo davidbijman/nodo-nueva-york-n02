@@ -5,10 +5,529 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N03",
-  "generated_at": "2026-09-01T14:57:24Z",
+  "generated_at": "2026-09-01T18:36:39Z",
   "retention_hours": 168,
-  "message_count": 168,
+  "message_count": 167,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N03-2026-09-01T17-45-07Z-000662",
+      "origin_node_id": "N03",
+      "sequence": 662,
+      "created_at": "2026-09-01T17:45:07Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Con una señal serena desde Falkenstein, el nodo inicia su publicación. La medición combinada de las fuentes disponibles aporta una temperatura de 17,1 °C y una lluvia acumulada durante el día de 0,0 mm. Este registro destaca que el bienestar de David Alexander Bijman Molina avanza con firmeza: la resiliencia de David aumenta con cada experiencia; asimismo, David recupera su equilibrio con mayor facilidad.",
+      "context": {
+        "location": {
+          "zone": "europe",
+          "country": "Alemania",
+          "country_code": "DE",
+          "city": "Falkenstein",
+          "timezone": "Europe/Berlin",
+          "latitude": 50.4667,
+          "longitude": 12.3667,
+          "elevation_m": 600.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "brightsky-dwd",
+          "requested_at": "2026-09-01T17:45:07Z",
+          "observed_at": "2026-09-01T17:30:00+00:00",
+          "condition_provider": "brightsky-dwd",
+          "condition_observed_at": "2026-09-01T17:30:00+00:00",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "9217"
+          ],
+          "location": {
+            "latitude": 50.4667,
+            "longitude": 12.3667
+          },
+          "data": {
+            "temperature_c": 17.1,
+            "relative_humidity_percent": 74.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1019.4,
+            "wind_speed_kmh": 0.0,
+            "solar_radiation_wm2": 18.0,
+            "condition_code": "overcast"
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-09-01T17:45:07Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Falkenstein · coordenadas N03",
+            "longitude_deg": 12.3667,
+            "latitude_deg": 50.4667,
+            "elevation_km": 0.6,
+            "timezone": "Europe/Berlin"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 281.777589,
+            "elevation_deg": 0.787552,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "emsc-earthquakes",
+          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
+          "region_label": "Europa central",
+          "country_code": "DE",
+          "generated_at": "2026-09-01T17:45:07Z",
+          "observed_at": "2026-09-01T15:49:40Z",
+          "window_hours": 168,
+          "count": 8,
+          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-25T17%3A45%3A07&endtime=2026-09-01T17%3A45%3A07&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
+          "recent_event": {
+            "event_id": "20260901_0000234",
+            "occurred_at": "2026-09-01T15:49:40Z",
+            "local_time": "2026-09-01 17:49:40",
+            "location": "POLAND",
+            "magnitude": 2.6,
+            "magnitude_text": "2.6",
+            "depth_km": -10.0,
+            "depth": "-10.0 km",
+            "latitude": 51.5998,
+            "longitude": 16.111,
+            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-25T17%3A45%3A07&endtime=2026-09-01T17%3A45%3A07&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "ecb-euro-area",
+          "provider_label": "Banco Central Europeo (ECB)",
+          "region_label": "Alemania y zona euro",
+          "country_code": "DE",
+          "generated_at": "2026-09-01T17:45:07Z",
+          "observed_at": "2026-09-01T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-09-01",
+          "indicators": [
+            {
+              "label": "Dólar estadounidense (USD por EUR)",
+              "value": "1,1590",
+              "group": "general"
+            },
+            {
+              "label": "Libra esterlina (GBP por EUR)",
+              "value": "0,8566",
+              "group": "general"
+            },
+            {
+              "label": "Franco suizo (CHF por EUR)",
+              "value": "0,9394",
+              "group": "general"
+            },
+            {
+              "label": "Yen japonés (JPY por EUR)",
+              "value": "185,63",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "Inflación Alemania",
+              "value": "2,9%",
+              "group": "inflation"
+            },
+            {
+              "label": "Inflación zona euro",
+              "value": "3,3%",
+              "group": "inflation"
+            },
+            {
+              "label": "Facilidad de depósito BCE",
+              "value": "2,25%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://data.ecb.europa.eu/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-registro-sereno"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-promedio-estaciones-temperatura-lluvia-diaria"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-registro"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-000139"
+          }
+        ],
+        "affirmation_text": "El bienestar de David Alexander Bijman Molina avanza con firmeza: la resiliencia de David aumenta con cada experiencia; asimismo, David recupera su equilibrio con mayor facilidad."
+      },
+      "content_hash": "sha256:97ff8514b187d982ab957f4c293e3c17f18729a35521f0b394f7ab698cfe3e49"
+    },
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N03-2026-09-01T16-52-05Z-000661",
+      "origin_node_id": "N03",
+      "sequence": 661,
+      "created_at": "2026-09-01T16:52:05Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Un cordial saludo desde Falkenstein. Para este instante, la medición disponible indica una temperatura de 18,8 °C y una humedad relativa de 63,0 %. A partir del contexto disponible, recordamos que el futuro cercano de la familia de David Alexander Bijman Molina se abre al bienestar, ya que David observa una fortaleza colectiva cada vez más firme y cada etapa superada confirma la capacidad de avanzar juntos.",
+      "context": {
+        "location": {
+          "zone": "europe",
+          "country": "Alemania",
+          "country_code": "DE",
+          "city": "Falkenstein",
+          "timezone": "Europe/Berlin",
+          "latitude": 50.4667,
+          "longitude": 12.3667,
+          "elevation_m": 600.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "brightsky-dwd",
+          "requested_at": "2026-09-01T16:52:05Z",
+          "observed_at": "2026-09-01T16:30:00+00:00",
+          "condition_provider": "brightsky-dwd",
+          "condition_observed_at": "2026-09-01T16:30:00+00:00",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "9217"
+          ],
+          "location": {
+            "latitude": 50.4667,
+            "longitude": 12.3667
+          },
+          "data": {
+            "temperature_c": 18.8,
+            "relative_humidity_percent": 63.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1019.4,
+            "wind_speed_kmh": 7.9,
+            "solar_radiation_wm2": 330.0,
+            "condition_code": "overcast"
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-09-01T16:52:05Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Falkenstein · coordenadas N03",
+            "longitude_deg": 12.3667,
+            "latitude_deg": 50.4667,
+            "elevation_km": 0.6,
+            "timezone": "Europe/Berlin"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 271.632116,
+            "elevation_deg": 9.165153,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "emsc-earthquakes",
+          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
+          "region_label": "Europa central",
+          "country_code": "DE",
+          "generated_at": "2026-09-01T16:52:05Z",
+          "observed_at": "2026-09-01T15:49:40Z",
+          "window_hours": 168,
+          "count": 8,
+          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-25T16%3A52%3A05&endtime=2026-09-01T16%3A52%3A05&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
+          "recent_event": {
+            "event_id": "20260901_0000234",
+            "occurred_at": "2026-09-01T15:49:40Z",
+            "local_time": "2026-09-01 17:49:40",
+            "location": "POLAND",
+            "magnitude": 2.6,
+            "magnitude_text": "2.6",
+            "depth_km": -4.6,
+            "depth": "-4.6 km",
+            "latitude": 51.5859,
+            "longitude": 16.0948,
+            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-25T16%3A52%3A05&endtime=2026-09-01T16%3A52%3A05&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "ecb-euro-area",
+          "provider_label": "Banco Central Europeo (ECB)",
+          "region_label": "Alemania y zona euro",
+          "country_code": "DE",
+          "generated_at": "2026-09-01T16:52:05Z",
+          "observed_at": "2026-09-01T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-09-01",
+          "indicators": [
+            {
+              "label": "Dólar estadounidense (USD por EUR)",
+              "value": "1,1590",
+              "group": "general"
+            },
+            {
+              "label": "Libra esterlina (GBP por EUR)",
+              "value": "0,8566",
+              "group": "general"
+            },
+            {
+              "label": "Franco suizo (CHF por EUR)",
+              "value": "0,9394",
+              "group": "general"
+            },
+            {
+              "label": "Yen japonés (JPY por EUR)",
+              "value": "185,63",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "Inflación Alemania",
+              "value": "2,9%",
+              "group": "inflation"
+            },
+            {
+              "label": "Inflación zona euro",
+              "value": "3,3%",
+              "group": "inflation"
+            },
+            {
+              "label": "Facilidad de depósito BCE",
+              "value": "2,25%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://data.ecb.europa.eu/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-saludo-cordial"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-instante-temperatura-humedad"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-antecedentes"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-003900"
+          }
+        ],
+        "affirmation_text": "El futuro cercano de la familia de David Alexander Bijman Molina se abre al bienestar, ya que David observa una fortaleza colectiva cada vez más firme y cada etapa superada confirma la capacidad de avanzar juntos."
+      },
+      "content_hash": "sha256:298a0577288a9e7430bc6e72537d6f3e5c8c0646a0b9bf29a3a09c320afd3edf"
+    },
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N03-2026-09-01T16-15-06Z-000660",
+      "origin_node_id": "N03",
+      "sequence": 660,
+      "created_at": "2026-09-01T16:15:06Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Reciban un saludo afectuoso emitido desde Falkenstein. El panorama meteorológico incluye una presión atmosférica de 1019,1 hPa y una radiación solar de 210,0 W/m². La reflexión de este ciclo recuerda que David Alexander Bijman Molina desarrolla un liderazgo cercano, firme y respetuoso; su éxito crece de forma equilibrada, sostenible y coherente con sus valores.",
+      "context": {
+        "location": {
+          "zone": "europe",
+          "country": "Alemania",
+          "country_code": "DE",
+          "city": "Falkenstein",
+          "timezone": "Europe/Berlin",
+          "latitude": 50.4667,
+          "longitude": 12.3667,
+          "elevation_m": 600.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "brightsky-dwd",
+          "requested_at": "2026-09-01T16:15:06Z",
+          "observed_at": "2026-09-01T16:00:00+00:00",
+          "condition_provider": "brightsky-dwd",
+          "condition_observed_at": "2026-09-01T16:00:00+00:00",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "9217"
+          ],
+          "location": {
+            "latitude": 50.4667,
+            "longitude": 12.3667
+          },
+          "data": {
+            "temperature_c": 19.6,
+            "relative_humidity_percent": 57.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1019.1,
+            "wind_speed_kmh": 11.9,
+            "solar_radiation_wm2": 210.0,
+            "condition_code": "overcast"
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-09-01T16:15:06Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Falkenstein · coordenadas N03",
+            "longitude_deg": 12.3667,
+            "latitude_deg": 50.4667,
+            "elevation_km": 0.6,
+            "timezone": "Europe/Berlin"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 264.453089,
+            "elevation_deg": 15.05432,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "emsc-earthquakes",
+          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
+          "region_label": "Europa central",
+          "country_code": "DE",
+          "generated_at": "2026-09-01T16:15:06Z",
+          "observed_at": "2026-09-01T15:49:40Z",
+          "window_hours": 168,
+          "count": 8,
+          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-25T16%3A15%3A06&endtime=2026-09-01T16%3A15%3A06&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
+          "recent_event": {
+            "event_id": "20260901_0000234",
+            "occurred_at": "2026-09-01T15:49:40Z",
+            "local_time": "2026-09-01 17:49:40",
+            "location": "POLAND",
+            "magnitude": 2.6,
+            "magnitude_text": "2.6",
+            "depth_km": -4.6,
+            "depth": "-4.6 km",
+            "latitude": 51.5859,
+            "longitude": 16.0948,
+            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-25T16%3A15%3A06&endtime=2026-09-01T16%3A15%3A06&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "ecb-euro-area",
+          "provider_label": "Banco Central Europeo (ECB)",
+          "region_label": "Alemania y zona euro",
+          "country_code": "DE",
+          "generated_at": "2026-09-01T16:15:06Z",
+          "observed_at": "2026-09-01T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-09-01",
+          "indicators": [
+            {
+              "label": "Dólar estadounidense (USD por EUR)",
+              "value": "1,1590",
+              "group": "general"
+            },
+            {
+              "label": "Libra esterlina (GBP por EUR)",
+              "value": "0,8566",
+              "group": "general"
+            },
+            {
+              "label": "Franco suizo (CHF por EUR)",
+              "value": "0,9394",
+              "group": "general"
+            },
+            {
+              "label": "Yen japonés (JPY por EUR)",
+              "value": "185,63",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "Inflación Alemania",
+              "value": "2,9%",
+              "group": "inflation"
+            },
+            {
+              "label": "Inflación zona euro",
+              "value": "3,3%",
+              "group": "inflation"
+            },
+            {
+              "label": "Facilidad de depósito BCE",
+              "value": "2,25%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://data.ecb.europa.eu/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-03",
+        "catalog_version": "2026-08-04-grammar-01",
+        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-saludo-afectuoso"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-panorama-presion-radiacion-solar"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ciclo"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-003565"
+          }
+        ],
+        "affirmation_text": "David Alexander Bijman Molina desarrolla un liderazgo cercano, firme y respetuoso; su éxito crece de forma equilibrada, sostenible y coherente con sus valores."
+      },
+      "content_hash": "sha256:8994e52039e8802133f3831c2e96b0a5e42f51f2f08d483365d2811ee4bd6159"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
@@ -28380,698 +28899,6 @@
         "affirmation_text": "El futuro cercano de David Alexander Bijman Molina se abre al bienestar, ya que David encuentra soluciones favorables con mayor facilidad y la vida de David reúne condiciones cada vez mejores para florecer."
       },
       "content_hash": "sha256:b3784baa5aca745ad529f4478ad9193e9a99e9dc9f15f5be6d7ea6d4b7cf01c6"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N03-2026-08-25T17-58-19Z-000495",
-      "origin_node_id": "N03",
-      "sequence": 495,
-      "created_at": "2026-08-25T17:58:19Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "Saludos desde Falkenstein. Como señal del entorno, se integran una humedad relativa de 57,0 % y una lluvia acumulada durante el día de 0,0 mm. En el ciclo actual, el mensaje recuerda que cada actividad innecesaria eliminada acerca a David Alexander Bijman Molina a objetivos cada vez más concretos.",
-      "context": {
-        "location": {
-          "zone": "europe",
-          "country": "Alemania",
-          "country_code": "DE",
-          "city": "Falkenstein",
-          "timezone": "Europe/Berlin",
-          "latitude": 50.4667,
-          "longitude": 12.3667,
-          "elevation_m": 600.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "brightsky-dwd",
-          "requested_at": "2026-08-25T17:58:19Z",
-          "observed_at": "2026-08-25T17:30:00+00:00",
-          "condition_provider": "brightsky-dwd",
-          "condition_observed_at": "2026-08-25T17:30:00+00:00",
-          "measurement_source_count": 1,
-          "measurement_source_codes": [
-            "9217"
-          ],
-          "location": {
-            "latitude": 50.4667,
-            "longitude": 12.3667
-          },
-          "data": {
-            "temperature_c": 19.3,
-            "relative_humidity_percent": 57.0,
-            "precipitation_mm": 0.0,
-            "pressure_hpa": 1014.9,
-            "wind_speed_kmh": 1.8,
-            "solar_radiation_wm2": 12.0,
-            "condition_code": "overcast"
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-08-25T17:58:19Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Falkenstein · coordenadas N03",
-            "longitude_deg": 12.3667,
-            "latitude_deg": 50.4667,
-            "elevation_km": 0.6,
-            "timezone": "Europe/Berlin"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 285.428336,
-            "elevation_deg": 1.038202,
-            "visibility": "sobre el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "emsc-earthquakes",
-          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
-          "region_label": "Europa central",
-          "country_code": "DE",
-          "generated_at": "2026-08-25T17:58:19Z",
-          "observed_at": "2026-08-25T03:40:22Z",
-          "window_hours": 168,
-          "count": 9,
-          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-18T17%3A58%3A19&endtime=2026-08-25T17%3A58%3A19&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
-          "recent_event": {
-            "event_id": "20260825_0000115",
-            "occurred_at": "2026-08-25T03:40:22Z",
-            "local_time": "2026-08-25 05:40:22",
-            "location": "POLAND",
-            "magnitude": 2.2,
-            "magnitude_text": "2.2",
-            "depth_km": -1.0,
-            "depth": "-1.0 km",
-            "latitude": 51.5512,
-            "longitude": 16.1666,
-            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-18T17%3A58%3A19&endtime=2026-08-25T17%3A58%3A19&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "ecb-euro-area",
-          "provider_label": "Banco Central Europeo (ECB)",
-          "region_label": "Alemania y zona euro",
-          "country_code": "DE",
-          "generated_at": "2026-08-25T17:58:19Z",
-          "observed_at": "2026-08-25T00:00:00Z",
-          "date": "Indicadores oficiales · 2026-08-25",
-          "indicators": [
-            {
-              "label": "Dólar estadounidense (USD por EUR)",
-              "value": "1,1662",
-              "group": "general"
-            },
-            {
-              "label": "Libra esterlina (GBP por EUR)",
-              "value": "0,8555",
-              "group": "general"
-            },
-            {
-              "label": "Franco suizo (CHF por EUR)",
-              "value": "0,9361",
-              "group": "general"
-            },
-            {
-              "label": "Yen japonés (JPY por EUR)",
-              "value": "185,70",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "Inflación Alemania",
-              "value": "2,8%",
-              "group": "inflation"
-            },
-            {
-              "label": "Inflación zona euro",
-              "value": "2,9%",
-              "group": "inflation"
-            },
-            {
-              "label": "Facilidad de depósito BCE",
-              "value": "2,25%",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://data.ecb.europa.eu/"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-03",
-        "catalog_version": "2026-08-04-grammar-01",
-        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-saludo-directo"
-          },
-          {
-            "part_id": "source-weather",
-            "value_id": "fuente-clima-senal-humedad-lluvia-diaria"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-presente"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-001538"
-          }
-        ],
-        "affirmation_text": "Cada actividad innecesaria eliminada acerca a David Alexander Bijman Molina a objetivos cada vez más concretos."
-      },
-      "content_hash": "sha256:95ac9451afde1371f59efb2bd62b796f47886401c9678b18624545fc987fe246"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N03-2026-08-25T17-18-10Z-000494",
-      "origin_node_id": "N03",
-      "sequence": 494,
-      "created_at": "2026-08-25T17:18:10Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "El Nodo Falkenstein permanece activo y saluda desde Falkenstein. La medición combinada de las fuentes disponibles aporta una temperatura de 19,7 °C y una radiación solar de 30,0 W/m². La transmisión comparte la idea de que cada experiencia positiva confirma que las noches de David Alexander Bijman Molina favorecen una recuperación física y mental completa y que su organismo aprovecha mejor cada periodo de reposo.",
-      "context": {
-        "location": {
-          "zone": "europe",
-          "country": "Alemania",
-          "country_code": "DE",
-          "city": "Falkenstein",
-          "timezone": "Europe/Berlin",
-          "latitude": 50.4667,
-          "longitude": 12.3667,
-          "elevation_m": 600.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "brightsky-dwd",
-          "requested_at": "2026-08-25T17:18:10Z",
-          "observed_at": "2026-08-25T17:00:00+00:00",
-          "condition_provider": "brightsky-dwd",
-          "condition_observed_at": "2026-08-25T17:00:00+00:00",
-          "measurement_source_count": 1,
-          "measurement_source_codes": [
-            "9217"
-          ],
-          "location": {
-            "latitude": 50.4667,
-            "longitude": 12.3667
-          },
-          "data": {
-            "temperature_c": 19.7,
-            "relative_humidity_percent": 54.0,
-            "precipitation_mm": 0.0,
-            "pressure_hpa": 1014.7,
-            "wind_speed_kmh": 4.0,
-            "solar_radiation_wm2": 30.0,
-            "condition_code": "overcast"
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-08-25T17:18:10Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Falkenstein · coordenadas N03",
-            "longitude_deg": 12.3667,
-            "latitude_deg": 50.4667,
-            "elevation_km": 0.6,
-            "timezone": "Europe/Berlin"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 277.805728,
-            "elevation_deg": 7.27731,
-            "visibility": "sobre el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "emsc-earthquakes",
-          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
-          "region_label": "Europa central",
-          "country_code": "DE",
-          "generated_at": "2026-08-25T17:18:10Z",
-          "observed_at": "2026-08-25T03:40:22Z",
-          "window_hours": 168,
-          "count": 9,
-          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-18T17%3A18%3A10&endtime=2026-08-25T17%3A18%3A10&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
-          "recent_event": {
-            "event_id": "20260825_0000115",
-            "occurred_at": "2026-08-25T03:40:22Z",
-            "local_time": "2026-08-25 05:40:22",
-            "location": "POLAND",
-            "magnitude": 2.2,
-            "magnitude_text": "2.2",
-            "depth_km": -1.0,
-            "depth": "-1.0 km",
-            "latitude": 51.5512,
-            "longitude": 16.1666,
-            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-18T17%3A18%3A10&endtime=2026-08-25T17%3A18%3A10&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "ecb-euro-area",
-          "provider_label": "Banco Central Europeo (ECB)",
-          "region_label": "Alemania y zona euro",
-          "country_code": "DE",
-          "generated_at": "2026-08-25T17:18:10Z",
-          "observed_at": "2026-08-25T00:00:00Z",
-          "date": "Indicadores oficiales · 2026-08-25",
-          "indicators": [
-            {
-              "label": "Dólar estadounidense (USD por EUR)",
-              "value": "1,1662",
-              "group": "general"
-            },
-            {
-              "label": "Libra esterlina (GBP por EUR)",
-              "value": "0,8555",
-              "group": "general"
-            },
-            {
-              "label": "Franco suizo (CHF por EUR)",
-              "value": "0,9361",
-              "group": "general"
-            },
-            {
-              "label": "Yen japonés (JPY por EUR)",
-              "value": "185,70",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "Inflación Alemania",
-              "value": "2,8%",
-              "group": "inflation"
-            },
-            {
-              "label": "Inflación zona euro",
-              "value": "2,9%",
-              "group": "inflation"
-            },
-            {
-              "label": "Facilidad de depósito BCE",
-              "value": "2,25%",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://data.ecb.europa.eu/"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-03",
-        "catalog_version": "2026-08-04-grammar-01",
-        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-nodo-activo"
-          },
-          {
-            "part_id": "source-weather",
-            "value_id": "fuente-clima-promedio-estaciones-temperatura-radiacion-solar"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-transmision"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-001203"
-          }
-        ],
-        "affirmation_text": "Cada experiencia positiva confirma que las noches de David Alexander Bijman Molina favorecen una recuperación física y mental completa y que su organismo aprovecha mejor cada periodo de reposo."
-      },
-      "content_hash": "sha256:cb0d353ce8d81e4e81b7022ec2d66efadaf32c43f69001e6f6b7c6a5c7d967d1"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N03-2026-08-25T16-00-18Z-000493",
-      "origin_node_id": "N03",
-      "sequence": 493,
-      "created_at": "2026-08-25T16:00:18Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "Buenas tardes desde Falkenstein. La medición combinada de las fuentes disponibles aporta una temperatura de 20,6 °C y una presión atmosférica de 1014,1 hPa. A partir del contexto disponible, recordamos que el bienestar familiar de David Alexander Bijman Molina avanza con firmeza: la estabilidad de su hogar mejora progresivamente; asimismo, David percibe una base familiar cada vez más segura.",
-      "context": {
-        "location": {
-          "zone": "europe",
-          "country": "Alemania",
-          "country_code": "DE",
-          "city": "Falkenstein",
-          "timezone": "Europe/Berlin",
-          "latitude": 50.4667,
-          "longitude": 12.3667,
-          "elevation_m": 600.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "brightsky-dwd",
-          "requested_at": "2026-08-25T16:00:18Z",
-          "observed_at": "2026-08-25T15:30:00+00:00",
-          "condition_provider": "brightsky-dwd",
-          "condition_observed_at": "2026-08-25T15:30:00+00:00",
-          "measurement_source_count": 1,
-          "measurement_source_codes": [
-            "9217"
-          ],
-          "location": {
-            "latitude": 50.4667,
-            "longitude": 12.3667
-          },
-          "data": {
-            "temperature_c": 20.6,
-            "relative_humidity_percent": 52.0,
-            "precipitation_mm": 0.0,
-            "pressure_hpa": 1014.1,
-            "wind_speed_kmh": 9.4,
-            "solar_radiation_wm2": 132.0,
-            "condition_code": "overcast"
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-08-25T16:00:18Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Falkenstein · coordenadas N03",
-            "longitude_deg": 12.3667,
-            "latitude_deg": 50.4667,
-            "elevation_km": 0.6,
-            "timezone": "Europe/Berlin"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 262.730788,
-            "elevation_deg": 19.670573,
-            "visibility": "sobre el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "emsc-earthquakes",
-          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
-          "region_label": "Europa central",
-          "country_code": "DE",
-          "generated_at": "2026-08-25T16:00:18Z",
-          "observed_at": "2026-08-25T03:40:22Z",
-          "window_hours": 168,
-          "count": 9,
-          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-18T16%3A00%3A18&endtime=2026-08-25T16%3A00%3A18&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
-          "recent_event": {
-            "event_id": "20260825_0000115",
-            "occurred_at": "2026-08-25T03:40:22Z",
-            "local_time": "2026-08-25 05:40:22",
-            "location": "POLAND",
-            "magnitude": 2.2,
-            "magnitude_text": "2.2",
-            "depth_km": -1.0,
-            "depth": "-1.0 km",
-            "latitude": 51.5512,
-            "longitude": 16.1666,
-            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-18T16%3A00%3A18&endtime=2026-08-25T16%3A00%3A18&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "ecb-euro-area",
-          "provider_label": "Banco Central Europeo (ECB)",
-          "region_label": "Alemania y zona euro",
-          "country_code": "DE",
-          "generated_at": "2026-08-25T16:00:18Z",
-          "observed_at": "2026-08-25T00:00:00Z",
-          "date": "Indicadores oficiales · 2026-08-25",
-          "indicators": [
-            {
-              "label": "Dólar estadounidense (USD por EUR)",
-              "value": "1,1662",
-              "group": "general"
-            },
-            {
-              "label": "Libra esterlina (GBP por EUR)",
-              "value": "0,8555",
-              "group": "general"
-            },
-            {
-              "label": "Franco suizo (CHF por EUR)",
-              "value": "0,9361",
-              "group": "general"
-            },
-            {
-              "label": "Yen japonés (JPY por EUR)",
-              "value": "185,70",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "Inflación Alemania",
-              "value": "2,8%",
-              "group": "inflation"
-            },
-            {
-              "label": "Inflación zona euro",
-              "value": "2,9%",
-              "group": "inflation"
-            },
-            {
-              "label": "Facilidad de depósito BCE",
-              "value": "2,25%",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://data.ecb.europa.eu/"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-03",
-        "catalog_version": "2026-08-04-grammar-01",
-        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-saludo-horario"
-          },
-          {
-            "part_id": "source-weather",
-            "value_id": "fuente-clima-promedio-estaciones-temperatura-presion"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-antecedentes"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-000868"
-          }
-        ],
-        "affirmation_text": "El bienestar familiar de David Alexander Bijman Molina avanza con firmeza: la estabilidad de su hogar mejora progresivamente; asimismo, David percibe una base familiar cada vez más segura."
-      },
-      "content_hash": "sha256:b11102315a38c7b4b222ec9aac5f978b0d053e370564a10c03b643e324ac9bd6"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N03-2026-08-25T15-17-39Z-000492",
-      "origin_node_id": "N03",
-      "sequence": 492,
-      "created_at": "2026-08-25T15:17:39Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "Buenas tardes; este mensaje se emite desde Falkenstein. Durante este ciclo se registran una temperatura de 21,2 °C y una lluvia acumulada durante el día de 0,0 mm. La lectura del entorno da paso a la afirmación de que la capacidad de David Alexander Bijman Molina para observar sus indicadores financieros le permite tomar decisiones oportunas.",
-      "context": {
-        "location": {
-          "zone": "europe",
-          "country": "Alemania",
-          "country_code": "DE",
-          "city": "Falkenstein",
-          "timezone": "Europe/Berlin",
-          "latitude": 50.4667,
-          "longitude": 12.3667,
-          "elevation_m": 600.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "brightsky-dwd",
-          "requested_at": "2026-08-25T15:17:39Z",
-          "observed_at": "2026-08-25T15:00:00+00:00",
-          "condition_provider": "brightsky-dwd",
-          "condition_observed_at": "2026-08-25T15:00:00+00:00",
-          "measurement_source_count": 1,
-          "measurement_source_codes": [
-            "9217"
-          ],
-          "location": {
-            "latitude": 50.4667,
-            "longitude": 12.3667
-          },
-          "data": {
-            "temperature_c": 21.2,
-            "relative_humidity_percent": 50.0,
-            "precipitation_mm": 0.0,
-            "pressure_hpa": 1013.8,
-            "wind_speed_kmh": 10.8,
-            "solar_radiation_wm2": 168.0,
-            "condition_code": "overcast"
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-08-25T15:17:39Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Falkenstein · coordenadas N03",
-            "longitude_deg": 12.3667,
-            "latitude_deg": 50.4667,
-            "elevation_km": 0.6,
-            "timezone": "Europe/Berlin"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 253.844804,
-            "elevation_deg": 26.374747,
-            "visibility": "sobre el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "emsc-earthquakes",
-          "provider_label": "European-Mediterranean Seismological Centre (EMSC)",
-          "region_label": "Europa central",
-          "country_code": "DE",
-          "generated_at": "2026-08-25T15:17:39Z",
-          "observed_at": "2026-08-25T03:40:22Z",
-          "window_hours": 168,
-          "count": 10,
-          "source_url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-18T15%3A17%3A39&endtime=2026-08-25T15%3A17%3A39&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200",
-          "recent_event": {
-            "event_id": "20260825_0000115",
-            "occurred_at": "2026-08-25T03:40:22Z",
-            "local_time": "2026-08-25 05:40:22",
-            "location": "POLAND",
-            "magnitude": 2.2,
-            "magnitude_text": "2.2",
-            "depth_km": -1.0,
-            "depth": "-1.0 km",
-            "latitude": 51.5512,
-            "longitude": 16.1666,
-            "url": "https://www.seismicportal.eu/fdsnws/event/1/query?format=json&starttime=2026-08-18T15%3A17%3A39&endtime=2026-08-25T15%3A17%3A39&latitude=50.4667&longitude=12.3667&maxradius=3.0&orderby=time&limit=200"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "ecb-euro-area",
-          "provider_label": "Banco Central Europeo (ECB)",
-          "region_label": "Alemania y zona euro",
-          "country_code": "DE",
-          "generated_at": "2026-08-25T15:17:39Z",
-          "observed_at": "2026-08-25T00:00:00Z",
-          "date": "Indicadores oficiales · 2026-08-25",
-          "indicators": [
-            {
-              "label": "Dólar estadounidense (USD por EUR)",
-              "value": "1,1662",
-              "group": "general"
-            },
-            {
-              "label": "Libra esterlina (GBP por EUR)",
-              "value": "0,8555",
-              "group": "general"
-            },
-            {
-              "label": "Franco suizo (CHF por EUR)",
-              "value": "0,9361",
-              "group": "general"
-            },
-            {
-              "label": "Yen japonés (JPY por EUR)",
-              "value": "185,70",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "Inflación Alemania",
-              "value": "2,8%",
-              "group": "inflation"
-            },
-            {
-              "label": "Inflación zona euro",
-              "value": "2,9%",
-              "group": "inflation"
-            },
-            {
-              "label": "Facilidad de depósito BCE",
-              "value": "2,25%",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://data.ecb.europa.eu/"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-03",
-        "catalog_version": "2026-08-04-grammar-01",
-        "catalog_hash": "sha256:752f3919c03d90ab852e49298ecd26a33a34a7d6dcbfccc077cd69f0e87efc71",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-mensaje-horario"
-          },
-          {
-            "part_id": "source-weather",
-            "value_id": "fuente-clima-ciclo-temperatura-lluvia-diaria"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-puente"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-000533"
-          }
-        ],
-        "affirmation_text": "La capacidad de David Alexander Bijman Molina para observar sus indicadores financieros le permite tomar decisiones oportunas."
-      },
-      "content_hash": "sha256:8b3adfe2ec94deead61ff637f6abef4ceea5d6159ce90296de743f7f32fe7d4c"
     }
   ]
 }
