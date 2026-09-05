@@ -5,10 +5,204 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-09-05T04:37:22Z",
+  "generated_at": "2026-09-05T09:08:47Z",
   "retention_hours": 168,
-  "message_count": 4,
+  "message_count": 5,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-09-05T05-10-34Z-000138",
+      "origin_node_id": "N01",
+      "sequence": 138,
+      "created_at": "2026-09-05T05:10:34Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Desde las mediciones del ciclo nace una nueva composición en Santiago. La actividad registrada por la fuente muestra un sismo de magnitud 4,2 con ubicaci?n reportada como 48 km al S de Mina Collahuasi, ocurrido hace aproximadamente 22,4 horas. El instante recién registrado invita a señalar que la decisión consciente de David Alexander Bijman Molina de organizar sus prioridades laborales refuerza su capacidad para un flujo de ingresos más constante.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-09-05T05:10:34Z",
+          "observed_at": "2026-09-05T05:08:41Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-09-05T05:00:00Z",
+          "measurement_source_count": 2,
+          "measurement_source_codes": [
+            "RMCL0098",
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 8.1,
+            "relative_humidity_percent": 70.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1021.88,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 0
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-09-05T05:10:34Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 164.341033,
+            "elevation_deg": -62.564552,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-09-05T05:10:34Z",
+          "observed_at": "2026-09-05T04:47:40Z",
+          "window_hours": 24,
+          "count": 26,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20260905T004740-001",
+            "occurred_at": "2026-09-05T04:47:40Z",
+            "local_time": "2026-09-05 00:47:40",
+            "location": "17 km al NE de Iquique",
+            "magnitude": 2.9,
+            "magnitude_text": "2.9 Mlv",
+            "depth_km": 59.0,
+            "depth": "59 km",
+            "latitude": -20.136,
+            "longitude": -70.011,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/09/381780.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-09-05T05:10:34Z",
+          "observed_at": "2026-09-05T05:10:34Z",
+          "date": "5 de septiembre de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "—",
+              "group": "general"
+            },
+            {
+              "label": "UTM (SEP)",
+              "value": "$71.721",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "—",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "—",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (JUL) mensual",
+              "value": "0,1",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (JUL) anual",
+              "value": "3,5",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "—",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-ampliada-428"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "general"
+          },
+          {
+            "part_id": "source-geology",
+            "value_id": "fuente-geologia-009-sismo-magnitud-sismo-antiguedad"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ampliada-196"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "present-moment"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "reflective"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-004265"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "geology"
+          }
+        ],
+        "affirmation_text": "La decisión consciente de David Alexander Bijman Molina de organizar sus prioridades laborales refuerza su capacidad para un flujo de ingresos más constante."
+      },
+      "content_hash": "sha256:72d45801508e079f311f585a244a23659a5a248908e952d8028321c09eb816fb"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
