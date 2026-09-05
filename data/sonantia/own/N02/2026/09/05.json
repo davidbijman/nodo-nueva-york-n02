@@ -1,0 +1,203 @@
+{
+  "network_id": "sonantia-network",
+  "protocol_version": "1.0",
+  "network_epoch": "SN1-2026-08-02",
+  "document_type": "daily-archive",
+  "origin_node_id": "N02",
+  "date": "2026-09-05",
+  "message_count": 1,
+  "first_sequence": 476,
+  "last_sequence": 476,
+  "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N02-2026-09-05T00-09-32Z-000476",
+      "origin_node_id": "N02",
+      "sequence": 476,
+      "created_at": "2026-09-05T00:09:32Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Desde Nueva York, una jornada cálida abre otra observación; el registro vuelve a ponerse en marcha. La referencia astronómica de este momento destaca la Luna a 21,187219° bajo el horizonte local. Los datos cuentan una parte y las palabras añaden que al reconocer su propio progreso, David Alexander Bijman Molina logra mayor tranquilidad y confianza.",
+      "context": {
+        "location": {
+          "zone": "north-america",
+          "country": "Estados Unidos",
+          "country_code": "US",
+          "city": "Nueva York",
+          "timezone": "America/New_York",
+          "latitude": 40.7789,
+          "longitude": -73.9692,
+          "elevation_m": 43.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "open-meteo-current",
+          "requested_at": "2026-09-05T00:09:32Z",
+          "observed_at": "2026-09-05T00:00:00Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-09-05T00:00:00Z",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "open-meteo-current"
+          ],
+          "location": {
+            "latitude": 40.78858,
+            "longitude": -73.9661
+          },
+          "data": {
+            "temperature_c": 26.7,
+            "relative_humidity_percent": 50.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1009.7,
+            "wind_speed_kmh": 9.3,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 3
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-09-05T00:09:32Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Nueva York · coordenadas N02",
+            "longitude_deg": -73.9692,
+            "latitude_deg": 40.7789,
+            "elevation_km": 0.043,
+            "timezone": "America/New_York"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 287.523564,
+            "elevation_deg": -9.273777,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "usgs-earthquakes",
+          "provider_label": "U.S. Geological Survey (USGS)",
+          "region_label": "Región geológica cercana a N02",
+          "country_code": "US",
+          "generated_at": "2026-09-05T00:09:32Z",
+          "observed_at": "2026-08-22T19:50:47Z",
+          "window_hours": 720,
+          "search_stage": "regional-30d",
+          "count": 4,
+          "source_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-08-06T00%3A09%3A32Z&endtime=2026-09-05T00%3A09%3A32Z&eventtype=earthquake&orderby=time&limit=200&latitude=40.7789&longitude=-73.9692&maxradiuskm=550",
+          "recent_event": {
+            "event_id": "us6000tmvw",
+            "occurred_at": "2026-08-22T19:50:47Z",
+            "local_time": "2026-08-22 15:50:47",
+            "location": "6 km SW of Chester, New Jersey",
+            "magnitude": 1.1,
+            "magnitude_text": "1.1",
+            "depth_km": 11.334,
+            "depth": "11.3 km",
+            "latitude": 40.7396,
+            "longitude": -74.7374,
+            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000tmvw"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "us-economic-data",
+          "provider_label": "Federal Reserve Economic Data (FRED)",
+          "region_label": "Estados Unidos",
+          "country_code": "US",
+          "generated_at": "2026-09-05T00:09:32Z",
+          "observed_at": "2026-09-04T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-09-04",
+          "indicators": [
+            {
+              "label": "Euro (USD por EUR)",
+              "value": "1,1598",
+              "group": "general"
+            },
+            {
+              "label": "Libra (USD por GBP)",
+              "value": "1,3555",
+              "group": "general"
+            },
+            {
+              "label": "Yen (JPY por USD)",
+              "value": "159,97",
+              "group": "general"
+            },
+            {
+              "label": "Dólar canadiense",
+              "value": "1,3895",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC mensual",
+              "value": "-0,01%",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC anual",
+              "value": "—",
+              "group": "inflation"
+            },
+            {
+              "label": "Tasa Fed",
+              "value": "3,75%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://fred.stlouisfed.org/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-contextual-warm-0359"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "warm"
+          },
+          {
+            "part_id": "source-astronomy",
+            "value_id": "fuente-astro-065-luna-altura"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ampliada-401"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "data-driven"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-004899"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "astronomy"
+          }
+        ],
+        "affirmation_text": "Al reconocer su propio progreso, David Alexander Bijman Molina logra mayor tranquilidad y confianza."
+      },
+      "content_hash": "sha256:f26475c9a8cfc9c745dea1a85e1bbfb540af9fe803769a1b8228f13581023e2c"
+    }
+  ]
+}
