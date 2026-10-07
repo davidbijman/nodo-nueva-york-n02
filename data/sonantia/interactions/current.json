@@ -4,10 +4,103 @@
   "network_epoch": "SN1-2026-08-02",
   "document_type": "interactions",
   "node_id": "N02",
-  "generated_at": "2026-10-07T01:38:05Z",
+  "generated_at": "2026-10-07T08:48:21Z",
   "limit": 200,
   "event_count": 200,
   "events": [
+    {
+      "event_id": "SN1-N02-EVT-2026-10-07T08-48-21Z-005876",
+      "event_type": "cycle_completed",
+      "occurred_at": "2026-10-07T08:48:21Z",
+      "result": "degraded",
+      "details": {
+        "cycle_result": "degraded"
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-10-07T08-48-21Z-005875",
+      "event_type": "site_generated",
+      "occurred_at": "2026-10-07T08:48:21Z",
+      "result": "success",
+      "details": {
+        "pages": [
+          "index.html",
+          "sonantia.html"
+        ]
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-10-07T08-48-21Z-005874",
+      "event_type": "message_generated",
+      "occurred_at": "2026-10-07T08:48:21Z",
+      "result": "success",
+      "message_id": "SN1-N02-2026-10-07T08-48-21Z-000650",
+      "details": {
+        "generator_id": "sonantia-context-composer-06",
+        "fallback": false
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-10-07T08-48-21Z-005873",
+      "event_type": "context_collected",
+      "occurred_at": "2026-10-07T08:48:21Z",
+      "result": "success",
+      "details": {
+        "weather_provider": "open-meteo-current",
+        "weather_source_count": 1
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-10-07T08-48-21Z-005872",
+      "event_type": "context_requested",
+      "occurred_at": "2026-10-07T08:48:21Z",
+      "result": "success"
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-10-07T08-48-21Z-005871",
+      "event_type": "peer_checked",
+      "occurred_at": "2026-10-07T08:48:21Z",
+      "result": "success",
+      "peer_node_id": "N04",
+      "details": {
+        "message_count": 48,
+        "imported": 8,
+        "duplicates": 40,
+        "rejected": 0
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-10-07T08-48-21Z-005870",
+      "event_type": "peer_unreachable",
+      "occurred_at": "2026-10-07T08:48:21Z",
+      "result": "degraded",
+      "peer_node_id": "N03",
+      "details": {
+        "error": "HTTPStatusError: Server error '502 Bad Gateway' for url 'https://nodo-falkenstein-n03-5222a9.frama.io/feed.json'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/502"
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-10-07T08-48-21Z-005869",
+      "event_type": "peer_checked",
+      "occurred_at": "2026-10-07T08:48:21Z",
+      "result": "success",
+      "peer_node_id": "N01",
+      "details": {
+        "message_count": 48,
+        "imported": 21,
+        "duplicates": 27,
+        "rejected": 0
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-10-07T08-48-21Z-005868",
+      "event_type": "cycle_started",
+      "occurred_at": "2026-10-07T08:48:21Z",
+      "result": "success",
+      "details": {
+        "node_id": "N02"
+      }
+    },
     {
       "event_id": "SN1-N02-EVT-2026-10-07T01-38-05Z-005867",
       "event_type": "cycle_completed",
@@ -2037,102 +2130,6 @@
       "event_id": "SN1-N02-EVT-2026-10-02T12-47-34Z-005677",
       "event_type": "site_generated",
       "occurred_at": "2026-10-02T12:47:34Z",
-      "result": "success",
-      "details": {
-        "pages": [
-          "index.html",
-          "sonantia.html"
-        ]
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-10-02T12-47-34Z-005676",
-      "event_type": "message_generated",
-      "occurred_at": "2026-10-02T12:47:34Z",
-      "result": "success",
-      "message_id": "SN1-N02-2026-10-02T12-47-34Z-000628",
-      "details": {
-        "generator_id": "sonantia-context-composer-06",
-        "fallback": false
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-10-02T12-47-34Z-005675",
-      "event_type": "context_collected",
-      "occurred_at": "2026-10-02T12:47:34Z",
-      "result": "success",
-      "details": {
-        "weather_provider": "open-meteo-current",
-        "weather_source_count": 1
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-10-02T12-47-34Z-005674",
-      "event_type": "context_requested",
-      "occurred_at": "2026-10-02T12:47:34Z",
-      "result": "success"
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-10-02T12-47-34Z-005673",
-      "event_type": "peer_checked",
-      "occurred_at": "2026-10-02T12:47:34Z",
-      "result": "success",
-      "peer_node_id": "N04",
-      "details": {
-        "message_count": 48,
-        "imported": 7,
-        "duplicates": 41,
-        "rejected": 0
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-10-02T12-47-34Z-005672",
-      "event_type": "peer_checked",
-      "occurred_at": "2026-10-02T12:47:34Z",
-      "result": "success",
-      "peer_node_id": "N03",
-      "details": {
-        "message_count": 48,
-        "imported": 6,
-        "duplicates": 42,
-        "rejected": 0
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-10-02T12-47-34Z-005671",
-      "event_type": "peer_checked",
-      "occurred_at": "2026-10-02T12:47:34Z",
-      "result": "success",
-      "peer_node_id": "N01",
-      "details": {
-        "message_count": 48,
-        "imported": 21,
-        "duplicates": 27,
-        "rejected": 0
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-10-02T12-47-34Z-005670",
-      "event_type": "cycle_started",
-      "occurred_at": "2026-10-02T12:47:34Z",
-      "result": "success",
-      "details": {
-        "node_id": "N02"
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-10-02T05-49-26Z-005669",
-      "event_type": "cycle_completed",
-      "occurred_at": "2026-10-02T05:49:26Z",
-      "result": "success",
-      "details": {
-        "cycle_result": "success"
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-10-02T05-49-26Z-005668",
-      "event_type": "site_generated",
-      "occurred_at": "2026-10-02T05:49:26Z",
       "result": "success",
       "details": {
         "pages": [
