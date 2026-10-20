@@ -5,10 +5,195 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-10-20T00:25:29Z",
+  "generated_at": "2026-10-20T06:06:26Z",
   "retention_hours": 168,
   "message_count": 28,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-10-20T04-09-45Z-000261",
+      "origin_node_id": "N01",
+      "sequence": 261,
+      "created_at": "2026-10-20T04:09:45Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "El pulso de Santiago vuelve a convertirse en una lectura. La lectura geológica asociada al ciclo destaca un sismo de magnitud 4,4 con ubicaci?n reportada como 66 km al SE de Socaire, a unos 1089 km del nodo. Esta publicación expresa la convicción de que una transformación favorable acompaña al hogar de David Alexander Bijman Molina; la relación entre generaciones mejora en su familia y la experiencia y la juventud encuentran mejores condiciones para comprenderse.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-10-20T04:09:45Z",
+          "observed_at": "2026-10-20T04:08:18Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-10-20T04:00:00Z",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 15.6,
+            "relative_humidity_percent": 71.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1009.64,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 2
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-10-20T04:09:45Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 186.484827,
+            "elevation_deg": -46.04164,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-20T04:09:45Z",
+          "observed_at": "2026-10-20T03:25:21Z",
+          "window_hours": 24,
+          "count": 41,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20261020T002521-001",
+            "occurred_at": "2026-10-20T03:25:21Z",
+            "local_time": "2026-10-20 00:25:21",
+            "location": "7 km al S de Los Vilos",
+            "magnitude": 2.7,
+            "magnitude_text": "2.7 Mlv",
+            "depth_km": 38.0,
+            "depth": "38 km",
+            "latitude": -31.977,
+            "longitude": -71.497,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/387976.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-20T04:09:45Z",
+          "observed_at": "2026-10-20T04:09:45Z",
+          "date": "20 de octubre de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$41.189,24",
+              "group": "general"
+            },
+            {
+              "label": "UTM (OCT)",
+              "value": "$72.151",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$981,86",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.100,86",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (SEP) mensual",
+              "value": "0,4",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (SEP) anual",
+              "value": "4,1",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-ampliada-167"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "general"
+          },
+          {
+            "part_id": "source-geology",
+            "value_id": "fuente-geologia-191-sismo-magnitud-sismo-distancia"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-conviccion"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-001248"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "geology"
+          }
+        ],
+        "affirmation_text": "Una transformación favorable acompaña al hogar de David Alexander Bijman Molina; la relación entre generaciones mejora en su familia y la experiencia y la juventud encuentran mejores condiciones para comprenderse."
+      },
+      "content_hash": "sha256:0ff82c5fb325dbd6b115f3e73b306d0c8c32124ed449592591b739a66682c189"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
@@ -5159,199 +5344,6 @@
         "affirmation_text": "A medida que David Alexander Bijman Molina pide retroalimentación honesta, se vuelve más fácil un bienestar integral y sostenido."
       },
       "content_hash": "sha256:e63634a9c596876ee5c96b8ae2b692ddbb110d18b9a3000b16a74fcb08525ab2"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N01-2026-10-13T04-10-58Z-000233",
-      "origin_node_id": "N01",
-      "sequence": 233,
-      "created_at": "2026-10-13T04:10:58Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "Desde Santiago, un cielo abierto da marco a otra observación; una nueva composición está por comenzar. El registro sísmico de la hora señala un sismo de magnitud 4,6 con ubicaci?n reportada como 19 km al SO de San Antonio, a unos 111 km del nodo. Las fuentes disponibles permiten observar una radiación solar de 0,0 W/m², junto con una temperatura de 8,5 °C. El nodo comparte desde su lugar la idea de que todo avance de David Alexander Bijman Molina al adquirir herramientas y equipos de calidad contribuye a una capacidad productiva respaldada por buenos equipos.",
-      "context": {
-        "location": {
-          "zone": "south-america",
-          "country": "Chile",
-          "country_code": "CL",
-          "city": "Santiago",
-          "timezone": "America/Santiago",
-          "latitude": -33.4164,
-          "longitude": -70.6068,
-          "elevation_m": 560.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "redmeteo-station-aggregate",
-          "requested_at": "2026-10-13T04:10:58Z",
-          "observed_at": "2026-10-13T04:08:18Z",
-          "condition_provider": "open-meteo-current",
-          "condition_observed_at": "2026-10-13T04:00:00Z",
-          "measurement_source_count": 1,
-          "measurement_source_codes": [
-            "RMCL0059"
-          ],
-          "location": {
-            "latitude": -33.4164,
-            "longitude": -70.6068
-          },
-          "data": {
-            "temperature_c": 8.5,
-            "relative_humidity_percent": 95.0,
-            "precipitation_mm": 0.0,
-            "pressure_hpa": 1017.34,
-            "wind_speed_kmh": null,
-            "solar_radiation_wm2": 0.0,
-            "condition_code": 0
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-10-13T04:10:58Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Santiago · coordenadas N01",
-            "longitude_deg": -70.6068,
-            "latitude_deg": -33.4164,
-            "elevation_km": 0.56,
-            "timezone": "America/Santiago"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 187.030147,
-            "elevation_deg": -48.583602,
-            "visibility": "bajo el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "chile-csn",
-          "provider_label": "Centro Sismológico Nacional",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-13T04:10:58Z",
-          "observed_at": "2026-10-13T02:43:28Z",
-          "window_hours": 24,
-          "count": 40,
-          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
-          "recent_event": {
-            "event_id": "20261012T234328-001",
-            "occurred_at": "2026-10-13T02:43:28Z",
-            "local_time": "2026-10-12 23:43:28",
-            "location": "36 km al NE de Calama",
-            "magnitude": 2.7,
-            "magnitude_text": "2.7 Mlv",
-            "depth_km": 99.0,
-            "depth": "99 km",
-            "latitude": -22.227,
-            "longitude": -68.703,
-            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/386675.html"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "chile-bcentral",
-          "provider_label": "Banco Central de Chile",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-13T04:10:58Z",
-          "observed_at": "2026-10-13T04:10:58Z",
-          "date": "13 de octubre de 2026",
-          "indicators": [
-            {
-              "label": "UF",
-              "value": "—",
-              "group": "general"
-            },
-            {
-              "label": "UTM (OCT)",
-              "value": "$72.151",
-              "group": "general"
-            },
-            {
-              "label": "Dólar observado",
-              "value": "—",
-              "group": "general"
-            },
-            {
-              "label": "Euro",
-              "value": "—",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "IPC (SEP) mensual",
-              "value": "0,4",
-              "group": "inflation"
-            },
-            {
-              "label": "IPC (SEP) anual",
-              "value": "4,1",
-              "group": "inflation"
-            },
-            {
-              "label": "TPM",
-              "value": "—",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-06",
-        "catalog_version": "2026-08-10-catalog-extended-04",
-        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-contextual-clear-0232"
-          },
-          {
-            "part_id": "opening-family",
-            "value_id": "clear"
-          },
-          {
-            "part_id": "source-geology",
-            "value_id": "fuente-geologia-199-sismo-magnitud-sismo-distancia"
-          },
-          {
-            "part_id": "source-weather",
-            "value_id": "fuente-clima-ampliada-170-meteo-pair-04-reversed-junto-con"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-ampliada-322"
-          },
-          {
-            "part_id": "declaration-family",
-            "value_id": "neutral"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-002068"
-          },
-          {
-            "part_id": "source-selection",
-            "value_id": "geology"
-          },
-          {
-            "part_id": "source-secondary",
-            "value_id": "weather"
-          }
-        ],
-        "affirmation_text": "Todo avance de David Alexander Bijman Molina al adquirir herramientas y equipos de calidad contribuye a una capacidad productiva respaldada por buenos equipos."
-      },
-      "content_hash": "sha256:5c2595b60aca9c8df298ff2188dbc832d2213cad7d6252585b1d154d29e1c78a"
     }
   ]
 }
