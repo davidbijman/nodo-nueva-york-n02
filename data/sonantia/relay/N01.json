@@ -5,10 +5,195 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-10-22T15:22:00Z",
+  "generated_at": "2026-10-22T20:11:56Z",
   "retention_hours": 168,
   "message_count": 28,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-10-22T16-09-16Z-000271",
+      "origin_node_id": "N01",
+      "sequence": 271,
+      "created_at": "2026-10-22T16:09:16Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "El Nodo Santiago abre otra lectura en un entorno cálido; comienza otro ciclo del nodo. La lectura sísmica de la hora destaca un sismo de magnitud 4,0 con ubicaci?n reportada como 91 km al SE de Socaire, a unos 1082 km del nodo. La nueva entrada del nodo permite afirmar que en cada nueva etapa, la motivación de David Alexander Bijman Molina avanza con paso seguro, y por ello David planifica su futuro económico con confianza.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-10-22T16:09:16Z",
+          "observed_at": "2026-10-22T15:58:22Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-10-22T16:00:00Z",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 21.9,
+            "relative_humidity_percent": 51.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1017.32,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 294.7,
+            "condition_code": 0
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-10-22T16:09:16Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 11.485827,
+            "elevation_deg": 67.423845,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-22T16:09:16Z",
+          "observed_at": "2026-10-22T12:57:26Z",
+          "window_hours": 24,
+          "count": 33,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20261022T095726-001",
+            "occurred_at": "2026-10-22T12:57:26Z",
+            "local_time": "2026-10-22 09:57:26",
+            "location": "38 km al SO de Mina Collahuasi",
+            "magnitude": 2.5,
+            "magnitude_text": "2.5 Mlv",
+            "depth_km": 112.0,
+            "depth": "112 km",
+            "latitude": -21.094,
+            "longitude": -68.879,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/388398.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-22T16:09:16Z",
+          "observed_at": "2026-10-22T16:09:16Z",
+          "date": "22 de octubre de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$41.199,85",
+              "group": "general"
+            },
+            {
+              "label": "UTM (OCT)",
+              "value": "$72.151",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$976,82",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.097,55",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (SEP) mensual",
+              "value": "0,4",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (SEP) anual",
+              "value": "4,1",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-contextual-warm-0382"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "warm"
+          },
+          {
+            "part_id": "source-geology",
+            "value_id": "fuente-geologia-038-sismo-magnitud-sismo-distancia"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ampliada-017"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-004466"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "geology"
+          }
+        ],
+        "affirmation_text": "En cada nueva etapa, la motivación de David Alexander Bijman Molina avanza con paso seguro, y por ello David planifica su futuro económico con confianza."
+      },
+      "content_hash": "sha256:22eab37eec70b77fba593860e556bbe01c9dddf078deab07b307a9d5bb5bbc5a"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
@@ -5104,199 +5289,6 @@
         "affirmation_text": "Para David Alexander Bijman Molina, reservar capital para oportunidades favorables representa un paso concreto hacia recursos disponibles para aprovechar buenas inversiones."
       },
       "content_hash": "sha256:8e0a97cfdd21db1c08d0c48788afa619fc934bc6a8c36ae0de2054e820882c2c"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N01-2026-10-15T16-13-14Z-000243",
-      "origin_node_id": "N01",
-      "sequence": 243,
-      "created_at": "2026-10-15T16:13:14Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "El cielo despejado acompaña una nueva lectura desde Santiago; el registro vuelve a ponerse en marcha. En este ciclo astronómico se observa la Luna a 36,745602° sobre el horizonte local. El panorama atmosférico incluye una humedad relativa de 51,0 %, en conjunto con una temperatura de 23,3 °C. Esta publicación vuelve a afirmar que nuevas posibilidades aparecen cuando David Alexander Bijman Molina decide negociar condiciones laborales justas y negocia sus honorarios con seguridad.",
-      "context": {
-        "location": {
-          "zone": "south-america",
-          "country": "Chile",
-          "country_code": "CL",
-          "city": "Santiago",
-          "timezone": "America/Santiago",
-          "latitude": -33.4164,
-          "longitude": -70.6068,
-          "elevation_m": 560.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "redmeteo-station-aggregate",
-          "requested_at": "2026-10-15T16:13:14Z",
-          "observed_at": "2026-10-15T16:08:17Z",
-          "condition_provider": "open-meteo-current",
-          "condition_observed_at": "2026-10-15T16:00:00Z",
-          "measurement_source_count": 1,
-          "measurement_source_codes": [
-            "RMCL0059"
-          ],
-          "location": {
-            "latitude": -33.4164,
-            "longitude": -70.6068
-          },
-          "data": {
-            "temperature_c": 23.3,
-            "relative_humidity_percent": 51.0,
-            "precipitation_mm": 0.0,
-            "pressure_hpa": 1017.02,
-            "wind_speed_kmh": null,
-            "solar_radiation_wm2": 716.1,
-            "condition_code": 0
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-10-15T16:13:14Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Santiago · coordenadas N01",
-            "longitude_deg": -70.6068,
-            "latitude_deg": -33.4164,
-            "elevation_km": 0.56,
-            "timezone": "America/Santiago"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 8.911011,
-            "elevation_deg": 65.027054,
-            "visibility": "sobre el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "chile-csn",
-          "provider_label": "Centro Sismológico Nacional",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-15T16:13:14Z",
-          "observed_at": "2026-10-15T15:36:33Z",
-          "window_hours": 24,
-          "count": 45,
-          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
-          "recent_event": {
-            "event_id": "20261015T123633-001",
-            "occurred_at": "2026-10-15T15:36:33Z",
-            "local_time": "2026-10-15 12:36:33",
-            "location": "54 km al NO de San Juan",
-            "magnitude": 2.8,
-            "magnitude_text": "2.8 Mlv",
-            "depth_km": 162.0,
-            "depth": "162 km",
-            "latitude": -31.267,
-            "longitude": -68.989,
-            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/387181.html"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "chile-bcentral",
-          "provider_label": "Banco Central de Chile",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-15T16:13:14Z",
-          "observed_at": "2026-10-15T16:13:14Z",
-          "date": "15 de octubre de 2026",
-          "indicators": [
-            {
-              "label": "UF",
-              "value": "$41.162,73",
-              "group": "general"
-            },
-            {
-              "label": "UTM (OCT)",
-              "value": "$72.151",
-              "group": "general"
-            },
-            {
-              "label": "Dólar observado",
-              "value": "$987,03",
-              "group": "general"
-            },
-            {
-              "label": "Euro",
-              "value": "$1.099,02",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "IPC (SEP) mensual",
-              "value": "0,4",
-              "group": "inflation"
-            },
-            {
-              "label": "IPC (SEP) anual",
-              "value": "4,1",
-              "group": "inflation"
-            },
-            {
-              "label": "TPM",
-              "value": "4,5%",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-06",
-        "catalog_version": "2026-08-10-catalog-extended-04",
-        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-contextual-clear-0227"
-          },
-          {
-            "part_id": "opening-family",
-            "value_id": "clear"
-          },
-          {
-            "part_id": "source-astronomy",
-            "value_id": "fuente-astro-017-luna-altura"
-          },
-          {
-            "part_id": "source-weather",
-            "value_id": "fuente-clima-ampliada-079-meteo-pair-01-reversed-en-conjunto-con"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-ampliada-272"
-          },
-          {
-            "part_id": "declaration-family",
-            "value_id": "neutral"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-005286"
-          },
-          {
-            "part_id": "source-selection",
-            "value_id": "astronomy"
-          },
-          {
-            "part_id": "source-secondary",
-            "value_id": "weather"
-          }
-        ],
-        "affirmation_text": "Nuevas posibilidades aparecen cuando David Alexander Bijman Molina decide negociar condiciones laborales justas y negocia sus honorarios con seguridad."
-      },
-      "content_hash": "sha256:a5a84a2763e07f95af301baf21c75b334c2d6cfa05568148d750c0af03021aeb"
     }
   ]
 }
