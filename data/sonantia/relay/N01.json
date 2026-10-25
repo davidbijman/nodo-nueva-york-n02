@@ -5,10 +5,203 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-10-25T01:16:04Z",
+  "generated_at": "2026-10-25T06:14:35Z",
   "retention_hours": 168,
   "message_count": 28,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-10-25T04-14-20Z-000281",
+      "origin_node_id": "N01",
+      "sequence": 281,
+      "created_at": "2026-10-25T04:14:20Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Y comienza otra lectura desde Santiago. La lectura del entorno sísmico señala un sismo de magnitud 4,0 con ubicaci?n reportada como 57 km al SO de Mina Collahuasi, a unos 1360 km del nodo. La publicación sostiene con calma que todo avance de David Alexander Bijman Molina al actualizar sus conocimientos técnicos contribuye a más espacio interior para disfrutar sus logros.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-10-25T04:14:20Z",
+          "observed_at": "2026-10-25T04:08:18Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-10-25T04:00:00Z",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 10.9,
+            "relative_humidity_percent": 84.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1023.61,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 0.0,
+            "condition_code": 0
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-10-25T04:14:20Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 184.293224,
+            "elevation_deg": -44.399868,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-25T04:14:20Z",
+          "observed_at": "2026-10-25T04:06:07Z",
+          "window_hours": 24,
+          "count": 33,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20261025T010607-001",
+            "occurred_at": "2026-10-25T04:06:07Z",
+            "local_time": "2026-10-25 01:06:07",
+            "location": "49 km al SO de Mina Collahuasi",
+            "magnitude": 2.9,
+            "magnitude_text": "2.9 Mlv",
+            "depth_km": 115.0,
+            "depth": "115 km",
+            "latitude": -21.143,
+            "longitude": -68.989,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/388819.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-25T04:14:20Z",
+          "observed_at": "2026-10-25T04:14:20Z",
+          "date": "25 de octubre de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "—",
+              "group": "general"
+            },
+            {
+              "label": "UTM (OCT)",
+              "value": "$72.151",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "—",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "—",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (SEP) mensual",
+              "value": "0,4",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (SEP) anual",
+              "value": "4,1",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "—",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-ampliada-331"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "general"
+          },
+          {
+            "part_id": "source-geology",
+            "value_id": "fuente-geologia-073-sismo-magnitud-sismo-distancia"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ampliada-263"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "calm"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "serenity"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-007684"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "geology"
+          }
+        ],
+        "affirmation_text": "Todo avance de David Alexander Bijman Molina al actualizar sus conocimientos técnicos contribuye a más espacio interior para disfrutar sus logros."
+      },
+      "content_hash": "sha256:ddb03e75ecf02d94e166924910f321352d630d86fe7c7462e72a89f585d3e9b7"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
@@ -5092,191 +5285,6 @@
         "affirmation_text": "David Alexander Bijman Molina convierte fortalecer su perfil profesional en el punto de partida hacia mejores oportunidades laborales."
       },
       "content_hash": "sha256:7c5b06c56188769555b1927a5b74f1766a4f2f136ac0768b72a48617c60d29e2"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N01-2026-10-18T04-15-33Z-000253",
-      "origin_node_id": "N01",
-      "sequence": 253,
-      "created_at": "2026-10-18T04:15:33Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "Buenas noches desde Santiago, comienza una nueva lectura. El registro del entorno geológico señala un sismo de magnitud 4,1 con ubicaci?n reportada como 106 km al NE de Socaire, ocurrido hace aproximadamente 7,8 horas. En esta nueva ejecución, señalamos que la evolución positiva de David Alexander Bijman Molina se hace visible: la recuperación de David avanza a un ritmo favorable y cada proceso interno contribuye al bienestar integral de David.",
-      "context": {
-        "location": {
-          "zone": "south-america",
-          "country": "Chile",
-          "country_code": "CL",
-          "city": "Santiago",
-          "timezone": "America/Santiago",
-          "latitude": -33.4164,
-          "longitude": -70.6068,
-          "elevation_m": 560.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "redmeteo-station-aggregate",
-          "requested_at": "2026-10-18T04:15:33Z",
-          "observed_at": "2026-10-18T04:08:17Z",
-          "condition_provider": "open-meteo-current",
-          "condition_observed_at": "2026-10-18T04:15:00Z",
-          "measurement_source_count": 1,
-          "measurement_source_codes": [
-            "RMCL0059"
-          ],
-          "location": {
-            "latitude": -33.4164,
-            "longitude": -70.6068
-          },
-          "data": {
-            "temperature_c": 14.4,
-            "relative_humidity_percent": 82.0,
-            "precipitation_mm": 0.0,
-            "pressure_hpa": 1018.22,
-            "wind_speed_kmh": null,
-            "solar_radiation_wm2": 0.0,
-            "condition_code": 0
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-10-18T04:15:33Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Santiago · coordenadas N01",
-            "longitude_deg": -70.6068,
-            "latitude_deg": -33.4164,
-            "elevation_km": 0.56,
-            "timezone": "America/Santiago"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 184.564628,
-            "elevation_deg": -46.872962,
-            "visibility": "bajo el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "chile-csn",
-          "provider_label": "Centro Sismológico Nacional",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-18T04:15:33Z",
-          "observed_at": "2026-10-18T03:47:29Z",
-          "window_hours": 24,
-          "count": 32,
-          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
-          "recent_event": {
-            "event_id": "20261018T004729-001",
-            "occurred_at": "2026-10-18T03:47:29Z",
-            "local_time": "2026-10-18 00:47:29",
-            "location": "64 km al SO de Ollagüe",
-            "magnitude": 2.5,
-            "magnitude_text": "2.5 Mlv",
-            "depth_km": 140.0,
-            "depth": "140 km",
-            "latitude": -21.715,
-            "longitude": -68.583,
-            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/387603.html"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "chile-bcentral",
-          "provider_label": "Banco Central de Chile",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-18T04:15:33Z",
-          "observed_at": "2026-10-18T04:15:33Z",
-          "date": "18 de octubre de 2026",
-          "indicators": [
-            {
-              "label": "UF",
-              "value": "$41.178,64",
-              "group": "general"
-            },
-            {
-              "label": "UTM (OCT)",
-              "value": "$72.151",
-              "group": "general"
-            },
-            {
-              "label": "Dólar observado",
-              "value": "$984,09",
-              "group": "general"
-            },
-            {
-              "label": "Euro",
-              "value": "$1.103,49",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "IPC (SEP) mensual",
-              "value": "0,4",
-              "group": "inflation"
-            },
-            {
-              "label": "IPC (SEP) anual",
-              "value": "4,1",
-              "group": "inflation"
-            },
-            {
-              "label": "TPM",
-              "value": "4,5%",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-06",
-        "catalog_version": "2026-08-10-catalog-extended-04",
-        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-ampliada-076"
-          },
-          {
-            "part_id": "opening-family",
-            "value_id": "general"
-          },
-          {
-            "part_id": "source-geology",
-            "value_id": "fuente-geologia-145-sismo-magnitud-sismo-antiguedad"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-ampliada-110"
-          },
-          {
-            "part_id": "declaration-family",
-            "value_id": "neutral"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-000312"
-          },
-          {
-            "part_id": "source-selection",
-            "value_id": "geology"
-          }
-        ],
-        "affirmation_text": "La evolución positiva de David Alexander Bijman Molina se hace visible: la recuperación de David avanza a un ritmo favorable y cada proceso interno contribuye al bienestar integral de David."
-      },
-      "content_hash": "sha256:11b89572444457e1392bfbe26275f354903f005a5d589c8650135694e66f26f7"
     }
   ]
 }
