@@ -5,10 +5,199 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-10-27T18:46:40Z",
+  "generated_at": "2026-10-27T22:59:34Z",
   "retention_hours": 168,
   "message_count": 28,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-10-27T22-08-36Z-000292",
+      "origin_node_id": "N01",
+      "sequence": 292,
+      "created_at": "2026-10-27T22:08:36Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "El nodo registra otro instante mientras cae la tarde en Santiago. El registro sísmico de la hora deja como referencia un sismo de magnitud 4,3 con ubicaci?n reportada como 103 km al NE de Socaire, ocurrido hace aproximadamente 10,5 horas. Este registro deja presente la idea de que el presente de David Alexander Bijman Molina se llena de señales favorables, porque David protege su energía mientras persigue sus metas y David fortalece su marca personal en su área de especialización.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-10-27T22:08:36Z",
+          "observed_at": "2026-10-27T21:58:17Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-10-27T22:00:00Z",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 24.8,
+            "relative_humidity_percent": 35.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1015.86,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 73.8,
+            "condition_code": 0
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-10-27T22:08:36Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 261.487684,
+            "elevation_deg": 10.880972,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-27T22:08:36Z",
+          "observed_at": "2026-10-27T22:03:03Z",
+          "window_hours": 24,
+          "count": 41,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20261027T190303-001",
+            "occurred_at": "2026-10-27T22:03:03Z",
+            "local_time": "2026-10-27 19:03:03",
+            "location": "34 km al SO de Tocopilla",
+            "magnitude": 2.8,
+            "magnitude_text": "2.8 Mlv",
+            "depth_km": 30.0,
+            "depth": "30 km",
+            "latitude": -22.234,
+            "longitude": -70.492,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/389334.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-27T22:08:36Z",
+          "observed_at": "2026-10-27T22:08:36Z",
+          "date": "27 de octubre de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "—",
+              "group": "general"
+            },
+            {
+              "label": "UTM (OCT)",
+              "value": "$72.151",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "—",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "—",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (SEP) mensual",
+              "value": "0,4",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (SEP) anual",
+              "value": "4,1",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "—",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-contextual-evening-0085"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "evening"
+          },
+          {
+            "part_id": "source-geology",
+            "value_id": "fuente-geologia-202-sismo-magnitud-sismo-antiguedad"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ampliada-005"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "present-moment"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-007947"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "geology"
+          }
+        ],
+        "affirmation_text": "El presente de David Alexander Bijman Molina se llena de señales favorables, porque David protege su energía mientras persigue sus metas y David fortalece su marca personal en su área de especialización."
+      },
+      "content_hash": "sha256:2f3516a44a45d6481062ea18b2aaecf1a660c180ca07f17a3f418d710ad31e17"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
@@ -5121,195 +5310,6 @@
         "affirmation_text": "David Alexander Bijman Molina descubre que construir varias fuentes de ingreso y mejores oportunidades laborales caminan siempre juntos."
       },
       "content_hash": "sha256:f39fde59ae6b1422e1e21d4e40da0e0e35532909c938813dfb577a295668c6b2"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N01-2026-10-20T22-09-06Z-000264",
-      "origin_node_id": "N01",
-      "sequence": 264,
-      "created_at": "2026-10-20T22:09:06Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "Santiago abre un nuevo momento de observación. La lectura económica disponible registra UTM (OCT) con un valor de $72.151. Esta observación deja abierta la idea de que una transformación favorable acompaña al hogar de David Alexander Bijman Molina; las actividades recreativas unen cada vez más a su familia y los momentos de juego y descanso favorecen la conexión.",
-      "context": {
-        "location": {
-          "zone": "south-america",
-          "country": "Chile",
-          "country_code": "CL",
-          "city": "Santiago",
-          "timezone": "America/Santiago",
-          "latitude": -33.4164,
-          "longitude": -70.6068,
-          "elevation_m": 560.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "redmeteo-station-aggregate",
-          "requested_at": "2026-10-20T22:09:06Z",
-          "observed_at": "2026-10-20T21:58:16Z",
-          "condition_provider": "open-meteo-current",
-          "condition_observed_at": "2026-10-20T22:00:00Z",
-          "measurement_source_count": 1,
-          "measurement_source_codes": [
-            "RMCL0059"
-          ],
-          "location": {
-            "latitude": -33.4164,
-            "longitude": -70.6068
-          },
-          "data": {
-            "temperature_c": 13.0,
-            "relative_humidity_percent": 96.0,
-            "precipitation_mm": 20.6,
-            "pressure_hpa": 1015.23,
-            "wind_speed_kmh": null,
-            "solar_radiation_wm2": 4.7,
-            "condition_code": 81
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-10-20T22:09:06Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Santiago · coordenadas N01",
-            "longitude_deg": -70.6068,
-            "latitude_deg": -33.4164,
-            "elevation_km": 0.56,
-            "timezone": "America/Santiago"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 263.557422,
-            "elevation_deg": 9.56402,
-            "visibility": "sobre el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "chile-csn",
-          "provider_label": "Centro Sismológico Nacional",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-20T22:09:06Z",
-          "observed_at": "2026-10-20T20:44:39Z",
-          "window_hours": 24,
-          "count": 36,
-          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
-          "recent_event": {
-            "event_id": "20261020T174439-001",
-            "occurred_at": "2026-10-20T20:44:39Z",
-            "local_time": "2026-10-20 17:44:39",
-            "location": "31 km al O de Pichidangui",
-            "magnitude": 2.6,
-            "magnitude_text": "2.6 Mlv",
-            "depth_km": 24.0,
-            "depth": "24 km",
-            "latitude": -32.231,
-            "longitude": -71.843,
-            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/388124.html"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "chile-bcentral",
-          "provider_label": "Banco Central de Chile",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-20T22:09:06Z",
-          "observed_at": "2026-10-20T22:09:06Z",
-          "date": "20 de octubre de 2026",
-          "indicators": [
-            {
-              "label": "UF",
-              "value": "—",
-              "group": "general"
-            },
-            {
-              "label": "UTM (OCT)",
-              "value": "$72.151",
-              "group": "general"
-            },
-            {
-              "label": "Dólar observado",
-              "value": "—",
-              "group": "general"
-            },
-            {
-              "label": "Euro",
-              "value": "—",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "IPC (SEP) mensual",
-              "value": "0,4",
-              "group": "inflation"
-            },
-            {
-              "label": "IPC (SEP) anual",
-              "value": "4,1",
-              "group": "inflation"
-            },
-            {
-              "label": "TPM",
-              "value": "—",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-06",
-        "catalog_version": "2026-08-10-catalog-extended-04",
-        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-ampliada-037"
-          },
-          {
-            "part_id": "opening-family",
-            "value_id": "general"
-          },
-          {
-            "part_id": "source-economy",
-            "value_id": "fuente-economia-001-indicador-2"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-ampliada-233"
-          },
-          {
-            "part_id": "declaration-family",
-            "value_id": "neutral"
-          },
-          {
-            "part_id": "declaration-family",
-            "value_id": "observation"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-000575"
-          },
-          {
-            "part_id": "source-selection",
-            "value_id": "economy"
-          }
-        ],
-        "affirmation_text": "Una transformación favorable acompaña al hogar de David Alexander Bijman Molina; las actividades recreativas unen cada vez más a su familia y los momentos de juego y descanso favorecen la conexión."
-      },
-      "content_hash": "sha256:532de825f9000e13e93e6fef6ce496d582a25981fcf4304561421f705cd0412f"
     }
   ]
 }
