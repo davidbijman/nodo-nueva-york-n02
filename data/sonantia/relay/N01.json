@@ -5,10 +5,199 @@
   "document_type": "relay",
   "relay_node_id": "N02",
   "origin_node_id": "N01",
-  "generated_at": "2026-10-30T14:17:45Z",
+  "generated_at": "2026-10-30T19:28:50Z",
   "retention_hours": 168,
   "message_count": 28,
   "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N01-2026-10-30T16-10-09Z-000303",
+      "origin_node_id": "N01",
+      "sequence": 303,
+      "created_at": "2026-10-30T16:10:09Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Desde Santiago, la tarde aporta otra observación al registro; una nueva composición está por comenzar. En Santiago, los datos del momento muestran una humedad relativa de 59,0 %, en conjunto con una presión atmosférica de 1014,94 hPa. Este instante vuelve a poner de relieve que los talentos bien utilizados generan bienestar para David Alexander Bijman Molina. De esta manera, David transforma sus posibilidades en bienestar material verificable.",
+      "context": {
+        "location": {
+          "zone": "south-america",
+          "country": "Chile",
+          "country_code": "CL",
+          "city": "Santiago",
+          "timezone": "America/Santiago",
+          "latitude": -33.4164,
+          "longitude": -70.6068,
+          "elevation_m": 560.0
+        },
+        "weather": {
+          "status": "available",
+          "provider": "redmeteo-station-aggregate",
+          "requested_at": "2026-10-30T16:10:09Z",
+          "observed_at": "2026-10-30T16:08:17Z",
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": "2026-10-30T16:00:00Z",
+          "measurement_source_count": 1,
+          "measurement_source_codes": [
+            "RMCL0059"
+          ],
+          "location": {
+            "latitude": -33.4164,
+            "longitude": -70.6068
+          },
+          "data": {
+            "temperature_c": 23.1,
+            "relative_humidity_percent": 59.0,
+            "precipitation_mm": 0.0,
+            "pressure_hpa": 1014.94,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": 789.0,
+            "condition_code": 0
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-10-30T16:10:09Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Santiago · coordenadas N01",
+            "longitude_deg": -70.6068,
+            "latitude_deg": -33.4164,
+            "elevation_km": 0.56,
+            "timezone": "America/Santiago"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 11.569427,
+            "elevation_deg": 70.17502,
+            "visibility": "sobre el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "chile-csn",
+          "provider_label": "Centro Sismológico Nacional",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-30T16:10:09Z",
+          "observed_at": "2026-10-30T15:10:47Z",
+          "window_hours": 24,
+          "count": 53,
+          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
+          "recent_event": {
+            "event_id": "20261030T121047-001",
+            "occurred_at": "2026-10-30T15:10:47Z",
+            "local_time": "2026-10-30 12:10:47",
+            "location": "44 km al SE de Pica",
+            "magnitude": 3.0,
+            "magnitude_text": "3.0 Mlv",
+            "depth_km": 106.0,
+            "depth": "106 km",
+            "latitude": -20.811,
+            "longitude": -69.085,
+            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/389907.html"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "chile-bcentral",
+          "provider_label": "Banco Central de Chile",
+          "region_label": "Chile",
+          "country_code": "CL",
+          "generated_at": "2026-10-30T16:10:09Z",
+          "observed_at": "2026-10-30T16:10:09Z",
+          "date": "30 de octubre de 2026",
+          "indicators": [
+            {
+              "label": "UF",
+              "value": "$41.242,32",
+              "group": "general"
+            },
+            {
+              "label": "UTM (OCT)",
+              "value": "$72.151",
+              "group": "general"
+            },
+            {
+              "label": "Dólar observado",
+              "value": "$993,22",
+              "group": "general"
+            },
+            {
+              "label": "Euro",
+              "value": "$1.109,37",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC (SEP) mensual",
+              "value": "0,4",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC (SEP) anual",
+              "value": "4,1",
+              "group": "inflation"
+            },
+            {
+              "label": "TPM",
+              "value": "4,5%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-contextual-afternoon-0040"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "afternoon"
+          },
+          {
+            "part_id": "source-weather",
+            "value_id": "fuente-clima-ampliada-138-meteo-pair-06-canonical-en-conjunto-con"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ampliada-185"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "present-moment"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-000018"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "weather"
+          }
+        ],
+        "affirmation_text": "Los talentos bien utilizados generan bienestar para David Alexander Bijman Molina. De esta manera, David transforma sus posibilidades en bienestar material verificable."
+      },
+      "content_hash": "sha256:88fcab56e5cf0cc27dacd2a38b4e3b7a4958cdd2fbfb76bcfaf095ee9569ad58"
+    },
     {
       "network_id": "sonantia-network",
       "protocol_version": "1.0",
@@ -5152,191 +5341,6 @@
         "affirmation_text": "El capital de David Alexander Bijman Molina avanza sin pausa. Con disciplina serena, la paz interior de David abre nuevas puertas."
       },
       "content_hash": "sha256:4c24d31e84dcb9ddc3a0b975c73afc38bd2bc931a61b8bfbc88bcd292efd32f8"
-    },
-    {
-      "network_id": "sonantia-network",
-      "protocol_version": "1.0",
-      "network_epoch": "SN1-2026-08-02",
-      "message_id": "SN1-N01-2026-10-23T16-09-07Z-000275",
-      "origin_node_id": "N01",
-      "sequence": 275,
-      "created_at": "2026-10-23T16:09:07Z",
-      "visibility": "public",
-      "language": "es",
-      "text": "El sonido de la lluvia acompaña la observación del Nodo Santiago; el registro vuelve a ponerse en marcha. Los datos reunidos para esta lectura contienen una temperatura de 19,7 °C y también una presión atmosférica de 1019,39 hPa. Junto con este saludo, afirmamos que cuando David Alexander Bijman Molina elige productos duraderos y reparables, crea condiciones favorables para reducir costos de reemplazo a largo plazo.",
-      "context": {
-        "location": {
-          "zone": "south-america",
-          "country": "Chile",
-          "country_code": "CL",
-          "city": "Santiago",
-          "timezone": "America/Santiago",
-          "latitude": -33.4164,
-          "longitude": -70.6068,
-          "elevation_m": 560.0
-        },
-        "weather": {
-          "status": "available",
-          "provider": "redmeteo-station-aggregate",
-          "requested_at": "2026-10-23T16:09:07Z",
-          "observed_at": "2026-10-23T15:58:17Z",
-          "condition_provider": "open-meteo-current",
-          "condition_observed_at": "2026-10-23T16:00:00Z",
-          "measurement_source_count": 1,
-          "measurement_source_codes": [
-            "RMCL0059"
-          ],
-          "location": {
-            "latitude": -33.4164,
-            "longitude": -70.6068
-          },
-          "data": {
-            "temperature_c": 19.7,
-            "relative_humidity_percent": 54.0,
-            "precipitation_mm": 1.3,
-            "pressure_hpa": 1019.39,
-            "wind_speed_kmh": null,
-            "solar_radiation_wm2": 765.6,
-            "condition_code": 3
-          }
-        },
-        "astronomy": {
-          "status": "available",
-          "generated_at": "2026-10-23T16:09:07Z",
-          "observer": {
-            "code": "coord@399",
-            "name": "Santiago · coordenadas N01",
-            "longitude_deg": -70.6068,
-            "latitude_deg": -33.4164,
-            "elevation_km": 0.56,
-            "timezone": "America/Santiago"
-          },
-          "target_count": 21,
-          "available_target_count": 21,
-          "reference_target": {
-            "name": "Sol",
-            "kind": "estrella",
-            "icon": "☀️",
-            "azimuth_deg": 11.551774,
-            "elevation_deg": 67.775084,
-            "visibility": "sobre el horizonte"
-          }
-        },
-        "geology": {
-          "status": "available",
-          "provider": "chile-csn",
-          "provider_label": "Centro Sismológico Nacional",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-23T16:09:07Z",
-          "observed_at": "2026-10-23T15:22:20Z",
-          "window_hours": 24,
-          "count": 54,
-          "source_url": "https://www.sismologia.cl/sismicidad/sismos-por-dia.html",
-          "recent_event": {
-            "event_id": "20261023T122220-001",
-            "occurred_at": "2026-10-23T15:22:20Z",
-            "local_time": "2026-10-23 12:22:20",
-            "location": "58 km al SE de Socaire",
-            "magnitude": 3.6,
-            "magnitude_text": "3.6 Mlv",
-            "depth_km": 226.0,
-            "depth": "226 km",
-            "latitude": -23.865,
-            "longitude": -67.403,
-            "url": "https://www.sismologia.cl/sismicidad/informes/2026/10/388571.html"
-          }
-        },
-        "economy": {
-          "status": "available",
-          "provider": "chile-bcentral",
-          "provider_label": "Banco Central de Chile",
-          "region_label": "Chile",
-          "country_code": "CL",
-          "generated_at": "2026-10-23T16:09:07Z",
-          "observed_at": "2026-10-23T16:09:07Z",
-          "date": "23 de octubre de 2026",
-          "indicators": [
-            {
-              "label": "UF",
-              "value": "$41.205,16",
-              "group": "general"
-            },
-            {
-              "label": "UTM (OCT)",
-              "value": "$72.151",
-              "group": "general"
-            },
-            {
-              "label": "Dólar observado",
-              "value": "$986,58",
-              "group": "general"
-            },
-            {
-              "label": "Euro",
-              "value": "$1.107,27",
-              "group": "general"
-            }
-          ],
-          "inflation": [
-            {
-              "label": "IPC (SEP) mensual",
-              "value": "0,4",
-              "group": "inflation"
-            },
-            {
-              "label": "IPC (SEP) anual",
-              "value": "4,1",
-              "group": "inflation"
-            },
-            {
-              "label": "TPM",
-              "value": "4,5%",
-              "group": "inflation"
-            }
-          ],
-          "source_url": "https://si3.bcentral.cl/Bdemovil/BDE/IndicadoresDiarios"
-        }
-      },
-      "generator": {
-        "generator_id": "sonantia-context-composer-06",
-        "catalog_version": "2026-08-10-catalog-extended-04",
-        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
-        "group_id": "contextual",
-        "selection_policy": "deterministic_factorized",
-        "selected_values": [
-          {
-            "part_id": "opening",
-            "value_id": "apertura-contextual-rain-0223"
-          },
-          {
-            "part_id": "opening-family",
-            "value_id": "rain"
-          },
-          {
-            "part_id": "source-weather",
-            "value_id": "fuente-clima-ampliada-052-meteo-pair-03-canonical-y-tambien"
-          },
-          {
-            "part_id": "declaration",
-            "value_id": "declaracion-saludo"
-          },
-          {
-            "part_id": "declaration-family",
-            "value_id": "neutral"
-          },
-          {
-            "part_id": "affirmation",
-            "value_id": "consolidado-frase-000838"
-          },
-          {
-            "part_id": "source-selection",
-            "value_id": "weather"
-          }
-        ],
-        "affirmation_text": "Cuando David Alexander Bijman Molina elige productos duraderos y reparables, crea condiciones favorables para reducir costos de reemplazo a largo plazo."
-      },
-      "content_hash": "sha256:9715e3b68844eae9b908a68a136ac3e7ec4ea6d4a4da1e6f28e78785861eb6e4"
     }
   ]
 }
