@@ -4,10 +4,106 @@
   "network_epoch": "SN1-2026-08-02",
   "document_type": "interactions",
   "node_id": "N02",
-  "generated_at": "2026-11-13T23:39:44Z",
+  "generated_at": "2026-11-14T06:40:06Z",
   "limit": 200,
   "event_count": 200,
   "events": [
+    {
+      "event_id": "SN1-N02-EVT-2026-11-14T06-40-06Z-007379",
+      "event_type": "cycle_completed",
+      "occurred_at": "2026-11-14T06:40:06Z",
+      "result": "degraded",
+      "details": {
+        "cycle_result": "degraded"
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-11-14T06-40-06Z-007378",
+      "event_type": "site_generated",
+      "occurred_at": "2026-11-14T06:40:06Z",
+      "result": "success",
+      "details": {
+        "pages": [
+          "index.html",
+          "sonantia.html"
+        ]
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-11-14T06-40-06Z-007377",
+      "event_type": "message_generated",
+      "occurred_at": "2026-11-14T06:40:06Z",
+      "result": "success",
+      "message_id": "SN1-N02-2026-11-14T06-40-06Z-000817",
+      "details": {
+        "generator_id": "sonantia-context-composer-06",
+        "fallback": false
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-11-14T06-40-06Z-007376",
+      "event_type": "context_collected",
+      "occurred_at": "2026-11-14T06:40:06Z",
+      "result": "degraded",
+      "details": {
+        "weather_provider": "open-meteo-current",
+        "weather_source_count": 0
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-11-14T06-40-06Z-007375",
+      "event_type": "context_requested",
+      "occurred_at": "2026-11-14T06:40:06Z",
+      "result": "success"
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-11-14T06-40-06Z-007374",
+      "event_type": "peer_checked",
+      "occurred_at": "2026-11-14T06:40:06Z",
+      "result": "success",
+      "peer_node_id": "N04",
+      "details": {
+        "message_count": 48,
+        "imported": 7,
+        "duplicates": 41,
+        "rejected": 0
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-11-14T06-40-06Z-007373",
+      "event_type": "peer_checked",
+      "occurred_at": "2026-11-14T06:40:06Z",
+      "result": "success",
+      "peer_node_id": "N03",
+      "details": {
+        "message_count": 48,
+        "imported": 7,
+        "duplicates": 41,
+        "rejected": 0
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-11-14T06-40-06Z-007372",
+      "event_type": "peer_checked",
+      "occurred_at": "2026-11-14T06:40:06Z",
+      "result": "success",
+      "peer_node_id": "N01",
+      "details": {
+        "message_count": 48,
+        "imported": 21,
+        "duplicates": 27,
+        "rejected": 0
+      }
+    },
+    {
+      "event_id": "SN1-N02-EVT-2026-11-14T06-40-06Z-007371",
+      "event_type": "cycle_started",
+      "occurred_at": "2026-11-14T06:40:06Z",
+      "result": "success",
+      "details": {
+        "node_id": "N02"
+      }
+    },
     {
       "event_id": "SN1-N02-EVT-2026-11-13T23-39-44Z-007370",
       "event_type": "cycle_completed",
@@ -2037,102 +2133,6 @@
       "event_id": "SN1-N02-EVT-2026-11-07T20-57-26Z-007180",
       "event_type": "site_generated",
       "occurred_at": "2026-11-07T20:57:26Z",
-      "result": "success",
-      "details": {
-        "pages": [
-          "index.html",
-          "sonantia.html"
-        ]
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-11-07T20-57-26Z-007179",
-      "event_type": "message_generated",
-      "occurred_at": "2026-11-07T20:57:26Z",
-      "result": "success",
-      "message_id": "SN1-N02-2026-11-07T20-57-26Z-000795",
-      "details": {
-        "generator_id": "sonantia-context-composer-06",
-        "fallback": false
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-11-07T20-57-26Z-007178",
-      "event_type": "context_collected",
-      "occurred_at": "2026-11-07T20:57:26Z",
-      "result": "success",
-      "details": {
-        "weather_provider": "open-meteo-current",
-        "weather_source_count": 1
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-11-07T20-57-26Z-007177",
-      "event_type": "context_requested",
-      "occurred_at": "2026-11-07T20:57:26Z",
-      "result": "success"
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-11-07T20-57-26Z-007176",
-      "event_type": "peer_checked",
-      "occurred_at": "2026-11-07T20:57:26Z",
-      "result": "success",
-      "peer_node_id": "N04",
-      "details": {
-        "message_count": 48,
-        "imported": 4,
-        "duplicates": 44,
-        "rejected": 0
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-11-07T20-57-26Z-007175",
-      "event_type": "peer_checked",
-      "occurred_at": "2026-11-07T20:57:26Z",
-      "result": "success",
-      "peer_node_id": "N03",
-      "details": {
-        "message_count": 48,
-        "imported": 4,
-        "duplicates": 44,
-        "rejected": 0
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-11-07T20-57-26Z-007174",
-      "event_type": "peer_checked",
-      "occurred_at": "2026-11-07T20:57:26Z",
-      "result": "success",
-      "peer_node_id": "N01",
-      "details": {
-        "message_count": 48,
-        "imported": 20,
-        "duplicates": 28,
-        "rejected": 0
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-11-07T20-57-26Z-007173",
-      "event_type": "cycle_started",
-      "occurred_at": "2026-11-07T20:57:26Z",
-      "result": "success",
-      "details": {
-        "node_id": "N02"
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-11-07T16-53-31Z-007172",
-      "event_type": "cycle_completed",
-      "occurred_at": "2026-11-07T16:53:31Z",
-      "result": "success",
-      "details": {
-        "cycle_result": "success"
-      }
-    },
-    {
-      "event_id": "SN1-N02-EVT-2026-11-07T16-53-31Z-007171",
-      "event_type": "site_generated",
-      "occurred_at": "2026-11-07T16:53:31Z",
       "result": "success",
       "details": {
         "pages": [
