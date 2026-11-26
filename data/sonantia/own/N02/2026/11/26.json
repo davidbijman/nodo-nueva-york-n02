@@ -1,0 +1,205 @@
+{
+  "network_id": "sonantia-network",
+  "protocol_version": "1.0",
+  "network_epoch": "SN1-2026-08-02",
+  "document_type": "daily-archive",
+  "origin_node_id": "N02",
+  "date": "2026-11-26",
+  "message_count": 1,
+  "first_sequence": 854,
+  "last_sequence": 854,
+  "messages": [
+    {
+      "network_id": "sonantia-network",
+      "protocol_version": "1.0",
+      "network_epoch": "SN1-2026-08-02",
+      "message_id": "SN1-N02-2026-11-26T00-29-58Z-000854",
+      "origin_node_id": "N02",
+      "sequence": 854,
+      "created_at": "2026-11-26T00:29:58Z",
+      "visibility": "public",
+      "language": "es",
+      "text": "Ahora el Nodo Nueva York comparte otra observación local. La lectura astronómica desde Nueva York señala el Sol a 33,274517° bajo el horizonte local. En este camino de observaciones, recordamos que en la realidad cotidiana de David Alexander Bijman Molina, la hidratación de David favorece cada vez más su vitalidad; además, sus células reciben condiciones apropiadas para funcionar con eficiencia.",
+      "context": {
+        "location": {
+          "zone": "north-america",
+          "country": "Estados Unidos",
+          "country_code": "US",
+          "city": "Nueva York",
+          "timezone": "America/New_York",
+          "latitude": 40.7789,
+          "longitude": -73.9692,
+          "elevation_m": 43.0
+        },
+        "weather": {
+          "status": "unavailable",
+          "provider": "open-meteo-current",
+          "requested_at": "2026-11-26T00:29:58Z",
+          "observed_at": null,
+          "condition_provider": "open-meteo-current",
+          "condition_observed_at": null,
+          "measurement_source_count": 0,
+          "measurement_source_codes": [],
+          "location": {
+            "latitude": 40.7789,
+            "longitude": -73.9692
+          },
+          "data": {
+            "temperature_c": null,
+            "relative_humidity_percent": null,
+            "precipitation_mm": null,
+            "pressure_hpa": null,
+            "wind_speed_kmh": null,
+            "solar_radiation_wm2": null,
+            "condition_code": null
+          }
+        },
+        "astronomy": {
+          "status": "available",
+          "generated_at": "2026-11-26T00:29:58Z",
+          "observer": {
+            "code": "coord@399",
+            "name": "Nueva York · coordenadas N02",
+            "longitude_deg": -73.9692,
+            "latitude_deg": 40.7789,
+            "elevation_km": 0.043,
+            "timezone": "America/New_York"
+          },
+          "target_count": 21,
+          "available_target_count": 21,
+          "reference_target": {
+            "name": "Sol",
+            "kind": "estrella",
+            "icon": "☀️",
+            "azimuth_deg": 270.144241,
+            "elevation_deg": -33.274517,
+            "visibility": "bajo el horizonte"
+          }
+        },
+        "geology": {
+          "status": "available",
+          "provider": "usgs-earthquakes",
+          "provider_label": "U.S. Geological Survey (USGS)",
+          "region_label": "Región geológica cercana a N02",
+          "country_code": "US",
+          "generated_at": "2026-11-26T00:29:58Z",
+          "observed_at": "2026-11-11T08:22:51Z",
+          "window_hours": 720,
+          "search_stage": "regional-30d",
+          "count": 4,
+          "source_url": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-10-27T00%3A29%3A58Z&endtime=2026-11-26T00%3A29%3A58Z&eventtype=earthquake&orderby=time&limit=200&latitude=40.7789&longitude=-73.9692&maxradiuskm=550",
+          "recent_event": {
+            "event_id": "us6000uc6a",
+            "occurred_at": "2026-11-11T08:22:51Z",
+            "local_time": "2026-11-11 03:22:51",
+            "location": "4 km N of Lisbon, Maine",
+            "magnitude": 1.6,
+            "magnitude_text": "1.6",
+            "depth_km": 7.643,
+            "depth": "7.6 km",
+            "latitude": 44.0734,
+            "longitude": -70.0939,
+            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000uc6a"
+          }
+        },
+        "economy": {
+          "status": "available",
+          "provider": "us-economic-data",
+          "provider_label": "Federal Reserve Economic Data (FRED)",
+          "region_label": "Estados Unidos",
+          "country_code": "US",
+          "generated_at": "2026-11-26T00:29:58Z",
+          "observed_at": "2026-11-25T00:00:00Z",
+          "date": "Indicadores oficiales · 2026-11-25",
+          "indicators": [
+            {
+              "label": "Euro (USD por EUR)",
+              "value": "1,0981",
+              "group": "general"
+            },
+            {
+              "label": "Libra (USD por GBP)",
+              "value": "1,3104",
+              "group": "general"
+            },
+            {
+              "label": "Yen (JPY por USD)",
+              "value": "158,76",
+              "group": "general"
+            },
+            {
+              "label": "Dólar canadiense",
+              "value": "1,4323",
+              "group": "general"
+            }
+          ],
+          "inflation": [
+            {
+              "label": "IPC mensual",
+              "value": "0,17%",
+              "group": "inflation"
+            },
+            {
+              "label": "IPC anual",
+              "value": "—",
+              "group": "inflation"
+            },
+            {
+              "label": "Tasa Fed",
+              "value": "4%",
+              "group": "inflation"
+            }
+          ],
+          "source_url": "https://fred.stlouisfed.org/"
+        }
+      },
+      "generator": {
+        "generator_id": "sonantia-context-composer-06",
+        "catalog_version": "2026-08-10-catalog-extended-04",
+        "catalog_hash": "sha256:cc084f35f041392fadf131a3692c722505bc9c54f394fcb2f8ab90135011d72b",
+        "group_id": "contextual",
+        "selection_policy": "deterministic_factorized",
+        "selected_values": [
+          {
+            "part_id": "opening",
+            "value_id": "apertura-ampliada-437"
+          },
+          {
+            "part_id": "opening-family",
+            "value_id": "general"
+          },
+          {
+            "part_id": "source-astronomy",
+            "value_id": "fuente-astro-226-sol-altura"
+          },
+          {
+            "part_id": "declaration",
+            "value_id": "declaracion-ampliada-295"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "memory"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "neutral"
+          },
+          {
+            "part_id": "declaration-family",
+            "value_id": "observation"
+          },
+          {
+            "part_id": "affirmation",
+            "value_id": "consolidado-frase-002021"
+          },
+          {
+            "part_id": "source-selection",
+            "value_id": "astronomy"
+          }
+        ],
+        "affirmation_text": "En la realidad cotidiana de David Alexander Bijman Molina, la hidratación de David favorece cada vez más su vitalidad; además, sus células reciben condiciones apropiadas para funcionar con eficiencia."
+      },
+      "content_hash": "sha256:0ceaadf3099c6fb3fc76ec4d6112fd0625f7aa1714338b5bcb8818e2a02673d0"
+    }
+  ]
+}
